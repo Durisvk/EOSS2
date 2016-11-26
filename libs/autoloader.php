@@ -34,6 +34,7 @@ function createFolderIfDoesntExist($path) {
 
 \EOSS\Registry::getInstance();
 
+createFolderIfDoesntExist(DIR_TEMP);
 createFolderIfDoesntExist(DIR_TEMP.'data/genElements');
 createFolderIfDoesntExist(DIR_TEMP.'data');
 createFolderIfDoesntExist(DIR_TEMP.'data/genJs');
