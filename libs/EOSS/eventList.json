@@ -1,0 +1,11 @@
+{
+  "onclick": "click",
+  "onhover": "hover",
+  "onchange": "change",
+  "onfocus": "focus",
+  "onfocusin": "focusin",
+  "onfocusout": "focusout",
+  "onload": "load",
+  "onmousedown": "mousedown",
+  "onkeypress": "keypress:keyCode"
+}

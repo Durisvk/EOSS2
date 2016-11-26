@@ -1,0 +1,5 @@
+    "home_eoss": "indexEOSS",
+    "layout_dir": "view/",
+    "models": "model/",
+    "refresh": true,
+    "enviroment": "debug"
