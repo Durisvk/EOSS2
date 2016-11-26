@@ -1,8 +1,9 @@
 <?php
 
-function get_include_contents($filename) {
+function get_include_contents($filename, $params = array()) {
     if (is_file($filename)) {
         ob_start();
+        extract($params);
         include $filename;
         $contents = ob_get_contents();
         ob_end_clean();
@@ -59,7 +60,6 @@ if(isset($_GET['id'])) {
 } else {
     $bind_event = $_GET['event'];
 }
-//\Debug\Linda::dd(json_encode($eoss));
 
 isset($_GET['param']) ? $eoss->$bind_event($_GET['param']) : $eoss->$bind_event();
 if(isset($_GET['id'])) {

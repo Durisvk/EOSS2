@@ -4,7 +4,7 @@
 
 You start with a config file, which should look like this:
 
-`config.eoss`:
+`app/config.eoss`:
 
 ```
     "home_eoss": "indexEOSS",
@@ -21,3 +21,6 @@ You start with a config file, which should look like this:
 `enviroment` for now this property says if AJAX responses should be `console.log`ged.
 
 Now that You have Your `config.eoss` ready, we can go ahead and create some stuff.
+
+Let's create our view inside `app/view/` folder.
+

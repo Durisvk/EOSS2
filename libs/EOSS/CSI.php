@@ -15,17 +15,17 @@ class CSI
     /**
      * @var CSIAnalyze
      */
-    private $csiAnalyze;
+    protected $csiAnalyze;
 
     /**
      * @var EOSS
      */
-    private $eoss;
+    public $eoss;
 
     /**
      * @var string
      */
-    private $file;
+    protected $file;
 
     /**
      * Params that are sent to view.
@@ -57,7 +57,7 @@ class CSI
         $this->file = $dir;
         //$obj = new \ReflectionClass($this->eoss);
         //$eossFile = $obj->getFileName();
-        $this->csiAnalyze = new CSIAnalyze($this->file, get_class($this->eoss));
+        $this->csiAnalyze = new CSIAnalyze($this->file, get_class($this->eoss), $this);
         $this->eoss->loadGeneratedCSI();
     }
 

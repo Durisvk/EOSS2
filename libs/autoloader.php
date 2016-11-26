@@ -12,9 +12,10 @@
     return $connectable;
 }*/
 
-function get_include_contents($filename) {
+function get_include_contents($filename, $params = array()) {
     if (is_file($filename)) {
         ob_start();
+        extract($params);
         include $filename;
         $contents = ob_get_contents();
         ob_end_clean();

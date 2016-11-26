@@ -76,9 +76,11 @@ class HTML
                 $json.= '"'.$name.'": "'.$attr->value.'"';
                 $json.=', ';
             }
+
             $innerHtml=self::getInnerHTML($el);
             $innerHtml=str_replace('"', '\"', $innerHtml);
-            $innerHtml != "" ?  $json.='"html": "'.$innerHtml.'"' : $json=rtrim($json, ', ');
+            //$innerHtml != "" ?  $json.='"html": "'.$innerHtml.'"' : $json=rtrim($json, ', ');
+            $json .= '"html": "' . $innerHtml . '"';
             $json.='}';
             $json.=', ';
         }

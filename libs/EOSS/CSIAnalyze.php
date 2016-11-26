@@ -25,12 +25,20 @@ class CSIAnalyze
     private $eossClassName;
 
     /**
+     * @var CSI
+     */
+    private $csi;
+
+    /**
      * CSIAnalyze constructor.
      * @param string $csi_file
+     * @param string $eossClassName
+     * @param CSI $csi
      * @throws \Exception
      */
-    public function __construct($csi_file, $eossClassName)
+    public function __construct($csi_file, $eossClassName, CSI $csi)
     {
+        $this->csi = $csi;
         $this->eossClassName = $eossClassName;
         $dir = DIR_APP . \Application\Config::getParam("layout_dir").$csi_file;
         if(!file_exists($dir)) {
@@ -44,12 +52,11 @@ class CSIAnalyze
      * Analyzes the HTML file and generates CSI.
      */
     private function analyzeCsi() {
-        $rf = get_include_contents($this->file);
+        $rf = get_include_contents($this->file, $this->csi->params->toArray());
         $elements = HTML::getElements($rf);
         $requires="<?php\n";
         $gencsi="\nclass " . $this->eossClassName . "GenCSI extends \\EOSS\\CSI {\n\n";
-        $gencsi.= "\t/**\n\t * @var string \n\t **/\n";
-        $gencsi.="\tprivate $"."file;\n\n";
+        $gencsi.="\n\n";
         $csivi="";
         $csic = "\tpublic function __construct($"."eoss) {\n";
         $csic .= "\n\tparent::__construct($"."eoss);\n";
@@ -80,7 +87,7 @@ class CSIAnalyze
         $gencsi .= $csic;
         $gencsi .= "\tpublic function setFile($"."dir) {\n";
         $gencsi .= "\t\t$"."this->file="."$"."dir;\n";
-        $gencsi .= "\t\t$"."this->csiAnalyze=new \\EOSS\\CSIAnalyze($"."dir);\n";
+        $gencsi .= "\t\t$"."this->csiAnalyze=new \\EOSS\\CSIAnalyze($"."dir, $"."this->eoss, $"."this);\n";
         $gencsi .= "\t\t$"."this->eoss->loadGeneratedCSI();\n";
         $gencsi .= "\t}\n";
         $gencsi .= "}\n";
