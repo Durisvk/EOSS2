@@ -43,29 +43,29 @@ $request = \Http\Request::getInstance(TRUE);
 
 $app=new Application\ApplicationLoader\ApplicationLoader();
 $app->includeModels();
-$eoss=$app->eossInit($_GET['eoss']);
-if(\Utils\Session::getInstance()->get($_GET['eoss'])) {\Utils\EOSSHelper::restoreClassVariables($eoss,get_class($eoss));}
-foreach(json_decode($_GET['values']) as $value) {
+$eoss=$app->eossInit($request->getParameter('eoss'));
+if(\Utils\Session::getInstance()->get($request->getParameter('eoss'))) {\Utils\EOSSHelper::restoreClassVariables($eoss,get_class($eoss));}
+foreach(json_decode($request->getParameter('values')) as $value) {
     $id=$value->id;
     $eoss->csi->$id->value=$value->val;
 }
-if (isset($_GET['curValue']) && isset($_GET['id'])) {
-    $eoss->csi->$_GET['id']->value=$_GET['curValue'];
+if ($request->getParameter('curValue') && $request->getParameter('id')) {
+    $eoss->csi->{$request->getParameter('id')}->value=$request->getParameter('curValue');
 }
 $eoss->bind();
 $bind_event = "";
 //DO FUNCTION...
-if(isset($_GET['id'])) {
-    $bind_event = $eoss->csi->$_GET['id']->$_GET['event'];
+if($request->getParameter('id')) {
+    $bind_event = $eoss->csi->{$request->getParameter('id')}->{$request->getParameter('event')};
 } else {
-    $bind_event = $_GET['event'];
+    $bind_event = $request->getParameter('event');
 }
 
-isset($_GET['param']) ? $eoss->$bind_event($_GET['param']) : $eoss->$bind_event();
-if(isset($_GET['id'])) {
-    \Utils\JavascriptGenerator::writeJsResponse($eoss, $_GET['id'] . $_GET['event']);
+$request->getParameter('param') ? $eoss->$bind_event($request->getParameter('param')) : $eoss->$bind_event();
+if($request->getParameter('id')) {
+    \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('id') . $request->getParameter('event'));
 } else {
-    \Utils\JavascriptGenerator::writeJsResponse($eoss, $_GET['event'] . 'Interval');
+    \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('event') . 'Interval');
 }
 //...and then
 \Utils\EOSSHelper::storeClassVariables($eoss,get_class($eoss));
