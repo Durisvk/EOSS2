@@ -80,6 +80,7 @@ $eossContainer=array();
 $eossdir=array();
 $apploader = new \Application\ApplicationLoader\ApplicationLoader();
 $apploader->includeModels();
+echo '<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>';
 $apploader->eossInit();
 include "requireJS.php";
 ?>

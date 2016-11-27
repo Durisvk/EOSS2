@@ -1,0 +1,35 @@
+.navbar-brand {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.scrolling-text {
+    float: right;
+    padding-top: 15px;
+    width: 91%;
+}
+
+.main-panel {
+    width: 50%;
+    margin: auto auto;
+    padding: 20px;
+}
+
+.example {
+    padding: 20px;
+    text-align: center;
+}
+
+#lblCopy {
+    margin-top: 10px;
+}
+
+#txtTodo {
+    width: 100%;
+}
+
+.panel-footer {
+    font-size: 10px;
+    float: right;
+    margin-top: 30px;
+}

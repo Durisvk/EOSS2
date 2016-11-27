@@ -63,7 +63,9 @@ class HTML
     public static function getElements($str) {
         $ids=self::getIds($str);
         $dom=new \DOMDocument();
+        libxml_use_internal_errors(true);
         $dom->loadHTML($str);
+        libxml_clear_errors();
         $elements=array();
         foreach ($ids as $id) {
             array_push($elements,self::getElementById($id,$dom));
