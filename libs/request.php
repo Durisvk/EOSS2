@@ -1,5 +1,7 @@
 <?php
 
+$start = microtime(TRUE);
+
 function get_include_contents($filename, $params = array()) {
     if (is_file($filename)) {
         ob_start();
@@ -69,4 +71,7 @@ if($request->getParameter('id')) {
 }
 //...and then
 \Utils\EOSSHelper::storeClassVariables($eoss,get_class($eoss));
+
+\Debug\Linda::showDebugBar($start);
+
 \Http\Response::getInstance()->flush();

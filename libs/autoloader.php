@@ -1,5 +1,7 @@
 <?php
 
+$start = microtime(TRUE);
+
 /*function url_exists($url) {
     $handle   = curl_init($url);
 
@@ -83,4 +85,7 @@ $apploader->includeModels();
 echo '<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>';
 $apploader->eossInit();
 include "requireJS.php";
+if(\Application\Config::getParam("enviroment") == "debug") {
+    \Debug\Linda::showDebugBar($start);
+}
 ?>

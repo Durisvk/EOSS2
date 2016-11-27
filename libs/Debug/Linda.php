@@ -1,6 +1,8 @@
 <?php
 namespace Debug;
 
+use Http\Request;
+use Http\Response;
 use \Utils\File;
 /**
  * Class Linda
@@ -86,6 +88,44 @@ class Linda {
             }
             include DIR_LIBS."/Debug/LindaLayout.php";
         }
+    }
+
+    /**
+     * Shows the debugbar.
+     * @param int $start
+     */
+    public static function showDebugBar($start) {
+
+        $executionTime = 0;
+        if (isset($_SERVER["REQUEST_TIME_FLOAT"])) {
+            $executionTime = microtime(TRUE) - $_SERVER["REQUEST_TIME_FLOAT"];
+        } else {
+            $executionTime = microtime(TRUE) - $start;
+        }
+        $executionTime = round($executionTime * 1000, 2);
+
+        if(!Request::getInstance()->isAjax()) {
+
+            $res = Response::getInstance();
+
+            $res->append("<div id='linda' style='sans-serif;color: #333;border: 1px solid #c9c9c9;background: #EDEAE0;position: fixed;right: 0;bottom: 0;overflow: auto;min-height: 21px;min-width: 50px;white-space: nowrap;z-index: 30000;opacity: .9;transition: opacity 0.2s;border-radius: 3px;box-shadow: 1px 1px 10px;cursor:pointer;'>");
+            $res->append("<ul style='list-style: none none;margin-left: 4px;clear: left;'>");
+            $res->append("<li style='margin-left: -35px;float:left'><b>EOSS</b></li>");
+            $res->append("<li class='exec-time' style='padding-left: 20px; float:left'>" . $executionTime . "ms</li>");
+            $res->append("<li class='alloc-memory' style='padding-left: 20px; float:left'>" . round(memory_get_peak_usage(TRUE) / 1000000, 2) . "MB</li>");
+            $res->append("</ul>");
+            $res->append("</div>");
+            $res->flush();
+        } else {
+            self::updateDebugBar($executionTime);
+        }
+    }
+
+    public static function updateDebugBar($execTime) {
+        $res = Response::getInstance();
+
+        $res->append("$('#linda').find('.exec-time').html(\"" . $execTime . "ms\");\n", FALSE);
+        $res->append("$('#linda').find('.alloc-memory').html(\"" . round(memory_get_peak_usage(TRUE) / 1000000, 2) . "MB\");\n", FALSE);
     }
 
     /**
