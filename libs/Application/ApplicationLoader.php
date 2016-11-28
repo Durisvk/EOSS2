@@ -118,7 +118,9 @@ class ApplicationLoader {
 
     public function includeModels() {
         $dir = DIR_APP . \Application\Config::getParam("models");
-        RequireHelper::requireFilesInDirectory($dir);
+        if(file_exists($dir)) {
+            RequireHelper::requireFilesInDirectory($dir);
+        }
     }
 
 }

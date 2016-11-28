@@ -28,7 +28,7 @@ define('URL_APP', URL . 'app/');
 function __autoload($class_name) {
     if(class_exists($class_name)) return;
     $parts = explode('\\', $class_name);
-    if(file_exists(end($parts).'.php')) {
+    if(count($parts) == 1 && file_exists(end($parts).'.php')) {
         include end($parts).'.php';
     } else {
         $dirs = array_filter(glob(DIR_LIBS.'*'), 'is_dir');
