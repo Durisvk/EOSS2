@@ -11,20 +11,19 @@ use \Utils\File;
  * The class is created to display the debug information such as Errors, ...
  */
 class Linda {
-    /**
-     * @var integer Starting time of execution.
-     */
-    public $timeStart;
 
     /**
-     * @var integer Ending tme of execution.
+     * Dumped variables.
+     * @var string
      */
-    public $timeEnd;
+    private static $dumped = "";
 
     /**
      * @var TODO: fill the documentation.
      */
     public $showLinda;
+
+
 
     /**
      * Shows the error
@@ -108,13 +107,53 @@ class Linda {
 
             $res = Response::getInstance();
 
-            $res->append("<div id='linda' style='sans-serif;color: #333;border: 1px solid #c9c9c9;background: #EDEAE0;position: fixed;right: 0;bottom: 0;overflow: auto;min-height: 21px;min-width: 50px;white-space: nowrap;z-index: 30000;opacity: .9;transition: opacity 0.2s;border-radius: 3px;box-shadow: 1px 1px 10px;cursor:pointer;'>");
+            $res->append("<div class='EOSS-dumped' style='position: absolute;display: none;width: 300px;height: 500px;background-color: #f5f5f5;box-shadow: 1px 1px 10px;'>" . self::$dumped . "</div>");
+            $res->append("<div id='EOSS-linda' style='width: 300px; height: 22px;sans-serif;color: #333;border: 1px solid #c9c9c9;background: #EDEAE0;position: fixed;right: 0;bottom: 0;overflow: auto;min-height: 21px;min-width: 50px;white-space: nowrap;z-index: 30000;opacity: .9;transition: opacity 0.2s;border-radius: 3px;box-shadow: 1px 1px 10px;cursor:pointer;'>");
             $res->append("<ul style='list-style: none none;margin-left: 4px;clear: left;'>");
             $res->append("<li style='margin-left: -35px;float:left'><b>EOSS</b></li>");
-            $res->append("<li class='exec-time' style='padding-left: 20px; float:left'>" . $executionTime . "ms</li>");
-            $res->append("<li class='alloc-memory' style='padding-left: 20px; float:left'>" . round(memory_get_peak_usage(TRUE) / 1000000, 2) . "MB</li>");
+            $res->append("<li class='EOSS-exec-time' style='padding-left: 20px; float:left'>" . $executionTime . "ms</li>");
+            $res->append("<li class='EOSS-alloc-memory' style='padding-left: 20px; float:left'>" . round(memory_get_peak_usage(TRUE) / 1000000, 2) . "MB</li>");
+            $res->append("<li class='EOSS-variables' style='padding-left: 20px; float:left'>variables &#9650;</li>");
             $res->append("</ul>");
             $res->append("</div>");
+
+            $res->append("
+                <script>
+                function handle_mousedown(e){
+                    window.my_dragging = {};
+                    my_dragging.pageX0 = e.pageX;
+                    my_dragging.pageY0 = e.pageY;
+                    my_dragging.elem = this;
+                    my_dragging.offset0 = $(this).offset();
+                    function handle_dragging(e){
+                        var left = my_dragging.offset0.left + (e.pageX - my_dragging.pageX0);
+                        var top = my_dragging.offset0.top + (e.pageY - my_dragging.pageY0);
+                        $(my_dragging.elem)
+                        .offset({top: top, left: left});
+                    }
+                    function handle_mouseup(e){
+                        $('body')
+                        .off('mousemove', handle_dragging)
+                        .off('mouseup', handle_mouseup);
+                    }
+                    $('body')
+                    .on('mouseup', handle_mouseup)
+                    .on('mousemove', handle_dragging);
+                }
+                $('#EOSS-linda').mousedown(handle_mousedown);
+                $('#EOSS-linda').find('.EOSS-variables').hover(function() {
+                    $('.EOSS-dumped').fadeIn();
+                  }, function() {
+                    $('.EOSS-dumped').fadeOut();
+                  });
+                 $('#EOSS-linda .EOSS-variables').on('mousemove', function(event) {
+                     var left = event.pageX - 302;
+                     var top = event.pageY - 502;
+                     
+                     $('.EOSS-dumped').css({top: top,left: left});
+                 });
+                </script>
+            ");
             $res->flush();
         } else {
             self::updateDebugBar($executionTime);
@@ -124,8 +163,9 @@ class Linda {
     public static function updateDebugBar($execTime) {
         $res = Response::getInstance();
 
-        $res->append("$('#linda').find('.exec-time').html(\"" . $execTime . "ms\");\n", FALSE);
-        $res->append("$('#linda').find('.alloc-memory').html(\"" . round(memory_get_peak_usage(TRUE) / 1000000, 2) . "MB\");\n", FALSE);
+        $res->append("$('#EOSS-linda').find('.EOSS-exec-time').html(\"" . $execTime . "ms\");\n", FALSE);
+        $res->append("$('#EOSS-linda').find('.EOSS-alloc-memory').html(\"" . round(memory_get_peak_usage(TRUE) / 1000000, 2) . "MB\");\n", FALSE);
+        $res->append("$('.EOSS-dumped').html(`" . self::$dumped . "`)", FALSE);
     }
 
     /**
@@ -140,5 +180,13 @@ class Linda {
             print_r($var);
         }
         echo "<br>";
+    }
+
+    /**
+     * Dumps the variable to the debug bar.
+     * @param mixed $var
+     */
+    public static function dump($var) {
+        self::$dumped .= print_r($var, TRUE) . "<br><br>";
     }
 }

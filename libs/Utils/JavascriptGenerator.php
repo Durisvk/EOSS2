@@ -103,15 +103,15 @@ class JavascriptGenerator
                 foreach($listOfAttr as $key=>$attr) {
                     if ($element && property_exists($element, $key)) {
 
-                        if($key != "html") {
+                        if($key != "html" && $key != "value") {
                             $js .= "$( '#" . $element->id . "' ).attr(\"" . str_replace("_", "-", $key) . "\", '";
-                            $js .= preg_replace("/\r|\n/", "", $element->$key);
-                            $js .= "');\n";
-                        } else {
+                        } else if($key == "html"){
                             $js .= "$( '#" . $element->id . "' ).html('";
-                            $js .= preg_replace("/\r|\n/", "", $element->$key);
-                            $js .= "');\n";
+                        } else if($key == "value") {
+                            $js .= "$( '#" . $element->id . "' ).val('";
                         }
+                        $js .= preg_replace("/\r|\n/", "", $element->$key);
+                        $js .= "');\n";
                     }
 
                 }
