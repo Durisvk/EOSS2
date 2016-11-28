@@ -1,13 +1,9 @@
 <?php
-
 namespace EOSS;
-
-
 use Debug\Linda;
 use Utils\JavascriptGenerator;
 use Utils\RequireHelper;
 use Utils\Session;
-
 /**
  * Base class for controllers.
  * Class EOSS
@@ -15,18 +11,15 @@ use Utils\Session;
  */
 abstract class EOSS
 {
-
     /**
-     * Client side interface
-     * @var CSI
+     * Variable CSI - Client side interface
+     * @var CSI|\indexEOSSGenCSI
      */
     public $csi;
-
     /**
      * @var null|string
      */
     public $redirect = NULL;
-
     /**
      * EOSS constructor.
      */
@@ -35,7 +28,6 @@ abstract class EOSS
         $this->csi = new CSI($this);
         $this->load();
     }
-
     /**
      * Loads the generated CSI from genCSI.php file/
      */
@@ -49,21 +41,17 @@ abstract class EOSS
         $this->bind();
         JavascriptGenerator::generateJavascript($this);
     }
-
     /**
      * Should contain all of the initial loading logic (setFile, ...)
      * CSI is not generated at this time.
      */
     public abstract function load();
-
     /**
      * Should contain all of the binding logic
      * and all the logic with CSI because it's generated
      * at this time.
      */
     public abstract function bind();
-
-
     public function redirect($eoss = NULL) {
         $this->redirect = isset($eoss) ? $eoss : get_class($this);
         Session::getInstance()->set("currentEOSS", $this->redirect);

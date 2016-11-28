@@ -17,7 +17,6 @@ class indexEOSS extends EOSS
 
         $this->csi->txtSource->onkeypress = "rewrite";
         $this->csi->txtTodo->onkeypress = "addTodo";
-
     }
 
     public function rewrite($keyCode) {

@@ -109,6 +109,9 @@ class ApplicationLoader {
         include $filename;
     }
 
+    /**
+     * Includes all of the models.
+     */
     public function includeModels() {
         $dir = DIR_APP . \Application\Config::getParam("models");
         if(file_exists($dir)) {
