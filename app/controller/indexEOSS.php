@@ -10,7 +10,6 @@ class indexEOSS extends EOSS
     {
         $this->csi->params->title = "Welcome To EOSS | EOSS2";
         $this->csi->setFile("indexView.php");
-        \Debug\Linda::dump($this->csi);
     }
 
     public function bind()
@@ -29,7 +28,6 @@ class indexEOSS extends EOSS
             $this->csi->lblTodos->html .= "<div><b>" . $this->counter . ".: </b>" . $this->csi->txtTodo->value . "</div>";
             $this->csi->txtTodo->value = "";
             $this->counter++;
-            \Debug\Linda::dump("ahoj");
         }
     }
 
