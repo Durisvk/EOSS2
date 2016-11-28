@@ -41,7 +41,7 @@
         </ul>
         <div class="example">
             <div id="lblTodos"><b>TODOS:</b></div>
-            <input type="text" id="txtTodo" value="" placeholder="Type here something and hit enter.">
+            <input type="text" id="txtTodo" data-test="asdf" value="" placeholder="Type here something and hit enter.">
         </div>
         There is a lot work to be done. The EOSS2 is not finished yet. Next we are planning to do a Form logic.
         <div class="panel-footer">

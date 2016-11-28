@@ -29,7 +29,7 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 
 	parent::__construct($eoss);
 		$this->eoss=$eoss;
-		$this->file='/home/lchost/EOSS2/app/view/indexView.php';
+		$this->file='/home/lchost/EOSS2/libs/../app/view/indexView.php';
 		$this->txtSource=new txtSource;
 		$this->lblCopy=new lblCopy;
 		$this->lblTodos=new lblTodos;

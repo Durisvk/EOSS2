@@ -69,6 +69,11 @@ class JavascriptGenerator
     }
 
 
+    /**
+     * @param array $intervals
+     * @param string $class
+     * @return string
+     */
     public static function generateIntervals($intervals, $class) {
         $js = "\n\n";
         foreach($intervals as $key => $value) {
@@ -97,9 +102,16 @@ class JavascriptGenerator
                 if(is_array($element)) continue;
                 foreach($listOfAttr as $key=>$attr) {
                     if ($element && property_exists($element, $key)) {
-                        $js .= "$( '#" . $element->id . "' )." . $attr . "(\n'";
-                        $js .= preg_replace("/\r|\n/", "", $element->$key);
-                        $js .= "');\n";
+
+                        if($key != "html") {
+                            $js .= "$( '#" . $element->id . "' ).attr(\"" . str_replace("_", "-", $key) . "\", '";
+                            $js .= preg_replace("/\r|\n/", "", $element->$key);
+                            $js .= "');\n";
+                        } else {
+                            $js .= "$( '#" . $element->id . "' ).html('";
+                            $js .= preg_replace("/\r|\n/", "", $element->$key);
+                            $js .= "');\n";
+                        }
                     }
 
                 }

@@ -70,12 +70,12 @@ class CSIAnalyze
             $csic .= "\t\t$"."this->".$element->id."=new ".$element->id.";\n";
             foreach ($element as $key => $attribute) {
                 $file .= "\t/**\n\t * @var string\n\t */\n";
-                $file .= "\tpublic $".$key.";\n";
+                $file .= "\tpublic $" . str_replace("-", "_", $key). ";\n";
             }
             $file .= "\n\tpublic function __construct() { \n";
             foreach ($element as $key => $attribute) {
                 $attribute=str_replace('"', '\"', $attribute);
-                $file .= "\t\t$"."this->".$key.'="'.$attribute.'"'.";\n";
+                $file .= "\t\t$"."this->" . str_replace("-", "_", $key) . '="'.$attribute.'"'.";\n";
             }
             $file .= "\t}\n\n";
             $file .= "}\n";

@@ -19,7 +19,7 @@ class indexEOSS extends EOSS
         $this->csi->txtTodo->onkeypress = "addTodo";
     }
 
-    public function rewrite($keyCode) {
+    public function rewrite() {
         $this->csi->lblCopy->html = "<b>" . $this->csi->txtSource->value . "</b>";
     }
 

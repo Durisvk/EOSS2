@@ -40,6 +40,9 @@ function __autoload($class_name) {
     }
 }
 
+ini_set( "display_errors", "off" );
+error_reporting(E_ERROR);
+
 $request = \Http\Request::getInstance(TRUE);
 
 

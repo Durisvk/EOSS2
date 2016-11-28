@@ -12,6 +12,10 @@ class txtTodo {
 	/**
 	 * @var string
 	 */
+	public $data_test;
+	/**
+	 * @var string
+	 */
 	public $value;
 	/**
 	 * @var string
@@ -25,6 +29,7 @@ class txtTodo {
 	public function __construct() { 
 		$this->type="text";
 		$this->id="txtTodo";
+		$this->data_test="asdf";
 		$this->value="";
 		$this->placeholder="Type here something and hit enter.";
 		$this->html="";
