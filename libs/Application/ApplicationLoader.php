@@ -51,36 +51,29 @@ class ApplicationLoader {
             $cls=$cls[0];
             if(isset($eossreq) && $eossreq==$cls) {
                 require_once $match;
-                $rf = file_get_contents ($match);
-                preg_match("/setFile\((.*)\)/",$rf,$matches);
-                preg_match("/\(\"(.*)\"\)/",$matches[0],$matches);
+                /** @var EOSS $eoss */
                 $eoss=new $cls;
                 if(!Request::getInstance()->isAjax()) {
-                    $this->loadView($matches[1], $eoss);
+                    $this->loadView($eoss->csi->getFile(), $eoss);
                 }
                 return $eoss;
             } else {
                 if(Session::getInstance()->get('currentEOSS')) {
                     if($cls==Session::getInstance()->get('currentEOSS') || Strings::startsWith($cls, Session::getInstance()->get('currentEOSS'))) {
                         require_once $match;
-
-                        $rf = file_get_contents ($match);
-                        preg_match("/setFile\((.*)\)/",$rf,$matches);
-                        preg_match("/\(\"(.*)\"\)/",$matches[0],$matches);
+                        /** @var EOSS $eoss */
                         $eoss=new $cls;
                         if(!Request::getInstance()->isAjax()) {
-                            $this->loadView($matches[1], $eoss);
+                            $this->loadView($eoss->csi->getFile(), $eoss);
                         }
                     }
                 } else if(Config::getParam("home_eoss")==$cls) {
                     Session::getInstance()->set("currentEOSS",Config::getParam("home_eoss"));
                     require_once $match;
-                    $rf = file_get_contents ($match);
-                    preg_match("/setFile\((.*)\)/",$rf,$matches);
-                    preg_match("/\(\"(.*)\"\)/",$matches[0],$matches);
+                    /** @var EOSS $eoss */
                     $eoss=new $cls;
                     if(!Request::getInstance()->isAjax()) {
-                        $this->loadView($matches[1], $eoss);
+                        $this->loadView($eoss->csi->getFile(), $eoss);
                     }
                 }
             }
@@ -113,7 +106,7 @@ class ApplicationLoader {
      */
     public function loadView($filename, EOSS $eoss) {
         extract($eoss->csi->params->toArray());
-        include DIR_APP.Config::getParam("layout_dir").$filename;
+        include $filename;
     }
 
     public function includeModels() {
