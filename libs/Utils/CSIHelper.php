@@ -24,7 +24,7 @@ class CSIHelper
         $eossFile = fopen($eossPath, 'rw');
         $data =fread($eossFile, filesize($eossPath));
         $lines = explode(PHP_EOL, $data);
-        for($i = 0; $i < count($lines); $i++) {
+        for($i = 0; $i < count($lines) - 1; $i++) {
             if(strpos($lines[$i], 'Variable CSI - Client side interface') !== FALSE && strpos($lines[$i + 1] , $name . "GenCSI") === FALSE) {
                 $lines[$i + 1] .= '|\\' . $name . "GenCSI";
                 file_put_contents($eossPath, implode(PHP_EOL, $lines));
