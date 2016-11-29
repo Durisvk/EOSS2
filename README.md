@@ -203,7 +203,7 @@ class indexEOSS extends EOSS
     }
 
 
-    public function next() {
+    public function next($sender) {
         $database = new \Database\PDOWrapper('localhost', 'username', 'password', 'testdatabase');
 
         if($row = $database->prepareExecuteAndFetch("SELECT * FROM users WHERE username = ? AND password = ?", $this->csi->username->value, $this->csi->password->value)) {
@@ -315,12 +315,12 @@ class chatEOSS extends EOSS
         $this->csi->chat->html = $this->chatModel->getChatMessagesFormatted();
     }
 
-    public function sendMsg() {
+    public function sendMsg($sender) {
         $this->chatModel->sendMessage(\EOSS\Registry::getInstance()->username, $this->csi->message->value);
         $this->csi->message->value = "";
     }
 
-    public function back() {
+    public function back($sender) {
         $this->redirect("chatLoginEOSS");
     }
 
