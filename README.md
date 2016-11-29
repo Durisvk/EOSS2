@@ -57,7 +57,7 @@ use \EOSS\EOSS;
 class indexEOSS extends EOSS
 {
 
-    private $counter = 1;
+    public $counter = 1;
 
     public function load()
     {
@@ -69,7 +69,7 @@ class indexEOSS extends EOSS
         $this->csi->addTodo->onclick = "addTodoFunction";
     }
 
-    public function addTodoFunction() {
+    public function addTodoFunction($sender) {
         $this->csi->todos->html .= "<div>" . $this->counter . ": " . $this->csi->todo->value . "</div>";
         $this->csi->todo->value = "";
         $this->counter++;
@@ -79,7 +79,7 @@ class indexEOSS extends EOSS
 }
 ```
 
-In load method we set the view file we've created earlier. We can pass parameters into the view by setting `$this->csi->params->anyKindOfParameter` to some value. Bind method is called after the EOSS generates the CSI structure of classes. Now we can access all of our view elements from `$this->csi->idOfAnElement`. In this phase we should bind all of the events and set all of the intervals we need. Events are passed as a string containing the name of the function. Then we need to implement this function. We can use private members and do with them whatever we want (e.g. increment them) and they will be stored inside Sessions.
+In load method we set the view file we've created earlier. We can pass parameters into the view by setting `$this->csi->params->anyKindOfParameter` to some value. Bind method is called after the EOSS generates the CSI structure of classes. Now we can access all of our view elements from `$this->csi->idOfAnElement`. In this phase we should bind all of the events and set all of the intervals we need. Events are passed as a string containing the name of the function. Then we need to implement this function. We can use public members and do with them whatever we want (e.g. increment them) and they will be stored inside Sessions. To the function of some event the `$sender` parameter is passed which contains the information about the element that the event was fired on.
 
 This is it... We've got the working application.
 
@@ -127,7 +127,7 @@ class indexEOSS extends EOSS
         $this->csi->txtSource->onkeypress = "rewrite";
     }
 
-    public function rewrite($keyCode) {
+    public function rewrite($sender, $keyCode) {
         $this->csi->lblCopy->html = $this->csi->txtSource->value;
     }
 

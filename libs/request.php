@@ -66,7 +66,11 @@ if($request->getParameter('id')) {
     $bind_event = $request->getParameter('event');
 }
 
-$request->getParameter('param') ? $eoss->$bind_event($request->getParameter('param')) : $eoss->$bind_event();
+if($request->getParameter('id')) {
+    $request->getParameter('param') ? $eoss->$bind_event($eoss->csi->{$request->getParameter('id')}, $request->getParameter('param')) : $eoss->$bind_event($eoss->csi->{$request->getParameter('id')});
+} else {
+    $request->getParameter('param') ? $eoss->$bind_event($request->getParameter('param')) : $eoss->$bind_event();
+}
 if($request->getParameter('id')) {
     \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('id') . $request->getParameter('event'));
 } else {
