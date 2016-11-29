@@ -57,7 +57,6 @@ foreach(json_decode($request->getParameter('values')) as $value) {
 if ($request->getParameter('curValue') && $request->getParameter('id')) {
     $eoss->csi->{$request->getParameter('id')}->value=$request->getParameter('curValue');
 }
-$eoss->bind();
 $bind_event = "";
 //DO FUNCTION...
 if($request->getParameter('id')) {
