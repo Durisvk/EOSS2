@@ -66,7 +66,7 @@ class indexEOSS extends EOSS
 
     public function bind()
     {
-        $this->csi->addTodo->onclick = "addTodoFunction";
+        $this->csi->addTodo->onclick[] = "addTodoFunction";
     }
 
     public function addTodoFunction($sender) {
@@ -124,7 +124,7 @@ class indexEOSS extends EOSS
 
     public function bind()
     {
-        $this->csi->txtSource->onkeypress = "rewrite";
+        $this->csi->txtSource->onkeypress[] = "rewrite";
     }
 
     public function rewrite($sender, $keyCode) {
@@ -199,7 +199,7 @@ class indexEOSS extends EOSS
 
     public function bind()
     {
-        $this->csi->next->onclick = "next";
+        $this->csi->next->onclick[] = "next";
     }
 
 
@@ -306,8 +306,8 @@ class chatEOSS extends EOSS
 
     public function bind()
     {
-        $this->csi->send->onclick = "sendMsg";
-        $this->csi->back->onclick = "back";
+        $this->csi->send->onclick[] = "sendMsg";
+        $this->csi->back->onclick[] = "back";
         $this->csi->intervals["reloadPosts"] = 500;
     }
 

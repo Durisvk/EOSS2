@@ -67,7 +67,9 @@ if($request->getParameter('id')) {
 }
 
 if($request->getParameter('id')) {
-    $request->getParameter('param') ? $eoss->$bind_event($eoss->csi->{$request->getParameter('id')}, $request->getParameter('param')) : $eoss->$bind_event($eoss->csi->{$request->getParameter('id')});
+    foreach($bind_event as $event) {
+        $request->getParameter('param') ? $eoss->$event($eoss->csi->{$request->getParameter('id')}, $request->getParameter('param')) : $eoss->$event($eoss->csi->{$request->getParameter('id')});
+    }
 } else {
     $request->getParameter('param') ? $eoss->$bind_event($request->getParameter('param')) : $eoss->$bind_event();
 }

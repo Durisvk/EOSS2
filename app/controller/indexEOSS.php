@@ -15,8 +15,8 @@ class indexEOSS extends EOSS
     public function bind()
     {
 
-        $this->csi->txtSource->onkeypress = "rewrite";
-        $this->csi->txtTodo->onkeypress = "addTodo";
+        $this->csi->txtSource->onkeypress[] = "rewrite";
+        $this->csi->txtTodo->onkeypress[] = "addTodo";
     }
 
     public function rewrite() {

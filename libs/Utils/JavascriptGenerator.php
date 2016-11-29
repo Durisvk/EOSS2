@@ -41,9 +41,9 @@ class JavascriptGenerator
      * @return string
      */
     public static function checkForEvents($attr,$class) {
-        $listOfProp=json_decode(file_get_contents(DIR_LIBS."EOSS/eventList.json"));
+        $listOfEvents=json_decode(file_get_contents(DIR_LIBS."EOSS/eventList.json"));
         $js="";
-        foreach ($listOfProp as $key=>$prop) {
+        foreach ($listOfEvents as $key=>$prop) {
             if($attr && property_exists($attr,$key)) {
                 $e=false;
                 if(strpos($prop,":")!=false) {

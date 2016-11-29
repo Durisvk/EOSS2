@@ -70,7 +70,12 @@ class CSIAnalyze
             $csic .= "\t\t$"."this->".$element->id."=new ".$element->id.";\n";
             foreach ($element as $key => $attribute) {
                 $file .= "\t/**\n\t * @var string\n\t */\n";
-                $file .= "\tpublic $" . str_replace("-", "_", $key). ";\n";
+                $file .= "\tpublic $" . str_replace("-", "_", $key). ";\n\n";
+            }
+            $listOfEvents=json_decode(file_get_contents(DIR_LIBS."EOSS/eventList.json"));
+            foreach ($listOfEvents as $key => $value) {
+                $file .= "\t/**\n\t * @var array\n\t */\n";
+                $file .= "\tpublic $" . $key . " = array();\n\n";
             }
             $file .= "\n\tpublic function __construct() { \n";
             foreach ($element as $key => $attribute) {
