@@ -17,6 +17,7 @@ class indexEOSS extends EOSS
 
         $this->csi->txtSource->onkeypress[] = "rewrite";
         $this->csi->txtTodo->onkeypress[] = "addTodo";
+        $this->csi->buttons->onclick[] = "showNumber";
     }
 
     public function rewrite() {
@@ -29,6 +30,11 @@ class indexEOSS extends EOSS
             $this->csi->txtTodo->value = "";
             $this->counter++;
         }
+    }
+
+    public function showNumber($sender) {
+        $this->csi->lblButtons->html = $sender->value;
+        \Debug\Linda::dump($sender);
     }
 
 }

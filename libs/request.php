@@ -18,7 +18,7 @@ function get_include_contents($filename, $params = array()) {
 define('DIR_LIBS', getcwd().'/');
 define('DIR_APP', getcwd().'/../app/');
 define('DIR_TEMP', getcwd() . '/../temp/');
-define('URL', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+define('URL', "http://$_SERVER[HTTP_HOST]".str_replace("libs/request.php", "", strtok($_SERVER['REQUEST_URI'], '?')));
 define('URL_LIBS', URL . 'libs/');
 define('URL_TEMP', URL . 'temp/');
 define('URL_APP', URL . 'app/');
@@ -66,11 +66,27 @@ if($request->getParameter('id')) {
     $bind_event = $request->getParameter('event');
 }
 
+$called = [];
 if($request->getParameter('id')) {
-    foreach($bind_event as $event) {
-        $request->getParameter('param') ? $eoss->$event($eoss->csi->{$request->getParameter('id')}, $request->getParameter('param')) : $eoss->$event($eoss->csi->{$request->getParameter('id')});
+    if($eoss->csi->{$request->getParameter('id')}->type == "group") {
+        // If is group
+        foreach($bind_event as $event) {
+            if(!in_array($event, $called)) {
+                $request->getParameter('param') ? $eoss->$event($eoss->csi->{$request->getParameter('element_id')}, $request->getParameter('param')) : $eoss->$event($eoss->csi->{$request->getParameter('element_id')});
+                $called[] = $event;
+            }
+        }
+    } else {
+        // If is a single element
+        foreach ($bind_event as $event) {
+            if(!in_array($event, $called)) {
+                $request->getParameter('param') ? $eoss->$event($eoss->csi->{$request->getParameter('id')}, $request->getParameter('param')) : $eoss->$event($eoss->csi->{$request->getParameter('id')});
+                $called[] = $event;
+            }
+        }
     }
 } else {
+    // If is interval...
     $request->getParameter('param') ? $eoss->$bind_event($request->getParameter('param')) : $eoss->$bind_event();
 }
 if($request->getParameter('id')) {

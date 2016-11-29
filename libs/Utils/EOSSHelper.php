@@ -25,7 +25,7 @@ class EOSSHelper
             if(is_object($val)) {
                 foreach ($val as $elkey=>$elval) {
                     foreach($elval as $attkey=>$attval) {
-                        if(isset($eoss->$key->$elkey->$attkey)) {
+                        if(isset($eoss->$key->$elkey->$attkey) && !Strings::startsWith($attkey, 'on')) {
                             $eoss->$key->$elkey->$attkey = $attval;
                         }
                     }

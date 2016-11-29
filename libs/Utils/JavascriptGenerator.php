@@ -44,26 +44,60 @@ class JavascriptGenerator
         $listOfEvents=json_decode(file_get_contents(DIR_LIBS."EOSS/eventList.json"));
         $js="";
         foreach ($listOfEvents as $key=>$prop) {
-            if($attr && property_exists($attr,$key)) {
+            if($attr && property_exists($attr,$key) && count($attr->$key) > 0 && (property_exists($attr, "type") && $attr->type != "group")) {
                 $e=false;
+
+                $param = "";
                 if(strpos($prop,":")!=false) {
                     $e=true;
                     $s=explode(":",$prop);
                     $prop=$s[0];
                     $param=$s[1];
                 }
-                $js.="$( '#".$attr->id."' ).on('".$prop."',function (";
+
+                $js.="\n$( '#".$attr->id."' ).on('".$prop."',function (";
                 $e ? $js.="event" : $js.="";
                 $js.=") {\n";
                 $js.="$.get('" . URL_LIBS . "request.php',{'eoss':'".$class."','id':'".$attr->id."','event':'".$key."','values':createJSON()";
                 $e ? $js.=",'param': event.".$param.", curValue:$(this).val()+String.fromCharCode(event.keyCode)" : $js.="";
                 $js.="}, function (data) {
-                                " . (Config::getParam("enviroment") == "debug" ? "console.log(data);" : "") . "
-								eval(data);
-								".$attr->id.$key."(data);
-							});
-						});";
+        " . (Config::getParam("enviroment") == "debug" ? "console.log(data);" : "") . "
+        eval(data);
+        ".$attr->id.$key."(data);
+    });
+});";
+            } else if($attr && property_exists($attr,$key) && count($attr->$key) > 0 && (property_exists($attr, "type") && $attr->type == "group")) {
+
+                $e=false;
+
+                $param = "";
+                if(strpos($prop,":")!=false) {
+                    $e=true;
+                    $s=explode(":",$prop);
+                    $prop=$s[0];
+                    $param=$s[1];
+                }
+
+                $js.="\n\n$( '";
+                foreach($attr->elements as $element) {
+                    $js.="#" . $element . "";
+                    if($element != end($attr->elements)) {
+                        $js .= ", ";
+                    }
+                }
+                $js.="' ).on('".$prop."',function (";
+                $e ? $js.="event" : $js.="";
+                $js.=") {\nvar $" . "self = $(this);\n";
+                $js.="$.get('" . URL_LIBS . "request.php',{'eoss':'".$class."','id':'" . $attr->id . "', 'element_id':$(this).attr('id'), 'event':'".$key."','values':createJSON()";
+                $e ? $js.=",'param': event.".$param.", curValue:$(this).val()+String.fromCharCode(event.keyCode)" : $js.="";
+                $js.="}, function (data) {
+        " . (Config::getParam("enviroment") == "debug" ? "console.log(data);" : "") . "
+        eval(data);
+        ".$attr->id.$key."(data);
+    });
+});";
             }
+
         }
         return $js;
     }

@@ -3,6 +3,7 @@
 namespace EOSS;
 
 
+use Debug\Linda;
 use Utils\CSIHelper;
 use Utils\HTML;
 
@@ -62,6 +63,7 @@ class CSIAnalyze
         $csic .= "\n\tparent::__construct($"."eoss);\n";
         $csic .= "\t\t$"."this->eoss="."$"."eoss;\n";
         $csic .= "\t\t$"."this->file='".$this->file."';\n";
+        $groups = [];
         foreach (json_decode($elements) as $element) {
             $file = "<?php\nclass ".$element->id." { \n\n";
             $csivi .= "\t/**\n\t * @var " . $element->id . "\n\t */\n";
@@ -69,6 +71,16 @@ class CSIAnalyze
             $requires .= "require_once __DIR__ . '/genElements/".$element->id.".php';\n";
             $csic .= "\t\t$"."this->".$element->id."=new ".$element->id.";\n";
             foreach ($element as $key => $attribute) {
+                if($key == 'data-group') {
+                    if(!isset($groups[$attribute])) {
+                        $groups[$attribute] = [];
+                        $requires .= "require_once __DIR__ . '/genElements/" . $attribute . ".php';\n";
+                        $csivi .= "\t/**\n\t * @var " . $attribute . "\n\t */\n";
+                        $csivi .= "\tpublic $".$attribute.";\n";
+                        $csic .= "\t\t$"."this->".$attribute."=new ".$attribute.";\n";
+                    }
+                    $groups[$attribute][] = $element->id;
+                }
                 $file .= "\t/**\n\t * @var string\n\t */\n";
                 $file .= "\tpublic $" . str_replace("-", "_", $key). ";\n\n";
             }
@@ -96,7 +108,49 @@ class CSIAnalyze
         $gencsi .= "\t\t$"."this->eoss->loadGeneratedCSI();\n";
         $gencsi .= "\t}\n";
         $gencsi .= "}\n";
+
+        foreach($groups as $groupName => $elements) {
+            $this->generateGroup($groupName, $elements);
+        }
+
         CSIHelper::genCSI($gencsi, $this->eossClassName);
     }
+
+    /**
+     * Generates the group inside groupName.php
+     * @param string $groupName
+     * @param array $elements
+     */
+    private function generateGroup($groupName, $elements) {
+        $file = "<?php\n\n";
+        $file .= "class " . $groupName . " {\n\n";
+
+        $file .= "\t/**\n\t * @var string\n\t */\n";
+        $file .= "\tpublic $"."type = \"group\";\n";
+        $file .= "\t/**\n\t * @var string\n\t */\n";
+        $file .= "\tpublic $"."id = \"" . $groupName . "\";\n";
+
+
+        $listOfEvents=json_decode(file_get_contents(DIR_LIBS."EOSS/eventList.json"));
+        foreach ($listOfEvents as $key => $value) {
+            $file .= "\t/**\n\t * @var array\n\t */\n";
+            $file .= "\tpublic $" . $key . " = array();\n\n";
+        }
+        $file .= "\t/**\n\t * @var array\n\t */\n";
+        $file .= "\tpublic $"."elements = array(";
+        foreach($elements as $element) {
+            $file .= "\"" . $element . "\"";
+            if($element != end($elements)) {
+                $file .= ",";
+            }
+        }
+        $file .= ");\n\n";
+
+        $file .= "\n}";
+
+        CSIHelper::genElement($groupName, $file);
+    }
+
+
 
 }
