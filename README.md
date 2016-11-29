@@ -332,3 +332,63 @@ class chatEOSS extends EOSS
 We've set the interval to call `reloadPosts` every 500 ms. The syntax is `$this->csi->intervals["functionYouWantToCall"] = 500`.
 
 And now we're done...
+
+# Groups
+
+Now that we understand the Intervals Database and Registry we can move on some easier stuff. Let's learn about Groups.
+
+Let's create our view with three buttons added to one group using `data-group` attribute. We want to show the clicked button's value inside `div`.
+
+`app/view/indexView.php`:
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+	<div id="lblView"></div>
+	<input type="button" id="btn1" data-group="buttons" value="1" />
+	<input type="button" id="btn2" data-group="buttons" value="2" />
+	<input type="button" id="btn3" data-group="buttons" value="3" />
+
+</body>
+</html>
+```
+
+Now we can create our controller.
+
+`app/controller/indexEOSS.php`:
+
+```php
+<?php
+
+use EOSS\EOSS;
+
+class indexEOSS extends EOSS
+{
+
+    public function load()
+    {
+        $this->csi->setFile("indexView.php");
+    }
+
+    public function bind()
+    {
+
+        $this->csi->buttons->onclick[] = "showNumber";
+    }
+
+
+    public function showNumber($sender) {
+        $this->csi->lblButtons->html = $sender->value;
+    }
+
+}
+```
+
+Now we can use the group we've defined earlier to bind the event to the all elements in that group.
+
+And we are done...
