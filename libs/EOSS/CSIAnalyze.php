@@ -65,6 +65,10 @@ class CSIAnalyze
         $csic .= "\t\t$"."this->file='".$this->file."';\n";
         $groups = [];
         foreach (json_decode($elements) as $element) {
+            if(property_exists($element, 'data-ignore') && get_object_vars($element)['data-ignore'] == 'true') {
+                continue;
+            }
+
             $file = "<?php\nclass ".$element->id." { \n\n";
             $csivi .= "\t/**\n\t * @var " . $element->id . "\n\t */\n";
             $csivi .= "\tpublic $".$element->id.";\n";
