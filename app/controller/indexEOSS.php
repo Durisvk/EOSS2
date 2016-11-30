@@ -16,20 +16,18 @@ class indexEOSS extends EOSS
     {
 
         $this->csi->txtSource->onkeypress[] = "rewrite";
-        $this->csi->txtTodo->onkeypress[] = "addTodo";
+        $this->csi->txtTodo->onenterpressed[] = "addTodo";
         $this->csi->buttons->onclick[] = "showNumber";
     }
 
-    public function rewrite() {
+    public function rewrite($sender, $keyCode) {
         $this->csi->lblCopy->html = "<b>" . $this->csi->txtSource->value . "</b>";
     }
 
-    public function addTodo($sender, $keyCode) {
-        if($keyCode == 13) {
-            $this->csi->lblTodos->html .= "<div><b>" . $this->counter . ".: </b>" . $this->csi->txtTodo->value . "</div>";
-            $this->csi->txtTodo->value = "";
-            $this->counter++;
-        }
+    public function addTodo($sender) {
+        $this->csi->lblTodos->html .= "<div><b>" . $this->counter . ".: </b>" . $this->csi->txtTodo->value . "</div>";
+        $this->csi->txtTodo->value = "";
+        $this->counter++;
     }
 
     public function showNumber($sender) {

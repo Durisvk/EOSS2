@@ -9,7 +9,7 @@ You start with a config file, which should look like this:
 
 `app/config.eoss`:
 
-```
+```json
     "home_eoss": "indexEOSS",
     "layout_dir": "view/",
     "models": "model/",
@@ -151,7 +151,8 @@ Available events(some will be added over time):
   "onfocusout": "focusout",
   "onload": "load",
   "onmousedown": "mousedown",
-  "onkeypress": "keypress:keyCode"
+  "onkeypress": "keypress:keyCode",
+  "onenterpressed": "keypress-event.keyCode==13"
 }
 ```
 
@@ -395,6 +396,8 @@ Now we can use the group we've defined earlier to bind the event to the all elem
 
 And we are done...
 
+# Calculator
+
 Now let's create a calculator.
 
 `app/view/indexView.html`:
@@ -407,10 +410,8 @@ Now let's create a calculator.
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pre amaterov: ako naprogramovat kalkulacku na webe s Duriho frejmvorkom...</title>
-<!--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/style.css">-->
+    <title>How to program a calculator with EOSS</title>
+
     <style type="text/css">
         td
         {

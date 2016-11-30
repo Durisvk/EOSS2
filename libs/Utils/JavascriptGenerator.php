@@ -44,20 +44,29 @@ class JavascriptGenerator
         $listOfEvents=json_decode(file_get_contents(DIR_LIBS."EOSS/eventList.json"));
         $js="";
         foreach ($listOfEvents as $key=>$prop) {
-            if($attr && property_exists($attr,$key) && count($attr->$key) > 0 && (property_exists($attr, "type") && $attr->type != "group")) {
-                $e=false;
+            $e=false;
 
-                $param = "";
-                if(strpos($prop,":")!=false) {
-                    $e=true;
-                    $s=explode(":",$prop);
-                    $prop=$s[0];
-                    $param=$s[1];
-                }
+            $param = "";
+            if(strpos($prop,":")!=false) {
+                $e=true;
+                $s=explode(":",$prop);
+                $prop=$s[0];
+                $param=$s[1];
+            }
+
+            $condition = NULL;
+            if(strpos($prop, "-")) {
+                $s=explode("-", $prop);
+                $prop = $s[0];
+                $condition = $s[1];
+            }
+
+            if($attr && property_exists($attr,$key) && count($attr->$key) > 0 && (property_exists($attr, "type") && $attr->type != "group")) {
 
                 $js.="\n$( '#".$attr->id."' ).on('".$prop."',function (";
-                $e ? $js.="event" : $js.="";
+                $js.="event";
                 $js.=") {\n";
+                $js.= $condition ? "if(" . $condition . ")\n\t" : "";
                 $js.="$.get('" . URL_LIBS . "request.php',{'eoss':'".$class."','id':'".$attr->id."','event':'".$key."','values':createJSON()";
                 $e ? $js.=",'param': event.".$param.", curValue:$(this).val()+String.fromCharCode(event.keyCode)" : $js.="";
                 $js.="}, function (data) {
@@ -68,16 +77,6 @@ class JavascriptGenerator
 });";
             } else if($attr && property_exists($attr,$key) && count($attr->$key) > 0 && (property_exists($attr, "type") && $attr->type == "group")) {
 
-                $e=false;
-
-                $param = "";
-                if(strpos($prop,":")!=false) {
-                    $e=true;
-                    $s=explode(":",$prop);
-                    $prop=$s[0];
-                    $param=$s[1];
-                }
-
                 $js.="\n\n$( '";
                 foreach($attr->elements as $element) {
                     $js.="#" . $element . "";
@@ -86,8 +85,9 @@ class JavascriptGenerator
                     }
                 }
                 $js.="' ).on('".$prop."',function (";
-                $e ? $js.="event" : $js.="";
+                $js.="event";
                 $js.=") {\nvar $" . "self = $(this);\n";
+                $js.= $condition ? "if(" . $condition . ")\n\t" : "";
                 $js.="$.get('" . URL_LIBS . "request.php',{'eoss':'".$class."','id':'" . $attr->id . "', 'element_id':$(this).attr('id'), 'event':'".$key."','values':createJSON()";
                 $e ? $js.=",'param': event.".$param.", curValue:$(this).val()+String.fromCharCode(event.keyCode)" : $js.="";
                 $js.="}, function (data) {

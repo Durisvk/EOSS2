@@ -7,5 +7,6 @@
   "onfocusout": "focusout",
   "onload": "load",
   "onmousedown": "mousedown",
-  "onkeypress": "keypress:keyCode"
+  "onkeypress": "keypress:keyCode",
+  "onenterpressed": "keypress-event.keyCode==13"
 }

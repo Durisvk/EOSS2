@@ -56,6 +56,11 @@ class lblTodos {
 	 */
 	public $onkeypress = array();
 
+	/**
+	 * @var array
+	 */
+	public $onenterpressed = array();
+
 
 	public function __construct() { 
 		$this->id="lblTodos";

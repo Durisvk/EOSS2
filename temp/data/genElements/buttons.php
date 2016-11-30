@@ -58,6 +58,11 @@ class buttons {
 	/**
 	 * @var array
 	 */
+	public $onenterpressed = array();
+
+	/**
+	 * @var array
+	 */
 	public $elements = array("btn1","btn2","btn3");
 
 
