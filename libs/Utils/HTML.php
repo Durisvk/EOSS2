@@ -91,6 +91,7 @@ class HTML
         }
         $json=rtrim($json, ', ');
         $json.='}';
+        $json = trim(preg_replace('/\s+/', ' ', $json));
         return $json;
     }
 
