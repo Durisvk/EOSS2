@@ -9,7 +9,7 @@ use EOSS\EOSS;
 use Http\Response;
 
 /**
- * Gnerates ajax communication for EOSS to work.
+ * Generates ajax communication for EOSS to work.
  * @static Class JavascriptGenerator
  * @package Utils
  */
