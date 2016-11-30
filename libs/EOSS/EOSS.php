@@ -1,6 +1,7 @@
 <?php
 namespace EOSS;
 use Debug\Linda;
+use Forms\Form;
 use Utils\JavascriptGenerator;
 use Utils\RequireHelper;
 use Utils\Session;
@@ -16,10 +17,17 @@ abstract class EOSS
      * @var CSI|\indexEOSSGenCSI
      */
     public $csi;
+
     /**
      * @var null|string
      */
     public $redirect = NULL;
+
+    /**
+     * @var array Array of Forms.
+     */
+    private $forms = [];
+
     /**
      * EOSS constructor.
      */
@@ -52,6 +60,12 @@ abstract class EOSS
      * at this time.
      */
     public abstract function bind();
+
+    /**
+     * Redirects the page to EOSS passed as argument
+     * If no argument's passed, the page is refreshed.
+     * @param null|EOSS $eoss
+     */
     public function redirect($eoss = NULL) {
         $this->redirect = isset($eoss) ? $eoss : get_class($this);
         Session::getInstance()->set("currentEOSS", $this->redirect);
@@ -59,4 +73,14 @@ abstract class EOSS
             header("Refresh:0");
         }
     }
+
+    /**
+     * Registers the form. Need to be called if onsubmit should work.
+     * @param Form $form
+     */
+    public function registerForm(Form $form) {
+        $this->forms[] = $form;
+    }
+
+
 }
