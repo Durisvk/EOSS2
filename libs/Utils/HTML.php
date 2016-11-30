@@ -1,6 +1,7 @@
 <?php
 
 namespace Utils;
+use Debug\Linda;
 
 /**
  * Static Helper class for HTML manipulations with DOMDocument
@@ -78,7 +79,9 @@ class HTML
                 $json.= '"'.$name.'": "'.$attr->value.'"';
                 $json.=', ';
             }
-
+            if(!$el->getAttribute("type")) {
+                $json .= '"type": "' . $el->tagName . '",';
+            }
             $innerHtml=self::getInnerHTML($el);
             $innerHtml=str_replace('"', '\"', $innerHtml);
             //$innerHtml != "" ?  $json.='"html": "'.$innerHtml.'"' : $json=rtrim($json, ', ');

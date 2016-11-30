@@ -60,12 +60,11 @@ class JavascriptGenerator
                 $prop = $s[0];
                 $condition = $s[1];
             }
-
             if($attr && property_exists($attr,$key) && count($attr->$key) > 0 && (property_exists($attr, "type") && $attr->type != "group")) {
-
                 $js.="\n$( '#".$attr->id."' ).on('".$prop."',function (";
                 $js.="event";
                 $js.=") {\n";
+                $js.= $attr->type == "a" ? "event.preventDefault();\n" : "";
                 $js.= $condition ? "if(" . $condition . ")\n\t" : "";
                 $js.="$.get('" . URL_LIBS . "request.php',{'eoss':'".$class."','id':'".$attr->id."','event':'".$key."','values':createJSON()";
                 $e ? $js.=",'param': event.".$param.", curValue:$(this).val()+String.fromCharCode(event.keyCode)" : $js.="";
@@ -87,6 +86,7 @@ class JavascriptGenerator
                 $js.="' ).on('".$prop."',function (";
                 $js.="event";
                 $js.=") {\nvar $" . "self = $(this);\n";
+                $js.= $attr->type == "a" ? "event.preventDefault();\n" : "";
                 $js.= $condition ? "if(" . $condition . ")\n\t" : "";
                 $js.="$.get('" . URL_LIBS . "request.php',{'eoss':'".$class."','id':'" . $attr->id . "', 'element_id':$(this).attr('id'), 'event':'".$key."','values':createJSON()";
                 $e ? $js.=",'param': event.".$param.", curValue:$(this).val()+String.fromCharCode(event.keyCode)" : $js.="";
