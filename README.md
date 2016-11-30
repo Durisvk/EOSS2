@@ -494,8 +494,8 @@ class indexEOSS extends EOSS
     public function bind()
     {
         $this->csi->b->onclick[] = "writeToDisplay";
-        $this->csi->bc->onclick[] = "clearAll"; //todo Not to write [], if I don't need args.
-        $this->csi->bce->onclick[] = "clearLast"; //todo Err: first time not working with 'bce' id ?? after renaming to 'ana' and back, it's start to work.
+        $this->csi->bc->onclick[] = "clearAll";
+        $this->csi->bce->onclick[] = "clearLast";
         $this->csi->o->onclick[] = "onOperator";
         $this->csi->result->onclick[] = "evaluate";
     }
