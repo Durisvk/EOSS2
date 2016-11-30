@@ -127,12 +127,13 @@ class JavascriptGenerator
      * Writes a response into genFunctions.js file.
      * @param EOSS $eoss
      * @param string $fname
+     * @param array $changed
      */
-    public static function writeJsResponse(EOSS $eoss, $fname) {
+    public static function writeJsResponse(EOSS $eoss, $fname, $changed = array()) {
         $listOfAttr=json_decode(file_get_contents(DIR_LIBS."EOSS/attributeList.json"));
         $js="function ".$fname."() {";
         if(!isset($eoss->redirect)) {
-            foreach (get_object_vars($eoss->csi) as $element) {
+            foreach ($changed as $element) {
                 if(is_array($element)) continue;
                 foreach($listOfAttr as $key=>$attr) {
                     if ($element && property_exists($element, $key)) {

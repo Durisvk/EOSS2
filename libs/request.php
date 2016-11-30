@@ -40,7 +40,7 @@ function __autoload($class_name) {
     }
 }
 
-ini_set( "display_errors", "off" );
+ini_set( "display_errors", "on" );
 error_reporting(E_ERROR);
 
 $request = \Http\Request::getInstance(TRUE);
@@ -57,6 +57,16 @@ foreach(json_decode($request->getParameter('values')) as $value) {
 if ($request->getParameter('curValue') && $request->getParameter('id')) {
     $eoss->csi->{$request->getParameter('id')}->value=$request->getParameter('curValue');
 }
+
+
+// store old values:
+$oldValues = [];
+foreach($eoss->csi as $key => $value) {
+    if($key != "params" && $key != "eoss" && $key != "intervals") {
+        $oldValues[$key] = clone $eoss->csi->$key;
+    }
+}
+
 $bind_event = "";
 //DO FUNCTION...
 if($request->getParameter('id')) {
@@ -88,10 +98,21 @@ if($request->getParameter('id')) {
     // If is interval...
     $request->getParameter('param') ? $eoss->$bind_event($request->getParameter('param')) : $eoss->$bind_event();
 }
+
+// get the changed values:
+$changed = [];
+foreach($oldValues as $key => $value) {
+    if($eoss->csi->$key != $value) {
+        $changed[$key] = $eoss->csi->$key;
+    }
+}
+
+
+
 if($request->getParameter('id')) {
-    \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('id') . $request->getParameter('event'));
+    \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('id') . $request->getParameter('event'), $changed);
 } else {
-    \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('event') . 'Interval');
+    \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('event') . 'Interval', $changed);
 }
 //...and then
 \Utils\EOSSHelper::storeClassVariables($eoss,get_class($eoss));
