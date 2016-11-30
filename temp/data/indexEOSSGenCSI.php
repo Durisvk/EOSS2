@@ -1,141 +1,69 @@
 <?php
-require_once __DIR__ . '/genElements/display.php';
-require_once __DIR__ . '/genElements/b7.php';
-require_once __DIR__ . '/genElements/b.php';
-require_once __DIR__ . '/genElements/b8.php';
-require_once __DIR__ . '/genElements/b9.php';
-require_once __DIR__ . '/genElements/plus.php';
-require_once __DIR__ . '/genElements/o.php';
-require_once __DIR__ . '/genElements/b4.php';
-require_once __DIR__ . '/genElements/b5.php';
-require_once __DIR__ . '/genElements/b6.php';
-require_once __DIR__ . '/genElements/minus.php';
-require_once __DIR__ . '/genElements/b1.php';
-require_once __DIR__ . '/genElements/b2.php';
-require_once __DIR__ . '/genElements/b3.php';
-require_once __DIR__ . '/genElements/multiple.php';
-require_once __DIR__ . '/genElements/b0.php';
-require_once __DIR__ . '/genElements/bc.php';
-require_once __DIR__ . '/genElements/bce.php';
-require_once __DIR__ . '/genElements/divide.php';
-require_once __DIR__ . '/genElements/result.php';
-require_once __DIR__ . '/genElements/negate.php';
+require_once __DIR__ . '/genElements/txtSource.php';
+require_once __DIR__ . '/genElements/lblCopy.php';
+require_once __DIR__ . '/genElements/lblTodos.php';
+require_once __DIR__ . '/genElements/txtTodo.php';
+require_once __DIR__ . '/genElements/lblButtons.php';
+require_once __DIR__ . '/genElements/btn1.php';
+require_once __DIR__ . '/genElements/buttons.php';
+require_once __DIR__ . '/genElements/btn2.php';
+require_once __DIR__ . '/genElements/btn3.php';
 
 class indexEOSSGenCSI extends \EOSS\CSI {
 
 
 
 	/**
-	 * @var display
+	 * @var txtSource
 	 */
-	public $display;
+	public $txtSource;
 	/**
-	 * @var b7
+	 * @var lblCopy
 	 */
-	public $b7;
+	public $lblCopy;
 	/**
-	 * @var b
+	 * @var lblTodos
 	 */
-	public $b;
+	public $lblTodos;
 	/**
-	 * @var b8
+	 * @var txtTodo
 	 */
-	public $b8;
+	public $txtTodo;
 	/**
-	 * @var b9
+	 * @var lblButtons
 	 */
-	public $b9;
+	public $lblButtons;
 	/**
-	 * @var plus
+	 * @var btn1
 	 */
-	public $plus;
+	public $btn1;
 	/**
-	 * @var o
+	 * @var buttons
 	 */
-	public $o;
+	public $buttons;
 	/**
-	 * @var b4
+	 * @var btn2
 	 */
-	public $b4;
+	public $btn2;
 	/**
-	 * @var b5
+	 * @var btn3
 	 */
-	public $b5;
-	/**
-	 * @var b6
-	 */
-	public $b6;
-	/**
-	 * @var minus
-	 */
-	public $minus;
-	/**
-	 * @var b1
-	 */
-	public $b1;
-	/**
-	 * @var b2
-	 */
-	public $b2;
-	/**
-	 * @var b3
-	 */
-	public $b3;
-	/**
-	 * @var multiple
-	 */
-	public $multiple;
-	/**
-	 * @var b0
-	 */
-	public $b0;
-	/**
-	 * @var bc
-	 */
-	public $bc;
-	/**
-	 * @var bce
-	 */
-	public $bce;
-	/**
-	 * @var divide
-	 */
-	public $divide;
-	/**
-	 * @var result
-	 */
-	public $result;
-	/**
-	 * @var negate
-	 */
-	public $negate;
+	public $btn3;
 
 	public function __construct($eoss) {
 
 	parent::__construct($eoss);
 		$this->eoss=$eoss;
-		$this->file='/home/lchost/EOSS2/libs/../app/view/indexView.html';
-		$this->display=new display;
-		$this->b7=new b7;
-		$this->b=new b;
-		$this->b8=new b8;
-		$this->b9=new b9;
-		$this->plus=new plus;
-		$this->o=new o;
-		$this->b4=new b4;
-		$this->b5=new b5;
-		$this->b6=new b6;
-		$this->minus=new minus;
-		$this->b1=new b1;
-		$this->b2=new b2;
-		$this->b3=new b3;
-		$this->multiple=new multiple;
-		$this->b0=new b0;
-		$this->bc=new bc;
-		$this->bce=new bce;
-		$this->divide=new divide;
-		$this->result=new result;
-		$this->negate=new negate;
+		$this->file='/home/lchost/EOSS2/app/view/indexView.php';
+		$this->txtSource=new txtSource;
+		$this->lblCopy=new lblCopy;
+		$this->lblTodos=new lblTodos;
+		$this->txtTodo=new txtTodo;
+		$this->lblButtons=new lblButtons;
+		$this->btn1=new btn1;
+		$this->buttons=new buttons;
+		$this->btn2=new btn2;
+		$this->btn3=new btn3;
 	}
 	public function setFile($dir) {
 		$this->file=$dir;
