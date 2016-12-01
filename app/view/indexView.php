@@ -24,7 +24,6 @@
 </nav>
 
 <div class="main-panel panel panel-default">
-    <?= $form ?>
     <div class="panel-body">
         We're glad to see you here. Every bug you should report on the <a href="https://github.com/Durisvk/EOSS2">github website</a>. We are looking forward to our collaboration. We are happy that you've chosen the EOSS2. By the way we are looking for a contributors on our <a href="https://github.com/Durisvk/EOSS2">github page</a>. You can write me an email on <a href="mailto:durisvk2@gmail.com">durisvk2@gmail.com</a>
         <div class="example">

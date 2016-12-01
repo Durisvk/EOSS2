@@ -36,7 +36,7 @@ class indexEOSS extends EOSS
         $this->csi->txtTodo->onenterpressed[] = "addTodo";
         $this->csi->buttons->onclick[] = "showNumber";
     }
-    
+
     public function rewrite($sender, $keyCode) {
         $this->csi->lblCopy->html = "<b>" . $this->csi->txtSource->value . "</b>";
     }
