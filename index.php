@@ -1,4 +1,5 @@
 <?php
+define('DIR', getcwd() . "/");
 define('DIR_LIBS', getcwd().'/libs/');
 define('DIR_APP', getcwd().'/app/');
 define('DIR_TEMP', getcwd() . '/temp/');

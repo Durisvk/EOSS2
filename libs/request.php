@@ -2,6 +2,7 @@
 
 $start = microtime(TRUE);
 
+define('DIR', getcwd() . '/../');
 define('DIR_LIBS', getcwd().'/');
 define('DIR_APP', getcwd().'/../app/');
 define('DIR_TEMP', getcwd() . '/../temp/');
@@ -27,6 +28,8 @@ spl_autoload_register(function ($className) {
     // get file if it is readable
     if (is_readable($file)) require_once $file;
 });
+
+
 
 function get_include_contents($filename, $params = array()) {
     if (is_file($filename)) {
@@ -107,6 +110,10 @@ if($request->getParameter('id')) {
         if($key != "eoss" && $key != "form" && $key != "values") {
             $submittedForm->$key = $value;
         }
+    }
+
+    foreach($_FILES as $key => $value) {
+        $submittedForm->$key = new \Http\FileUpload($value);
     }
 
     foreach($bind_event as $event) {

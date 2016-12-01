@@ -2,16 +2,33 @@
 
 use EOSS\EOSS;
 
+
+/**
+ * Startup class.
+ * Class indexEOSS
+ */
 class indexEOSS extends EOSS
 {
     public $counter = 1;
 
+    /**
+     * Load is called when the EOSS is initialized.
+     * It should contain setFile to set the view, but
+     * before that it should contain parameters sent to
+     * the view. Forms should be created before setFile also
+     * and they should be passed as a parameter to the view.
+     */
     public function load()
     {
         $this->csi->params->title = "Welcome To EOSS | EOSS2";
         $this->csi->setFile("indexView.php");
     }
 
+    /**
+     * Bind is called when the CSI(Client Side Interface)
+     * is generated. It should contain all of the basic
+     * bindings to the events.
+     */
     public function bind()
     {
 
@@ -19,7 +36,7 @@ class indexEOSS extends EOSS
         $this->csi->txtTodo->onenterpressed[] = "addTodo";
         $this->csi->buttons->onclick[] = "showNumber";
     }
-
+    
     public function rewrite($sender, $keyCode) {
         $this->csi->lblCopy->html = "<b>" . $this->csi->txtSource->value . "</b>";
     }
@@ -34,8 +51,5 @@ class indexEOSS extends EOSS
         $this->csi->lblButtons->html = $sender->value;
     }
 
-    public function formSubmitted(\Forms\SubmittedForm $form) {
-        $this->csi->lblButtons->html = $form->username;
-    }
 
 }

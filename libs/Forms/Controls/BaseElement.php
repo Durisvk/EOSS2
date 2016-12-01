@@ -2,7 +2,11 @@
 
 namespace Forms\Controls;
 
-
+/**
+ * BaseElement helper.
+ * Class BaseElement
+ * @package Forms\Controls
+ */
 abstract class BaseElement
 {
 

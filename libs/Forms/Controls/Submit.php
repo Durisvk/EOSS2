@@ -3,6 +3,11 @@
 namespace Forms\Controls;
 
 
+/**
+ * Basic submit class.
+ * Class Submit
+ * @package Forms\Controls
+ */
 class Submit implements IElement
 {
 

@@ -8,7 +8,11 @@
 
 namespace Forms;
 
-
+/**
+ * Received when the form is submitted as argument to the event.
+ * Class SubmittedForm
+ * @package Forms
+ */
 class SubmittedForm
 {
 

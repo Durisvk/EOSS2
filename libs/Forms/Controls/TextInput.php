@@ -3,7 +3,11 @@
 namespace Forms\Controls;
 
 
-
+/**
+ * Basic input class.
+ * Class TextInput
+ * @package Forms\Controls
+ */
 class TextInput extends BaseElement implements IElement
 {
 
