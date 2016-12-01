@@ -34,4 +34,8 @@ class indexEOSS extends EOSS
         $this->csi->lblButtons->html = $sender->value;
     }
 
+    public function formSubmitted(\Forms\SubmittedForm $form) {
+        $this->csi->lblButtons->html = $form->username;
+    }
+
 }

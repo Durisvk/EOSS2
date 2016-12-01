@@ -24,7 +24,7 @@ abstract class EOSS
     public $redirect = NULL;
 
     /**
-     * @var array Array of Forms.
+     * @var Form[]
      */
     private $forms = [];
 
@@ -82,5 +82,31 @@ abstract class EOSS
         $this->forms[] = $form;
     }
 
+    /**
+     * @return Form[]
+     */
+    public function getForms() {
+        return $this->forms;
+    }
 
+    /**
+     * Finds the form by name.
+     * @param string $name
+     * @param bool $need
+     * @return Form|null
+     * @throws \Exception
+     */
+    public function getForm($name, $need = FALSE) {
+        /** @var Form $form */
+        foreach($this->forms as $form) {
+            if($form->getName() == $name) {
+                return $form;
+            }
+        }
+        if($need) {
+            throw new \Exception("Form with name \"{$name}\" not found.");
+        } else {
+            return NULL;
+        }
+    }
 }

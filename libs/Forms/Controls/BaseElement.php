@@ -3,7 +3,7 @@
 namespace Forms\Controls;
 
 
-class BaseElement
+abstract class BaseElement
 {
 
     /**
@@ -16,6 +16,41 @@ class BaseElement
      * @var string[]
      */
     private $attributes = [];
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $label = "";
+
+    /**
+     * @var string
+     */
+    private $id = "";
+
+    /**
+     * @var string
+     */
+    private $value = "";
+
+    /**
+     * BaseElement constructor.
+     * @param string $name
+     * @param string $label
+     * @param string $id
+     */
+    public function __construct($name, $label = "", $id = "") {
+        $this->name = $name;
+        $this->label = $label;
+        $this->id = $id;
+        if($this->id == "") {
+            $this->id = "form-" . $this->name . "-element";
+        }
+    }
 
     /**
      * Sets the element to required based on value.
@@ -39,7 +74,7 @@ class BaseElement
      * Adds an attribute to the element
      * @param string $attr
      * @param string $value
-     * @return BaseElement
+     * @return $this
      */
     public function addAttribute($attr, $value) {
         $this->attributes[$attr] = $value;
@@ -52,6 +87,52 @@ class BaseElement
      */
     public function getAttributes() {
         return $this->attributes;
+    }
+
+    /**
+     * Returns the name of element.
+     * @return string
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * Returns the element's label.
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    /**
+     * Gets the value of element.
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Sets the value of element.
+     * @param string $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+
+
+
+    /**
+     * Returns the element's id.
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
 
@@ -75,7 +156,7 @@ class BaseElement
     }
 
     /**
-     *
+     * Returns formatted attributes.
      * @return string
      */
     protected function getAttributesAsString() {
@@ -91,6 +172,14 @@ class BaseElement
             }
         }
         return $str;
+    }
+
+    public function getLabelAsHtml() {
+        if($this->label == "") {
+            return "";
+        }
+
+        return "<label for=\"{$this->id}\">{$this->label}</label>";
     }
 
 }

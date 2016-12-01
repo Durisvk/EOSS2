@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\ApplicationLoader;
+namespace Application;
 use Application\Config;
 use Debug\Linda;
 use EOSS\EOSS;

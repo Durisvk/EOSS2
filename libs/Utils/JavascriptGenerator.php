@@ -6,6 +6,7 @@ namespace Utils;
 use Application\Config;
 use Debug\Linda;
 use EOSS\EOSS;
+use Forms\Form;
 use Http\Response;
 
 /**
@@ -28,6 +29,7 @@ class JavascriptGenerator
             }
         }
         $js .= self::generateIntervals($eoss->csi->intervals, get_class($eoss));
+        $js .= self::generateForms($eoss->getForms(), get_class($eoss));
         $genjs=fopen(DIR_TEMP . "data/genJs/".get_class($eoss).".js", "w") or die("Check out your permissions on file libs/data/!");
         fwrite($genjs, $js);
         fclose($genjs);
@@ -114,13 +116,43 @@ class JavascriptGenerator
             $js .= "setInterval(function() {\n";
             $js.="$.get('" . URL_LIBS . "request.php',{'eoss':'".$class."','event':'".$key."','values':createJSON()";
             $js.="}, function (data) {
-                        " . (Config::getParam("enviroment") == "debug" ? "console.log(data);" : "") . "
-                        eval(data);
-                        ".$key."Interval(data);
-                    });
-                }, " . $value . ");";
+        " . (Config::getParam("enviroment") == "debug" ? "console.log(data);" : "") . "
+        eval(data);
+        ".$key."Interval(data);
+    });
+}, " . $value . ");";
         }
         return $js;
+    }
+
+    public static function generateForms($forms, $class) {
+        $js = "\n\n";
+        /** @var Form $form */
+        foreach($forms as $form) {
+            $js .= "$( \"#{$form->getId()}\" ).on(\"submit\", function(event) {\n";
+            $js .= "event.preventDefault();\n";
+            $js .= "var formData = new FormData($(this)[0]);\n";
+            $js .= "formData.append(\"eoss\", \"{$class}\");\n";
+            $js .= "formData.append(\"form\", \"{$form->getName()}\");\n";
+            $js .= "formData.append(\"values\", createJSON());\n";
+            $js .= " $.ajax({
+        url: $(this).attr('action'),
+        type: \"POST\",
+        data: formData,
+        success: function(data) {
+            " . (Config::getParam("enviroment") == "debug" ? "console.log(data);" : "") . "
+            eval(data);
+            {$form->getName()}Form(data);
+        },
+        processData: false,
+        contentType: false
+    }); ";
+
+            $js.="return false";
+            $js.="});";
+        }
+        return $js;
+
     }
 
     /**

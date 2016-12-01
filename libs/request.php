@@ -2,6 +2,32 @@
 
 $start = microtime(TRUE);
 
+define('DIR_LIBS', getcwd().'/');
+define('DIR_APP', getcwd().'/../app/');
+define('DIR_TEMP', getcwd() . '/../temp/');
+define('URL', "http://$_SERVER[HTTP_HOST]".str_replace("libs/request.php", "", strtok($_SERVER['REQUEST_URI'], '?')));
+define('URL_LIBS', URL . 'libs/');
+define('URL_TEMP', URL . 'temp/');
+define('URL_APP', URL . 'app/');
+
+// autoload classes based on a 1:1 mapping from namespace to directory structure.
+spl_autoload_register(function ($className) {
+
+    # Usually I would just concatenate directly to $file variable below
+    # this is just for easy viewing on Stack Overflow)
+    $ds = DIRECTORY_SEPARATOR;
+    $dir = __DIR__;
+
+    // replace namespace separator with directory separator (prolly not required)
+    $className = str_replace('\\', $ds, $className);
+
+    // get full name of file containing the required class
+    $file = "{$dir}{$ds}{$className}.php";
+
+    // get file if it is readable
+    if (is_readable($file)) require_once $file;
+});
+
 function get_include_contents($filename, $params = array()) {
     if (is_file($filename)) {
         ob_start();
@@ -15,30 +41,7 @@ function get_include_contents($filename, $params = array()) {
 }
 
 
-define('DIR_LIBS', getcwd().'/');
-define('DIR_APP', getcwd().'/../app/');
-define('DIR_TEMP', getcwd() . '/../temp/');
-define('URL', "http://$_SERVER[HTTP_HOST]".str_replace("libs/request.php", "", strtok($_SERVER['REQUEST_URI'], '?')));
-define('URL_LIBS', URL . 'libs/');
-define('URL_TEMP', URL . 'temp/');
-define('URL_APP', URL . 'app/');
-
 \EOSS\Registry::getInstance();
-
-function __autoload($class_name) {
-    if(class_exists($class_name)) return;
-    $parts = explode('\\', $class_name);
-    if(count($parts) == 1 && file_exists(end($parts).'.php')) {
-        include end($parts).'.php';
-    } else {
-        $dirs = array_filter(glob(DIR_LIBS.'*'), 'is_dir');
-        foreach ($dirs as $dir) {
-            if(file_exists($dir . '/' . end($parts) . '.php')) {
-                include $dir . '/' . end($parts) . '.php';
-            }
-        }
-    }
-}
 
 ini_set( "display_errors", "on" );
 error_reporting(E_ERROR);
@@ -46,7 +49,7 @@ error_reporting(E_ERROR);
 $request = \Http\Request::getInstance(TRUE);
 
 
-$app=new Application\ApplicationLoader\ApplicationLoader();
+$app=new Application\ApplicationLoader();
 $app->includeModels();
 $eoss=$app->eossInit($request->getParameter('eoss'));
 if(\Utils\Session::getInstance()->get($request->getParameter('eoss'))) {\Utils\EOSSHelper::restoreClassVariables($eoss,get_class($eoss));}
@@ -71,6 +74,8 @@ $bind_event = "";
 //DO FUNCTION...
 if($request->getParameter('id')) {
     $bind_event = $eoss->csi->{$request->getParameter('id')}->{$request->getParameter('event')};
+} else if($request->getParameter("form")) {
+    $bind_event = $eoss->getForm($request->getParameter("form"))->onsubmit;
 } else {
     $bind_event = $request->getParameter('event');
 }
@@ -94,6 +99,20 @@ if($request->getParameter('id')) {
             }
         }
     }
+} else if($request->getParameter("form")) {
+    // If it's form.
+
+    $submittedForm = new \Forms\SubmittedForm();
+    foreach($_POST as $key => $value) {
+        if($key != "eoss" && $key != "form" && $key != "values") {
+            $submittedForm->$key = $value;
+        }
+    }
+
+    foreach($bind_event as $event) {
+        $eoss->$event($submittedForm);
+    }
+
 } else {
     // If is interval...
     $request->getParameter('param') ? $eoss->$bind_event($request->getParameter('param')) : $eoss->$bind_event();
@@ -111,6 +130,8 @@ foreach($oldValues as $key => $value) {
 
 if($request->getParameter('id')) {
     \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('id') . $request->getParameter('event'), $changed);
+} else if($request->getParameter('form')) {
+    \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('form') . 'Form', $changed);
 } else {
     \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('event') . 'Interval', $changed);
 }

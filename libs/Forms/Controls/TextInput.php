@@ -10,23 +10,31 @@ class TextInput extends BaseElement implements IElement
     const TYPE_TEXT = "text";
     const TYPE_NUMBER = "number";
     const TYPE_EMAIL = "email";
+    const TYPE_PASSWORD = "password";
 
     /**
      * @var string
      */
     private $type = self::TYPE_TEXT;
 
-    /**
-     * @var string
-     */
-    private $name;
 
     /**
-     * TextInput constructor.
-     * @param string $name
+     * Sets the input type.
+     * @param string $type
+     * @return $this
      */
-    public function __construct($name) {
-        $this->name = $name;
+    public function setType($type) {
+        $this->type = $type;
+        return $this;
+    }
+
+
+    /**
+     * Gets the input type.
+     * @return string
+     */
+    public function getType() {
+        return $this->type;
     }
 
     /**
@@ -34,7 +42,7 @@ class TextInput extends BaseElement implements IElement
      * @return string
      */
     public function __toString() {
-        return "<input name=\"{$this->name}\" type=\"{$this->type}\" {$this->getAttributesAsString()}" . ($this->isRequired() ? " required" : ""). "/>";
+        return "<input name=\"{$this->getName()}\" id=\"{$this->getId()}\" type=\"{$this->type}\" data-ignore=\"true\" " . ($this->getValue() == "" ? "" : "value=\"{$this->getValue()}\"") . " {$this->getAttributesAsString()}" . ($this->isRequired() ? " required" : ""). "/>";
     }
 
 
