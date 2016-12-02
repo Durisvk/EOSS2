@@ -397,3 +397,81 @@ Now we can use the group we've defined earlier to bind the event to the all elem
 You can but don't have to specify the id attribute to the elements of the group.
 
 And we are done...
+
+#Forms
+
+Forms are used to group the data form user input together. They are also needed for special operations such as file upload.
+
+In EOSS the forms are very similar to the ones in [Nette Framework](https://nette.org/). Let's make some registration form.
+
+We'll start with `indexEOSS` class.
+
+`app/controller/indexEOSS.php`:
+
+```php
+<?php
+
+use EOSS\EOSS;
+use Forms\Form;
+use Debug\Linda;
+
+class indexEOSS extends EOSS {
+	
+	public function load() {
+		$this->csi->params->ourForm = $this->createForm();
+		$this->csi->setFile("indexView.php");
+	}
+
+	public function bind() {}
+
+	private function createForm() {
+		$form = new Form("myForm", $this);
+		
+		// Or we don't have to pass $this
+		// and we can do $eoss->registerForm($form)
+		// later.
+
+		$form->addText("username", "Username: ")->setRequired();
+		$form->addEmail("email", "Email: ");
+		$form->addPassword("password", "Password: ")->setRequired();
+		$form->addHidden("hidden", "secret") // hidden is the name and secret is the value
+		$form->addFile("avatar", FALSE, "Avatar: ");
+		$form->addSubmit("submit", "Submit our Form")->addAttribute("class", "btn btn-submit");
+		$form->onsubmit[] = "ourFormSubmitted";
+	}
+
+	public function ourFormSubmitted(SubmittedForm $form) {
+		Linda::dump("Hello " . $form->username);
+		// Store data into database for example...
+	}
+
+}
+
+
+```
+
+Now let's render our form in `indexView.php`:
+
+`app/view/indexView.php`:
+
+```php
+
+	<div class="form-wrapper">
+		<?= $ourForm; ?>
+	</div>
+
+```
+
+or we can render form as table:
+
+`app/view/indexView.php`:
+
+```php
+
+	<div class="form-wrapper">
+		<?= $ourForm->asTable(); ?>
+	</div>
+
+```
+
+And those are the forms in EOSS2. We can also fill the default values with `$form->setDefaults()` which takes an array of key => value pair with field names => default values for the form.
