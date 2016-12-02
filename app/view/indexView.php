@@ -47,8 +47,8 @@
         <div class="example">
             <div id="lblButtons"></div>
             <input type="button" data-group="buttons" value="1" />
-            <input type="button" id="btn2" data-group="buttons" value="2" />
-            <input type="button" id="btn3" data-group="buttons" value="3" />
+            <input type="button" data-group="buttons" value="2" />
+            <input type="button" data-group="buttons" value="3" />
         </div>
         <div id="panel-footer" class="panel-footer" data-ignore="true">
             Thank You. Your EOSS team :).
