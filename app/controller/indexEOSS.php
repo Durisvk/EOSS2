@@ -49,6 +49,7 @@ class indexEOSS extends EOSS
 
     public function showNumber($sender) {
         $this->csi->lblButtons->html = $sender->value;
+        $this->flashMessage("You've successfully clicked on " . $sender->value . " button.", "success");
         $sender->value += 1;
     }
 

@@ -33,3 +33,11 @@
     float: right;
     margin-top: 30px;
 }
+
+#flashes {
+    position: fixed;
+    top: 10px;
+    width: 800px;
+    left: 50%;
+    margin-left: -400px;
+}

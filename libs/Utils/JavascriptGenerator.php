@@ -30,6 +30,7 @@ class JavascriptGenerator
         }
         $js .= self::generateIntervals($eoss->csi->intervals, get_class($eoss));
         $js .= self::generateForms($eoss->getForms(), get_class($eoss));
+        $js .= self::generateFlashes($eoss);
         $genjs=fopen(DIR_TEMP . "data/genJs/".get_class($eoss).".js", "w") or die("Check out your permissions on file libs/data/!");
         fwrite($genjs, $js);
         fclose($genjs);
@@ -156,6 +157,23 @@ class JavascriptGenerator
     }
 
     /**
+     * Generates the javascript for flash messages.
+     * @param EOSS $eoss
+     * @return string
+     */
+    public static function generateFlashes(EOSS $eoss) {
+        $js = "";
+        if(Config::getParam("showFlashFunction") && $eoss->getCountOfFlashMessages() > 0) {
+            $js .= "if(typeof " . Config::getParam("showFlashFunction") . " == 'function') {\n";
+            while($flash = $eoss->popFlashMessage()) {
+                $js .= Config::getParam("showFlashFunction") . "(\"{$flash["message"]}\", \"{$flash["class"]}\");\n";
+            }
+            $js .= "}\n";
+        }
+        return $js;
+    }
+
+    /**
      * Writes a response into genFunctions.js file.
      * @param EOSS $eoss
      * @param string $fname
@@ -200,6 +218,7 @@ class JavascriptGenerator
                 }
                 $js .= "$( '#" . $anonymousSender->id . "' ).attr('id', \"\");\n";
             }
+            $js .= self::generateFlashes($eoss);
         } else {
             $js.="location.reload();";
         }

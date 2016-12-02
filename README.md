@@ -14,6 +14,7 @@ You start with a config file, which should look like this:
     "layout_dir": "view/",
     "models": "model/",
     "refresh": true,
+    "showFlashFunction" : "showFlash",
     "enviroment": "debug"
 ```
 
@@ -21,6 +22,7 @@ You start with a config file, which should look like this:
 `layout_dir` is a directory path relative to `app/` folder where the views are located.
 `models` is the path to the models of your application. They are loaded at the very beginning before everything else.
 `refresh` attribute tells the EOSS whether it should keep the session about the current state of your EOSS class alive.
+`showFlashFunction` is a name of the javascript function which will take two arguments (message and class) and it should append the flash message to the view dynamically.
 `enviroment` for now this property says if AJAX responses should be `console.log`ged.
 
 Now that you have your `config.eoss` ready, we can go ahead and create some stuff.
@@ -475,3 +477,86 @@ or we can render form as table:
 ```
 
 And those are the forms in EOSS2. We can also fill the default values with `$form->setDefaults()` which takes an array of key => value pair with field names => default values for the form.
+
+# Flashes
+
+If you want to give the user some information about successful login or registration, you should check the flash message functionallity of EOSS.
+
+What you need is put the flash container into the view for example:
+
+```html
+<div id="flashes" data-ignore>
+
+</div>
+```
+
+Maybe you need to do some CSS stuff to make it look good for example:
+
+```css
+#flashes {
+    position: fixed;
+    top: 10px;
+    width: 800px;
+    left: 50%;
+    margin-left: -400px;
+}
+```
+
+Now what you need to do is to program the function with name added to `config.eoss` to the parameter `showFlashFunction`. Let's create the one in `assets/js/flashes.js`.
+
+```javascript
+
+function showFlash(message, cls) {
+    var $flashes = $("#flashes");
+    if($flashes.length > 0) {
+        var $flash = $("<div style='display:none' class='alert alert-" + cls + "'>" + message + "</div>");
+        $flashes.append($flash);
+        $flash.fadeIn(200);
+        setTimeout(function() {
+            $flash.fadeOut(2000, function() {
+               $(this).remove();
+            });
+        }, 3000);
+    }
+}
+
+```
+
+Now we need to register that into our config.eoss which will looks like this:
+
+
+```json
+    "home_eoss": "indexEOSS",
+    "layout_dir": "view/",
+    "models": "model/",
+    "refresh": true,
+    "showFlashFunction" : "showFlash",
+    "enviroment": "debug"
+```
+
+Now we can use the functionallity we've programmed to display the flash message. Anywhere in our application we can call `$eoss->flashMessage($message, $class)`. Of course if we are inside the EOSS we can simply use `$this->flashMessage($message, $class)`. Let's do this:
+
+`app/controller/indexEOSS.php`:
+
+```php
+<?php
+
+use EOSS\EOSS;
+
+class indexEOSS extends EOSS {
+
+	public function load() {
+        $this->csi->params->title = "Welcome To EOSS | EOSS2";
+        $this->csi->setFile("indexView.php");
+	}
+
+    public function bind() {
+        $this->csi->buttons->onclick[] = "showNumber";
+    }
+
+    public function showNumber($sender) {
+        $this->flashMessage("You've successfully clicked on " . $sender->value . " button.", "success");
+    }
+}
+
+And this is it. So easy :).

@@ -29,10 +29,16 @@ abstract class EOSS
     private $forms = [];
 
     /**
+     * @var array
+     */
+    private $flashes = [];
+
+    /**
      * EOSS constructor.
      */
     public function __construct()
     {
+        $this->flashes = Session::getInstance()->get("flashes") ?: [];
         $this->csi = new CSI($this);
         $this->load();
     }
@@ -108,5 +114,43 @@ abstract class EOSS
         } else {
             return NULL;
         }
+    }
+
+    /**
+     * Pushes the flash message.
+     * @param string $message
+     * @param string $class
+     */
+    public function flashMessage($message, $class) {
+        $this->flashes[$class] = $message;
+    }
+
+
+    /**
+     * Pops the first flash from the flashes if it does exist
+     * else returns null.
+     * @return array|null
+     */
+    public function popFlashMessage() {
+        if(count($this->flashes) != 0) {
+            $flash = ["class" => array_keys($this->flashes)[0],
+                        "message" => $this->flashes[array_keys($this->flashes)[0]]];
+            unset($this->flashes[$flash["class"]]);
+
+            return $flash;
+        }
+        return NULL;
+    }
+
+    /**
+     * Gets the count of flash messages.
+     * @return int
+     */
+    public function getCountOfFlashMessages() {
+        return count($this->flashes);
+    }
+
+    public function __destruct() {
+        Session::getInstance()->set("flashes", $this->flashes);
     }
 }

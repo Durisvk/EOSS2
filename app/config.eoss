@@ -2,4 +2,5 @@
     "layout_dir": "view/",
     "models": "model/",
     "refresh": true,
+    "showFlashFunction" : "showFlash",
     "enviroment": "debug"
