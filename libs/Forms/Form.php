@@ -90,6 +90,20 @@ class Form implements IElement
     }
 
 
+    public function asRaw() {
+        $str = $this->openTag();
+        foreach($this->components as $component) {
+            if($component instanceof BaseElement) {
+                $str .= $component->getLabelAsHtml();
+            }
+            $str .= $component;
+        }
+
+        $str .= "</form>";
+
+        return $str;
+    }
+
     /**
      * Renders the form.
      * @return string
