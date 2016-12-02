@@ -83,13 +83,27 @@ if($request->getParameter('id')) {
     $bind_event = $request->getParameter('event');
 }
 
+$anonymousSender = NULL;;
+
 $called = [];
 if($request->getParameter('id')) {
     if($eoss->csi->{$request->getParameter('id')}->type == "group") {
         // If is group
         foreach($bind_event as $event) {
             if(!in_array($event, $called)) {
-                $request->getParameter('param') ? $eoss->$event($eoss->csi->{$request->getParameter('element_id')}, $request->getParameter('param')) : $eoss->$event($eoss->csi->{$request->getParameter('element_id')});
+
+                $sender = NULL;
+                if($attributes = $request->getParameter("anonymous")) {
+                    $sender = new \EOSS\AnonymousSender();
+                    foreach($attributes as $key => $value) {
+                        $sender->$key = $value;
+                    }
+                    $anonymousSender = $sender;
+                } else {
+                    $sender = $eoss->csi->{$request->getParameter('element_id')};
+                }
+
+                $request->getParameter('param') ? $eoss->$event($sender, $request->getParameter('param')) : $eoss->$event($sender);
                 $called[] = $event;
             }
         }
@@ -136,7 +150,7 @@ foreach($oldValues as $key => $value) {
 
 
 if($request->getParameter('id')) {
-    \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('id') . $request->getParameter('event'), $changed);
+    \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('id') . $request->getParameter('event'), $changed, $anonymousSender);
 } else if($request->getParameter('form')) {
     \Utils\JavascriptGenerator::writeJsResponse($eoss, $request->getParameter('form') . 'Form', $changed);
 } else {

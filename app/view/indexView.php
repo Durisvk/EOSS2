@@ -46,7 +46,7 @@
         There is a lot work to be done. The EOSS2 is not finished yet. Next we are planning to do a Form logic.
         <div class="example">
             <div id="lblButtons"></div>
-            <input type="button" id="btn1" data-group="buttons" value="1" />
+            <input type="button" data-group="buttons" value="1" />
             <input type="button" id="btn2" data-group="buttons" value="2" />
             <input type="button" id="btn3" data-group="buttons" value="3" />
         </div>

@@ -49,6 +49,7 @@ class indexEOSS extends EOSS
 
     public function showNumber($sender) {
         $this->csi->lblButtons->html = $sender->value;
+        $sender->value += 1;
     }
 
 

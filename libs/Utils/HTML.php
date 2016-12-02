@@ -43,7 +43,7 @@ class HTML
      * @param \DOMNode $element
      * @return string
      */
-    static function getInnerHTML(\DOMNode $element)
+    public static function getInnerHTML(\DOMNode $element)
     {
         $innerHTML = "";
         $children = $element->childNodes;
@@ -69,7 +69,7 @@ class HTML
         libxml_clear_errors();
         $elements=array();
         foreach ($ids as $id) {
-            array_push($elements,self::getElementById($id,$dom));
+            $elements[] =self::getElementById($id,$dom);
         }
         $attributes = array();
         $json='{';
@@ -93,6 +93,53 @@ class HTML
         $json.='}';
         $json = trim(preg_replace('/\s+/', ' ', $json));
         return $json;
+    }
+
+
+    private static function getAttrWithNameOfNode(\DOMNode $domNode, &$array, $attrName) {
+        /** @var \DOMNode $node */
+        foreach($domNode->childNodes as $node) {
+            if($node->attributes && $node->attributes->length > 0) {
+                $attrValue = self::getAttribute($attrName, $node->attributes);
+                if($attrValue) {
+                    if(!in_array($attrValue, $array)) {
+                        $array[] = $attrValue;
+                    }
+                }
+            }
+            if($node->hasChildNodes()) {
+                self::getAttrWithNameOfNode($node, $array, $attrName);
+            }
+        }
+    }
+
+    public static function getAttribute($name, $att)
+    {
+        /** @var \DOMAttr $i */
+        foreach($att as $i)
+        {
+            if($i->name==$name)
+                return $i->value;
+        }
+        return NULL;
+    }
+
+
+    /**
+     * Gets all the data-group attribute values.
+     * @param string $str
+     * @return array
+     */
+    public static function getGroups($str) {
+        $dom=new \DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHTML($str);
+        libxml_clear_errors();
+        $groups = [];
+
+        self::getAttrWithNameOfNode($dom, $groups, "data-group");
+
+        return $groups;
     }
 
 }

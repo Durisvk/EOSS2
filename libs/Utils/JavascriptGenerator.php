@@ -63,6 +63,7 @@ class JavascriptGenerator
                 $condition = $s[1];
             }
             if($attr && property_exists($attr,$key) && count($attr->$key) > 0 && (property_exists($attr, "type") && $attr->type != "group")) {
+                // Generate single element events.
                 $js.="\n$( '#".$attr->id."' ).on('".$prop."',function (";
                 $js.="event";
                 $js.=") {\n";
@@ -77,22 +78,21 @@ class JavascriptGenerator
     });
 });";
             } else if($attr && property_exists($attr,$key) && count($attr->$key) > 0 && (property_exists($attr, "type") && $attr->type == "group")) {
-
-                $js.="\n\n$( '";
-                foreach($attr->elements as $element) {
-                    $js.="#" . $element . "";
-                    if($element != end($attr->elements)) {
-                        $js .= ", ";
-                    }
-                }
-                $js.="' ).on('".$prop."',function (";
+                // Generate group:
+                $js.="\n\n$( '[data-group=\"" . $attr->id . "\"]' ).on('".$prop."',function (";
                 $js.="event";
                 $js.=") {\nvar $" . "self = $(this);\n";
                 $js.= $attr->type == "a" ? "event.preventDefault();\n" : "";
+                $js.="var data = {'eoss':'{$class}', 'id':'{$attr->id}', 'event':'{$key}','values':createJSON()";
+                $e ? $js .= ",'param': event.{$param}, curValue:$(this).val()+String.fromCharCode(event.keyCode)" : $js.="";
+                $js.="};\n";
+                $js.="if(typeof $(this).attr(\"id\") == \"undefined\" || $(this).attr(\"id\") == \"\") {\n";
+                $js .= "$(this).attr(\"id\", randomString(10));\n";
+                $js .= "data.element_id = $(this).attr(\"id\"); \n";
+                $js .= "data.anonymous = getAllAttributes($(this));\n";
+                $js.="\n} else {\n data.element_id = $(this).attr('id'); \n}\n";
                 $js.= $condition ? "if(" . $condition . ")\n\t" : "";
-                $js.="$.get('" . URL_LIBS . "request.php',{'eoss':'".$class."','id':'" . $attr->id . "', 'element_id':$(this).attr('id'), 'event':'".$key."','values':createJSON()";
-                $e ? $js.=",'param': event.".$param.", curValue:$(this).val()+String.fromCharCode(event.keyCode)" : $js.="";
-                $js.="}, function (data) {
+                $js.="$.get('" . URL_LIBS . "request.php', data, function (data) {
         " . (Config::getParam("enviroment") == "debug" ? "console.log(data);" : "") . "
         eval(data);
         ".$attr->id.$key."(data);
@@ -160,10 +160,11 @@ class JavascriptGenerator
      * @param EOSS $eoss
      * @param string $fname
      * @param array $changed
+     * @param null|\EOSS\AnonymousSender $anonymousSender
      */
-    public static function writeJsResponse(EOSS $eoss, $fname, $changed = array()) {
+    public static function writeJsResponse(EOSS $eoss, $fname, $changed = array(), $anonymousSender = NULL) {
         $listOfAttr=json_decode(file_get_contents(DIR_LIBS."EOSS/attributeList.json"));
-        $js="function ".$fname."() {";
+        $js="function ".$fname."() {\n";
         if(!isset($eoss->redirect)) {
             foreach ($changed as $element) {
                 if(is_array($element)) continue;
@@ -182,6 +183,22 @@ class JavascriptGenerator
                     }
 
                 }
+            }
+            if($anonymousSender) {
+                foreach($listOfAttr as $key=>$attr) {
+                    if (key_exists($key, $anonymousSender->toArray())) {
+                        if($key != "html" && $key != "value") {
+                            $js .= "$( '#" . $anonymousSender->id . "' ).attr(\"" . str_replace("_", "-", $key) . "\", '";
+                        } else if($key == "html"){
+                            $js .= "$( '#" . $anonymousSender->id . "' ).html('";
+                        } else if($key == "value") {
+                            $js .= "$( '#" . $anonymousSender->id . "' ).val('";
+                        }
+                        $js .= preg_replace("/\r|\n/", "", $anonymousSender->$key);
+                        $js .= "');\n";
+                    }
+                }
+                $js .= "$( '#" . $anonymousSender->id . "' ).attr('id', \"\");\n";
             }
         } else {
             $js.="location.reload();";

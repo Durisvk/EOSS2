@@ -55,6 +55,7 @@ class CSIAnalyze
     private function analyzeCsi() {
         $rf = get_include_contents($this->file, $this->csi->params->toArray());
         $elements = HTML::getElements($rf);
+        $groups = HTML::getGroups($rf);
         $requires="<?php\n";
         $gencsi="\nclass " . $this->eossClassName . "GenCSI extends \\EOSS\\CSI {\n\n";
         $gencsi.="\n\n";
@@ -63,7 +64,12 @@ class CSIAnalyze
         $csic .= "\n\tparent::__construct($"."eoss);\n";
         $csic .= "\t\t$"."this->eoss="."$"."eoss;\n";
         $csic .= "\t\t$"."this->file='".$this->file."';\n";
-        $groups = [];
+        foreach($groups as $group) {
+            $requires .= "require_once __DIR__ . '/genElements/" . $group . ".php';\n";
+            $csivi .= "\t/**\n\t * @var " . $group . "\n\t */\n";
+            $csivi .= "\tpublic $".$group.";\n";
+            $csic .= "\t\t$"."this->".$group."=new ".$group.";\n";
+        }
         foreach (json_decode($elements) as $element) {
             if(property_exists($element, 'data-ignore') && get_object_vars($element)['data-ignore'] == 'true') {
                 continue;
@@ -75,16 +81,6 @@ class CSIAnalyze
             $requires .= "require_once __DIR__ . '/genElements/".$element->id.".php';\n";
             $csic .= "\t\t$"."this->".$element->id."=new ".$element->id.";\n";
             foreach ($element as $key => $attribute) {
-                if($key == 'data-group') {
-                    if(!isset($groups[$attribute])) {
-                        $groups[$attribute] = [];
-                        $requires .= "require_once __DIR__ . '/genElements/" . $attribute . ".php';\n";
-                        $csivi .= "\t/**\n\t * @var " . $attribute . "\n\t */\n";
-                        $csivi .= "\tpublic $".$attribute.";\n";
-                        $csic .= "\t\t$"."this->".$attribute."=new ".$attribute.";\n";
-                    }
-                    $groups[$attribute][] = $element->id;
-                }
                 $file .= "\t/**\n\t * @var string\n\t */\n";
                 $file .= "\tpublic $" . str_replace("-", "_", $key). ";\n\n";
             }
@@ -113,8 +109,8 @@ class CSIAnalyze
         $gencsi .= "\t}\n";
         $gencsi .= "}\n";
 
-        foreach($groups as $groupName => $elements) {
-            $this->generateGroup($groupName, $elements);
+        foreach($groups as $groupName) {
+            $this->generateGroup($groupName);
         }
 
         CSIHelper::genCSI($gencsi, $this->eossClassName);
@@ -123,9 +119,8 @@ class CSIAnalyze
     /**
      * Generates the group inside groupName.php
      * @param string $groupName
-     * @param array $elements
      */
-    private function generateGroup($groupName, $elements) {
+    private function generateGroup($groupName) {
         $file = "<?php\n\n";
         $file .= "class " . $groupName . " {\n\n";
 
@@ -140,16 +135,6 @@ class CSIAnalyze
             $file .= "\t/**\n\t * @var array\n\t */\n";
             $file .= "\tpublic $" . $key . " = array();\n\n";
         }
-        $file .= "\t/**\n\t * @var array\n\t */\n";
-        $file .= "\tpublic $"."elements = array(";
-        foreach($elements as $element) {
-            $file .= "\"" . $element . "\"";
-            if($element != end($elements)) {
-                $file .= ",";
-            }
-        }
-        $file .= ");\n\n";
-
         $file .= "\n}";
 
         CSIHelper::genElement($groupName, $file);
