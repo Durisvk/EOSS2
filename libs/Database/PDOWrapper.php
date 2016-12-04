@@ -46,6 +46,15 @@ class PDOWrapper
     }
 
     /**
+     * Queries the database.
+     * @param string $query
+     * @return mixed
+     */
+    public function query($query) {
+        return $this->pdo->query($query);
+    }
+
+    /**
      * Takes more than one parameter... for each questionmark insert one parameter.
      * @param string $query
      * @return array
@@ -56,6 +65,19 @@ class PDOWrapper
         $stmt = $this->pdo->prepare($query);
         $stmt->execute($args);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Takes more than one parameter... for each questionmark insert one parameter.
+     * @param string $query
+     * @return array
+     */
+    public function prepareExecuteAndFetchAll($query) {
+        $args = func_get_args();
+        array_shift($args);
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute($args);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     /**

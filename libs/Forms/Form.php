@@ -90,6 +90,10 @@ class Form implements IElement
     }
 
 
+    /**
+     * Renders the form raw without any html tags.
+     * @return string
+     */
     public function asRaw() {
         $str = $this->openTag();
         foreach($this->components as $component) {
@@ -103,6 +107,31 @@ class Form implements IElement
 
         return $str;
     }
+
+    /**
+     * Renders the form as you want.
+     * @param callable $callback
+     * @return string
+     * @throws \Exception
+     */
+    public function asIWant($callback) {
+        if(is_callable($callback)) {
+            $str = $this->openTag();
+            foreach($this->components as $component) {
+                $label = "";
+                if($component instanceof BaseElement) {
+                    $label = $component->getLabelAsHtml();
+                }
+                $str .= call_user_func_array($callback, [$component, $label]);
+            }
+            $str .= "</form>";
+            return $str;
+        } else {
+            throw new \Exception(sprintf("Invalid argument, need callable, got %s.", gettype($callback)));
+        }
+    }
+
+
 
     /**
      * Renders the form.

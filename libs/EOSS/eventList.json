@@ -8,5 +8,7 @@
   "onload": "load",
   "onmousedown": "mousedown",
   "onkeypress": "keypress:keyCode",
-  "onenterpressed": "keypress-event.keyCode==13"
+  "onenterpressed": "keypress-event.keyCode==13",
+  "onkeypressed": "keypress:charCode",
+  "onkeydown": "keydown:keyCode"
 }

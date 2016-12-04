@@ -70,7 +70,7 @@ class JavascriptGenerator
                 $js.=") {\n";
                 $js.= $attr->type == "a" ? "event.preventDefault();\n" : "";
                 $js.= $condition ? "if(" . $condition . ")\n\t" : "";
-                $js.="$.get('" . URL_LIBS . "request.php',{'eoss':'".$class."','id':'".$attr->id."','event':'".$key."','values':createJSON()";
+                $js.="$.post('" . URL_LIBS . "request.php',{'eoss':'".$class."','id':'".$attr->id."','event':'".$key."','values':createJSON()";
                 $e ? $js.=",'param': event.".$param.", curValue:$(this).val()+String.fromCharCode(event.keyCode)" : $js.="";
                 $js.="}, function (data) {
         " . (Config::getParam("enviroment") == "debug" ? "console.log(data);" : "") . "
@@ -93,7 +93,7 @@ class JavascriptGenerator
                 $js .= "data.anonymous = getAllAttributes($(this));\n";
                 $js.="\n} else {\n data.element_id = $(this).attr('id'); \n}\n";
                 $js.= $condition ? "if(" . $condition . ")\n\t" : "";
-                $js.="$.get('" . URL_LIBS . "request.php', data, function (data) {
+                $js.="$.post('" . URL_LIBS . "request.php', data, function (data) {
         " . (Config::getParam("enviroment") == "debug" ? "console.log(data);" : "") . "
         eval(data);
         ".$attr->id.$key."(data);
@@ -115,7 +115,7 @@ class JavascriptGenerator
         $js = "\n\n";
         foreach($intervals as $key => $value) {
             $js .= "setInterval(function() {\n";
-            $js.="$.get('" . URL_LIBS . "request.php',{'eoss':'".$class."','event':'".$key."','values':createJSON()";
+            $js.="$.post('" . URL_LIBS . "request.php',{'eoss':'".$class."','event':'".$key."','values':createJSON()";
             $js.="}, function (data) {
         " . (Config::getParam("enviroment") == "debug" ? "console.log(data);" : "") . "
         eval(data);

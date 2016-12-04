@@ -96,7 +96,7 @@ if($request->getParameter('id')) {
                 if($attributes = $request->getParameter("anonymous")) {
                     $sender = new \EOSS\AnonymousSender();
                     foreach($attributes as $key => $value) {
-                        $sender->$key = $value;
+                        $key = str_replace("-", "_", $key);
                     }
                     $anonymousSender = $sender;
                 } else {
@@ -142,8 +142,16 @@ if($request->getParameter('id')) {
 // get the changed values:
 $changed = [];
 foreach($oldValues as $key => $value) {
-    if($eoss->csi->$key != $value) {
-        $changed[$key] = $eoss->csi->$key;
+    foreach($eoss->csi->$key as $k => $v) {
+        if(!is_string($v)) {
+            if ($v != $value->$k) {
+                $changed[$key] = $eoss->csi->$key;
+            }
+        } else {
+            if (strcmp($value->$k, $v) != 0) {
+                $changed[$key] = $eoss->csi->$key;
+            }
+        }
     }
 }
 

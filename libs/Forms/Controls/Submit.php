@@ -94,9 +94,28 @@ class Submit implements IElement
         }
     }
 
+    /**
+     * Returns formatted attributes.
+     * @return string
+     */
+    protected function getAttributesAsString() {
+        if(count($this->attributes) == 0) {
+            return "";
+        }
+
+        $str = "";
+        foreach($this->attributes as $key => $value) {
+            $str .= $key . "=\"{$value}\"";
+            if(end($this->attributes) != $value) {
+                $str .= " ";
+            }
+        }
+        return $str;
+    }
+
     public function __toString()
     {
-        return "<input type=\"submit\" name=\"{$this->name}\" data-ignore=\"true\" value=\"{$this->value}\" />";
+        return "<input type=\"submit\" name=\"{$this->name}\" data-ignore=\"true\" value=\"{$this->value}\" {$this->getAttributesAsString()} />";
     }
 
 

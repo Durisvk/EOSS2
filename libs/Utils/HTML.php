@@ -74,6 +74,7 @@ class HTML
         $attributes = array();
         $json='{';
         foreach ($elements as $el) {
+            if(!$el) continue;
             $json.='"'.$el->getAttribute("id").'": {';
             foreach ($el->attributes as $name => $attr) {
                 $json.= '"'.$name.'": "'.$attr->value.'"';
