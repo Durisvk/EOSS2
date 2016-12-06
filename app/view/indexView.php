@@ -39,8 +39,8 @@
         </div>
         Here is the same example with data binding:
         <div class="example">
-            <input type="text" data-binding="SourceElement: '.lblCopy', SourceAttribute: 'html', TargetAttribute: 'value'" placeholder="Type here something"/>
-            <b><div class="lblCopy"></div></b>
+            <input type="text" data-binding="SourceElement: '.lblCopy', SourceAttribute: 'value', TargetAttribute: 'value'" placeholder="Type here something"/>
+            <input type="text" class="lblCopy" placeholder="Type something here also." />
         </div>
         Did you like the example? Did you realize how easy it is to use this framework?
         Here are some tips before you start to work with the framework.

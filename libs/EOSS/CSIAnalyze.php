@@ -155,8 +155,13 @@ class CSIAnalyze
 
         foreach($bindings as $binding) {
             $json = JSON::decode($binding);
+
+            if(!isset($json["Mode"])) {
+                $json["Mode"] = "two-way";
+            }
+
             if(isset($json["SourceElement"]) && isset($json["SourceAttribute"]) && isset($json["TargetAttribute"])) {
-                $this->csi->bindings[] = new ElementBinding($json["SourceElement"], $json["SourceAttribute"], $json["TargetAttribute"], $binding);
+                $this->csi->bindings[] = new ElementBinding($json["SourceElement"], $json["SourceAttribute"], $json["TargetAttribute"], $json["Mode"], $binding);
             }
         }
 

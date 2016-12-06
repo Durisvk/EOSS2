@@ -185,8 +185,14 @@ class JavascriptGenerator
         foreach($eoss->csi->bindings as $binding) {
             if($binding instanceof ElementBinding) {
                 $js .= "$( \"[data-binding=\\\"{$binding->getString()}\\\"]\" ).on('click mousedown mouseup focus blur input change', function(e) {\n";
-                $js .= $binding->getJavascriptAction();
+                $js .= $binding->getJavascriptAction() . "\n";
                 $js .= "\n});";
+
+                if($binding->getMode() == 'two-way') {
+                    $js .= "$( '{$binding->getSourceElement()}' ).on('click mousedown mouseup focus blur input change', function(e) {\n";
+                    $js .= $binding->getJavascriptSecondWay() . "\n";
+                    $js .= "\n});";
+                }
             }
         }
 
