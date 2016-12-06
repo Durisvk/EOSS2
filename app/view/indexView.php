@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ title }}</title>
+    <title><?= $title ?></title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css">
@@ -36,6 +36,11 @@
             <div id="lblCopy">
 
             </div>
+        </div>
+        Here is the same example with data binding:
+        <div class="example">
+            <input type="text" data-binding="SourceElement: '.lblCopy', SourceAttribute: 'html', TargetAttribute: 'value'" placeholder="Type here something"/>
+            <b><div class="lblCopy"></div></b>
         </div>
         Did you like the example? Did you realize how easy it is to use this framework?
         Here are some tips before you start to work with the framework.

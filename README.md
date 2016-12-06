@@ -380,7 +380,7 @@ class indexEOSS extends EOSS
 
     public function load()
     {
-        $this->csi->setFile("indexView.twig.php");
+        $this->csi->setFile("indexView.php");
     }
 
     public function bind()

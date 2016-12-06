@@ -3,8 +3,11 @@
 namespace Templating;
 
 
-use Debug\Linda;
-
+/**
+ * Factory for templating wrappers.
+ * Class TemplateFactory
+ * @package Templating
+ */
 class TemplateFactory
 {
 
@@ -15,7 +18,6 @@ class TemplateFactory
     public static function create($filename) {
         $ext = strstr($filename, '.');
         $ext = ltrim($ext, '.');
-        Linda::dump($ext);
         switch($ext) {
             case "twig.php": return new TwigWrapper();
         }

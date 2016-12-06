@@ -36,6 +36,11 @@ class CSI
     /**
      * @var array
      */
+    public $bindings = [];
+
+    /**
+     * @var array
+     */
     public $intervals = [];
 
     /**

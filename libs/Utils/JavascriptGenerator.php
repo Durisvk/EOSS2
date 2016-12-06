@@ -4,6 +4,7 @@ namespace Utils;
 
 
 use Application\Config;
+use Binding\ElementBinding;
 use Debug\Linda;
 use EOSS\EOSS;
 use Forms\Form;
@@ -24,13 +25,14 @@ class JavascriptGenerator
     public static function generateJavascript(EOSS $eoss) {
         $js="";
         foreach($eoss->csi as $key=>$attr) {
-            if($attr != NULL && $key != 'params' && $key != 'intervals') { // Filter params and intervals from CSI
+            if($attr != NULL && $key != 'params' && $key != 'intervals' && $key != 'bindings') { // Filter params and intervals from CSI
                 $js .= self::checkForEvents($attr, get_class($eoss));
             }
         }
         $js .= self::generateIntervals($eoss->csi->intervals, get_class($eoss));
         $js .= self::generateForms($eoss->getForms(), get_class($eoss));
         $js .= self::generateFlashes($eoss);
+        $js .= self::generateBindings($eoss);
         $genjs=fopen(DIR_TEMP . "data/genJs/".get_class($eoss).".js", "w") or die("Check out your permissions on file libs/data/!");
         fwrite($genjs, $js);
         fclose($genjs);
@@ -170,6 +172,24 @@ class JavascriptGenerator
             }
             $js .= "}\n";
         }
+        return $js;
+    }
+
+    /**
+     * Generates the bingings javascript.
+     * @param EOSS $eoss
+     * @return string
+     */
+    public static function generateBindings(EOSS $eoss) {
+        $js = "";
+        foreach($eoss->csi->bindings as $binding) {
+            if($binding instanceof ElementBinding) {
+                $js .= "$( \"[data-binding=\\\"{$binding->getString()}\\\"]\" ).on('click mousedown mouseup focus blur input change', function(e) {\n";
+                $js .= $binding->getJavascriptAction();
+                $js .= "\n});";
+            }
+        }
+
         return $js;
     }
 

@@ -3,10 +3,13 @@
 namespace EOSS;
 
 
+use Binding\ElementBinding;
 use Debug\Linda;
 use Templating\TemplateFactory;
 use Utils\CSIHelper;
 use Utils\HTML;
+use Utils\JSON;
+
 
 /**
  * Analyzes the DOM structure of view and generates the php files with that structure.
@@ -62,6 +65,8 @@ class CSIAnalyze
         }
         $elements = HTML::getElements($rf);
         $groups = HTML::getGroups($rf);
+        $bindings = HTML::getBindings($rf);
+        $this->processBindings($bindings);
         $requires="<?php\n";
         $gencsi="\nclass " . $this->eossClassName . "GenCSI extends \\EOSS\\CSI {\n\n";
         $gencsi.="\n\n";
@@ -144,6 +149,17 @@ class CSIAnalyze
         $file .= "\n}";
 
         CSIHelper::genElement($groupName, $file);
+    }
+
+    private function processBindings($bindings) {
+
+        foreach($bindings as $binding) {
+            $json = JSON::decode($binding);
+            if(isset($json["SourceElement"]) && isset($json["SourceAttribute"]) && isset($json["TargetAttribute"])) {
+                $this->csi->bindings[] = new ElementBinding($json["SourceElement"], $json["SourceAttribute"], $json["TargetAttribute"], $binding);
+            }
+        }
+
     }
 
 

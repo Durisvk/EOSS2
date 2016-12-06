@@ -35,3 +35,6 @@ if(event.keyCode==13)
 
 
 
+$( "[data-binding=\"SourceElement: '.lblCopy', SourceAttribute: 'html', TargetAttribute: 'value'\"]" ).on('click mousedown mouseup focus blur input change', function(e) {
+$( '.lblCopy' ).html($(this).val());
+});

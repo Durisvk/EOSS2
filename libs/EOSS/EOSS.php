@@ -48,10 +48,12 @@ abstract class EOSS
     public function loadGeneratedCSI() {
         /** @var Parameters $params */
         $params = $this->csi->params;
+        $bindings = $this->csi->bindings;
         RequireHelper::requireFilesInDirectory(DIR_TEMP . "data/");
         $r = new \ReflectionClass("\\" . get_class($this) . "GenCSI");
         $this->csi = $r->newInstanceArgs([$this]);
         $this->csi->params = $params;
+        $this->csi->bindings = $bindings;
         $this->bind();
         JavascriptGenerator::generateJavascript($this);
     }

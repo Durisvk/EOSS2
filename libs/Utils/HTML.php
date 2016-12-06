@@ -143,4 +143,16 @@ class HTML
         return $groups;
     }
 
+    public static function getBindings($str) {
+        $dom=new \DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHTML($str);
+        libxml_clear_errors();
+        $bindings = [];
+
+        self::getAttrWithNameOfNode($dom, $bindings, "data-binding");
+
+        return $bindings;
+    }
+
 }

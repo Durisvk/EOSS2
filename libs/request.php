@@ -68,7 +68,7 @@ if ($request->getParameter('curValue') && $request->getParameter('id')) {
 // store old values:
 $oldValues = [];
 foreach($eoss->csi as $key => $value) {
-    if($key != "params" && $key != "eoss" && $key != "intervals") {
+    if($key != "params" && $key != "eoss" && $key != "intervals" && $key != "bindings") {
         $oldValues[$key] = clone $eoss->csi->$key;
     }
 }
