@@ -37,7 +37,7 @@
 
             </div>
         </div>
-        Here is the same example with data binding:
+        Here is the same example with two-way data binding:
         <div class="example">
             <input type="text" data-binding="SourceElement: '.lblCopy', SourceAttribute: 'value', TargetAttribute: 'value'" placeholder="Type here something"/>
             <input type="text" class="lblCopy" placeholder="Type something here also." />
