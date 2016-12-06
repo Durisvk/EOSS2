@@ -4,6 +4,7 @@ namespace EOSS;
 
 
 use Debug\Linda;
+use Templating\TemplateFactory;
 use Utils\CSIHelper;
 use Utils\HTML;
 
@@ -53,7 +54,12 @@ class CSIAnalyze
      * Analyzes the HTML file and generates CSI.
      */
     private function analyzeCsi() {
-        $rf = get_include_contents($this->file, $this->csi->params->toArray());
+        if($templateWrapper = TemplateFactory::create($this->file)) {
+            $templateWrapper->initialize();
+            $rf = $templateWrapper->render($this->file, $this->csi->params->toArray());
+        } else {
+            $rf = get_include_contents($this->file, $this->csi->params->toArray());
+        }
         $elements = HTML::getElements($rf);
         $groups = HTML::getGroups($rf);
         $requires="<?php\n";

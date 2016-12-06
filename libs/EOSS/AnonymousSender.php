@@ -26,7 +26,7 @@ class AnonymousSender
         if(isset($this->params[$key])) {
             return $this->params[$key];
         } else {
-            throw new \Exception("Can't find the parameter {$key} inside CSI.");
+            throw new \Exception("Can't find the parameter {$key} inside anonymous sender.");
         }
     }
 

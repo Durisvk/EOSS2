@@ -97,12 +97,12 @@ if($request->getParameter('id')) {
                     $sender = new \EOSS\AnonymousSender();
                     foreach($attributes as $key => $value) {
                         $key = str_replace("-", "_", $key);
+                        $sender->$key = $value;
                     }
                     $anonymousSender = $sender;
                 } else {
                     $sender = $eoss->csi->{$request->getParameter('element_id')};
                 }
-
                 $request->getParameter('param') ? $eoss->$event($sender, $request->getParameter('param')) : $eoss->$event($sender);
                 $called[] = $event;
             }

@@ -5,6 +5,7 @@ use Application\Config;
 use Debug\Linda;
 use EOSS\EOSS;
 use Http\Request;
+use Templating\TemplateFactory;
 use Utils\RequireHelper;
 use Utils\Session;
 use Utils\Strings;
@@ -105,8 +106,13 @@ class ApplicationLoader {
      * @param EOSS $eoss
      */
     public function loadView($filename, EOSS $eoss) {
-        extract($eoss->csi->params->toArray());
-        include $filename;
+        if($templateWrapper = TemplateFactory::create($filename)) {
+            $templateWrapper->initialize();
+            echo $templateWrapper->render($filename, $eoss->csi->params->toArray());
+        } else {
+            extract($eoss->csi->params->toArray());
+            include $filename;
+        }
     }
 
     /**

@@ -380,7 +380,7 @@ class indexEOSS extends EOSS
 
     public function load()
     {
-        $this->csi->setFile("indexView.php");
+        $this->csi->setFile("indexView.twig.php");
     }
 
     public function bind()
@@ -563,3 +563,9 @@ class indexEOSS extends EOSS {
 }
 
 And this is it. So easy :).
+
+# Templating Engine
+
+**Twig**
+
+To use templating engine Twig you just need to name your view as: xyz.twig.php. That's all you need to do to enable Twig as your templating engine. Note that xyz can be anything you want. If you want to clear your cache stored templates just remove everything from the `temp` directory.

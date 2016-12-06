@@ -48,7 +48,7 @@ abstract class EOSS
     public function loadGeneratedCSI() {
         /** @var Parameters $params */
         $params = $this->csi->params;
-        RequireHelper::requireFilesInDirectory(DIR_TEMP);
+        RequireHelper::requireFilesInDirectory(DIR_TEMP . "data/");
         $r = new \ReflectionClass("\\" . get_class($this) . "GenCSI");
         $this->csi = $r->newInstanceArgs([$this]);
         $this->csi->params = $params;
