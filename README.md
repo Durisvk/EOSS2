@@ -5,6 +5,9 @@
 Here is a little demonstration of EOSS:
 [EOSS Video](https://www.youtube.com/watch?v=G5y7wY2yBp8&feature=youtu.be)
 
+You can visit our [website](http://eoss.wz.sk/) to get more information about EOSS.
+
+
 You start with a config file, which should look like this:
 
 `app/config.eoss`:
