@@ -53,7 +53,14 @@
             <div id="lblTodos"><b>TODOS:</b></div>
             <input type="text" id="txtTodo" data-test="asdf" value="" placeholder="Type here something and hit enter.">
         </div>
-        There is a lot work to be done. The EOSS2 is not finished yet. Next we are planning to do a Form logic.
+        <br>
+        Here is another binding example:
+        <div class="example">
+            <input type="text" class="lblRange">
+            <input type="range" data-binding="SourceElement: '.lblRange', SourceAttribute: 'value', TargetAttribute: 'value'" value="50" min="0" max="100" />
+        </div>
+        There is a lot work to be done. The EOSS2 is not finished yet.
+        Here is an example of data-groups functionallity:
         <div class="example">
             <div id="lblButtons"></div>
             <input type="button" data-group="buttons" value="1" />

@@ -35,10 +35,18 @@ if(event.keyCode==13)
 
 
 
+$( '.lblCopy' ).val($( "[data-binding = \"SourceElement: '.lblCopy', SourceAttribute: 'value', TargetAttribute: 'value'\"]" ).val());
 $( "[data-binding=\"SourceElement: '.lblCopy', SourceAttribute: 'value', TargetAttribute: 'value'\"]" ).on('click mousedown mouseup focus blur input change', function(e) {
 $( '.lblCopy' ).val($(this).val());
 
 });$( '.lblCopy' ).on('click mousedown mouseup focus blur input change', function(e) {
 $( "[data-binding = \"SourceElement: '.lblCopy', SourceAttribute: 'value', TargetAttribute: 'value'\"]" ).val($(this).val());
+
+});$( '.lblRange' ).val($( "[data-binding = \"SourceElement: '.lblRange', SourceAttribute: 'value', TargetAttribute: 'value'\"]" ).val());
+$( "[data-binding=\"SourceElement: '.lblRange', SourceAttribute: 'value', TargetAttribute: 'value'\"]" ).on('click mousedown mouseup focus blur input change', function(e) {
+$( '.lblRange' ).val($(this).val());
+
+});$( '.lblRange' ).on('click mousedown mouseup focus blur input change', function(e) {
+$( "[data-binding = \"SourceElement: '.lblRange', SourceAttribute: 'value', TargetAttribute: 'value'\"]" ).val($(this).val());
 
 });

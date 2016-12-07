@@ -184,6 +184,7 @@ class JavascriptGenerator
         $js = "";
         foreach($eoss->csi->bindings as $binding) {
             if($binding instanceof ElementBinding) {
+                $js .= $binding->initialBindingJavascript();
                 $js .= "$( \"[data-binding=\\\"{$binding->getString()}\\\"]\" ).on('click mousedown mouseup focus blur input change', function(e) {\n";
                 $js .= $binding->getJavascriptAction() . "\n";
                 $js .= "\n});";

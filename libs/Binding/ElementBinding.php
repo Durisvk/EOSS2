@@ -165,6 +165,31 @@ class ElementBinding
     }
 
 
+    public function initialBindingJavascript() {
+        $js = "$( '{$this->getSourceElement()}' ).";
+        if($this->getSourceAttribute() == 'html') {
+            $js .= "html(";
+        } else if($this->getSourceAttribute() == 'value') {
+            $js .= "val(";
+        } else {
+            $js .= "attr(\"{$this->getSourceAttribute()}\", ";
+        }
+        $js .= "$( \"[data-binding = \\\"{$this->getString()}\\\"]\" ).";
+
+        if($this->getTargetAttribute() == 'html') {
+            $js .= "html()";
+        } else if($this->getTargetAttribute() == 'value') {
+            $js .= "val()";
+        } else {
+            $js .= "attr(\"{$this->getTargetAttribute()}\")";
+        }
+
+        $js .= ");\n";
+
+        return $js;
+    }
+
+
 
 
 }
