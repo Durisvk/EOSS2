@@ -17,6 +17,9 @@ class JSON
      * @return mixed
      */
     public static function decode($s, $asArray = TRUE) {
+        if(json_decode($s, $asArray)) {
+            return json_decode($s, $asArray);
+        }
         $s = str_replace(
             array('"',  "'"),
             array('\"', '"'),

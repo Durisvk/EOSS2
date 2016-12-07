@@ -57,8 +57,15 @@ $app->includeModels();
 $eoss=$app->eossInit($request->getParameter('eoss'));
 if(\Utils\Session::getInstance()->get($request->getParameter('eoss'))) {\Utils\EOSSHelper::restoreClassVariables($eoss,get_class($eoss));}
 foreach(json_decode($request->getParameter('values')) as $value) {
-    $id=$value->id;
-    $eoss->csi->$id->value=$value->val;
+    if(property_exists($value, 'id')) {
+        $eoss->csi->{$value->id}->value = $value->val;
+        if (property_exists($value, 'html')) {
+            $eoss->csi->{$value->id}->html = $value->html;
+        }
+    } else if(property_exists($value, 'binding')) {
+        $json = \Utils\JSON::decode($value->binding);
+        \Binding\PropertyBinding::setValue($eoss, $json["SourcePath"], $value->attribute);
+    }
 }
 if ($request->getParameter('curValue') && $request->getParameter('id')) {
     $eoss->csi->{$request->getParameter('id')}->value=$request->getParameter('curValue');

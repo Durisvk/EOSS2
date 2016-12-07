@@ -571,3 +571,174 @@ And this is it. So easy :).
 **Twig**
 
 To use templating engine Twig you just need to name your view as: xyz.twig.php. That's all you need to do to enable Twig as your templating engine. Note that xyz can be anything you want. If you want to clear your cache stored templates just remove everything from the `temp` directory.
+
+# Data Binding
+
+There are two ways of data binding inside EOSS. One is the **Element to Element** data binding. The second one is the **Element to Property** binding. To make it clear, the element you are specifying `data-binding` attribute to is the **Target**. The **Source** is what you specify inside `data-binding` attribute and it's either the other element or path to a property.
+
+**Element to Element Binding**:
+
+What you need to specify is the **SourceElement**, **SourceAttribute** and **TargetAttribute**. You can specify the **Mode** either `one-way` or `two-way`. Depends on if you need one-way binding from Source to the Target or both ways.
+Let's look at the example.
+We want to create a range input and bind it to textbox so if we change range the textbox will get updated and if we change the textbox the range will get updated. We want to bind the attribute `value` of our range and attribute `value` of our textbox.
+
+```html
+<div class="example">
+            <input type="text" class="lblRange">
+            <input type="range" data-binding="SourceElement: '.lblRange', SourceAttribute: 'value', TargetAttribute: 'value'" value="50" min="0" max="100" />
+        </div>
+```
+
+This is it. We can explicitly set the **Mode** to `two-way` to be sure we get our result like that:
+
+```html
+<input type="range" data-binding="SourceElement: '.lblRange', SourceAttribute: 'value', TargetAttribute: 'value', Mode: 'two-way'" value="50" min="0" max="100" />
+```
+
+And we are done now. This is how the **Element to Element** binding works.
+
+**Element to Property Binding**:
+
+This is a little more advanced way of binding. What you get as the final result is Element's attribute bound to the property (of your EOSS, Model, or anything accessible from your EOSS through public property or getter). So if the Element's attribute changes the Property gets automatically updated to the value of that changed attribute. If it's two-way binding and the Property changes the Element's attribute gets updated to the value of that Property.
+You need to specify only two parameters: **SourcePath** and **TargetAttribute**. To make the things clear the **SourcePath** is the path to the property delimited with dots (`.`). For example we have model called model in our indexEOSS so and we want to bind to the model's property `foo`. So we specify the **SourcePath** as follows: `model.foo`. It's not that difficult to understand. Just let's move to the example.
+Let's bind our range to the property in our indexEOSS. Let's create it.
+
+```php
+<?php
+use EOSS\EOSS;
+
+class indexEOSS extends EOSS
+{
+
+    public $range;
+
+    public function load() {
+    	$this->setFile("index.php");
+    }
+
+    public function bind() {}
+}
+
+```
+
+Now we can bind to that property.
+
+```html
+<input type="range" data-binding="SourcePath: 'range', TargetAttribute: 'value'"/>
+```
+
+We have successfully bound the range value to the range property in our indexEOSS.
+What if we want to keep our range private. Then we need to create the getter and the setter for that property.
+
+```php
+<?php
+
+use EOSS\EOSS;
+
+class indexEOSS extends EOSS
+{
+
+    private $range = 50;
+
+    public function load() {
+    	$this->setFile("index.php");
+    }
+
+    public function bind() {}
+
+    public function getRange() {
+    	return $this->range;
+    }
+
+    public function setRange($range) {
+    	$this->range = $range;
+    }
+}
+```
+
+Notice how we can set the initial value to the property. It will get reflected on the range input element's initial value.
+
+If we want to bind a property of our model which is contained by the indexEOSS we can do that.
+
+Here's the first way we can do it:
+
+```php
+<?php
+
+use EOSS\EOSS;
+
+class indexEOSS extends EOSS
+{
+
+    public $model;
+
+    public function load() {
+    	$this->model = new ExampleModel();
+    	$this->setFile("index.php");
+    }
+
+    public function bind() {}
+}
+```
+
+
+Or we can do it this way to keep our model private:
+
+```php
+<?php
+
+use EOSS\EOSS;
+
+class indexEOSS extends EOSS
+{
+
+    private $model;
+
+    public function load() {
+    	$this->model = new ExampleModel();
+    	$this->setFile("index.php");
+    }
+
+    public function bind() {}
+
+    public function getModel() {
+    	return $this->model;
+    }
+}
+```
+
+And our `ExampleModel` will look like this:
+
+```php
+<?php
+
+class ExampleModel
+{
+
+    private $range;
+
+    public function getRange()
+    {
+        return $this->range;
+    }
+
+    public function setRange($range)
+    {
+        $this->range = $range;
+    }
+
+}
+```
+
+We can now bind to our model instead.
+
+```html
+<input type="text" data-binding="SourcePath: 'model.range', TargetAttribute: 'value'">
+```
+
+And this is it. The **Element to Property** data binding.
+
+**Troubleshooting**:
+Working with the property binding you will get the understoodable errors. Either the specified **SourcePath** is not correct (the property for example doesn't exist) or any of the parts of the specified **SourcePath** aren't accessible (are for example private and no getter/setter are defined).
+
+Notice that the getter and the setter to the property must be in the format: `getPropertyName()` / `setPropertyName($value)`. Getter should not take an argument and should return any value, the setter should take argument. The getters and the setters need to be `camelCase`.

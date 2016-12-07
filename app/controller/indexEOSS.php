@@ -11,6 +11,9 @@ class indexEOSS extends EOSS
 {
     public $counter = 1;
 
+    public $model;
+
+
     /**
      * Load is called when the EOSS is initialized.
      * It should contain setFile to set the view, but
@@ -20,9 +23,12 @@ class indexEOSS extends EOSS
      */
     public function load()
     {
+        $this->model = new ExampleModel();
         $this->csi->params->title = "Welcome To EOSS | EOSS2";
         $this->csi->setFile("indexView.php");
     }
+
+
 
     /**
      * Bind is called when the CSI(Client Side Interface)
@@ -48,6 +54,7 @@ class indexEOSS extends EOSS
     }
 
     public function showNumber($sender) {
+        $this->model->setRange($this->model->getRange() + 10);
         $this->csi->lblButtons->html = $sender->value;
         $this->flashMessage("You've successfully clicked on " . $sender->value . " button.", "success");
         $sender->value += 1;

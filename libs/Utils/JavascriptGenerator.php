@@ -5,6 +5,7 @@ namespace Utils;
 
 use Application\Config;
 use Binding\ElementBinding;
+use Binding\PropertyBinding;
 use Debug\Linda;
 use EOSS\EOSS;
 use Forms\Form;
@@ -192,8 +193,10 @@ class JavascriptGenerator
                 if($binding->getMode() == 'two-way') {
                     $js .= "$( '{$binding->getSourceElement()}' ).on('click mousedown mouseup focus blur input change', function(e) {\n";
                     $js .= $binding->getJavascriptSecondWay() . "\n";
-                    $js .= "\n});";
+                    $js .= "\n});\n";
                 }
+            } else if($binding instanceof PropertyBinding) {
+                $js .= $binding->initialJavascript($eoss) . "\n\n";
             }
         }
 
@@ -246,6 +249,15 @@ class JavascriptGenerator
                 $js .= "$( '#" . $anonymousSender->id . "' ).attr('id', \"\");\n";
             }
             $js .= self::generateFlashes($eoss);
+
+            foreach($eoss->csi->bindings as $binding) {
+                if($binding instanceof PropertyBinding) {
+                    if($binding->getMode() == "two-way") {
+                        $js .= $binding->getResponseJavascript($eoss);
+                    }
+                }
+            }
+
         } else {
             $js.="location.reload();";
         }
