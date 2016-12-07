@@ -739,6 +739,7 @@ We can now bind to our model instead.
 And this is it. The **Element to Property** data binding.
 
 **Troubleshooting**:
+
 Working with the property binding you will get the understoodable errors. Either the specified **SourcePath** is not correct (the property for example doesn't exist) or any of the parts of the specified **SourcePath** aren't accessible (are for example private and no getter/setter are defined).
 
 Notice that the getter and the setter to the property must be in the format: `getPropertyName()` / `setPropertyName($value)`. Getter should not take an argument and should return any value, the setter should take argument. The getters and the setters need to be `camelCase`.
