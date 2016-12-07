@@ -561,6 +561,8 @@ class indexEOSS extends EOSS {
         $this->flashMessage("You've successfully clicked on " . $sender->value . " button.", "success");
     }
 }
+```
+
 
 And this is it. So easy :).
 
