@@ -782,6 +782,7 @@ class indexEOSS extends EOSS
     	...
     }
 }
+```
 
 What now happens is that your ExampleModel will be passed into the constructor and you are well ready to use it.
 
