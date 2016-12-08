@@ -4,30 +4,27 @@ namespace Templating;
 
 
 use Application\Config;
+use Windwalker\Renderer\TwigRenderer;
 
 class TwigWrapper implements ITemplateWrapper
 {
 
     /**
-     * @var \Twig_Environment
+     * @var TwigRenderer
      */
     private $twig;
 
     public function initialize()
     {
-        require_once DIR_LIBS . 'Twig/lib/Twig/Autoloader.php';
-        \Twig_Autoloader::register();
 
-        $loader = new \Twig_Loader_Filesystem(DIR_APP . Config::getParam("layout_dir"));
-        $this->twig = new \Twig_Environment($loader, array(
-            'cache' => DIR_TEMP,
-        ));
+        $this->twig = new TwigRenderer(DIR_APP . Config::getParam("layout_dir"), array('cache_path' => DIR_TEMP));
+
     }
 
     public function render($path, $variables)
     {
-        $path = explode(DIRECTORY_SEPARATOR, $path);
-        return $this->twig->render(end($path), $variables);
+        $path = str_replace(DIR_APP.Config::getParam("layout_dir"), "", $path);
+        return $this->twig->render($path, $variables);
     }
 
 

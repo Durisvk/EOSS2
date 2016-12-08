@@ -6,4 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Windwalker\\Renderer\\' => array($vendorDir . '/windwalker/renderer'),
+    'Windwalker\\Registry\\' => array($vendorDir . '/windwalker/registry'),
+    'Windwalker\\Data\\' => array($vendorDir . '/windwalker/data'),
 );

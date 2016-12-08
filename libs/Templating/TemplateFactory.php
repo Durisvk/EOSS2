@@ -20,6 +20,7 @@ class TemplateFactory
         $ext = ltrim($ext, '.');
         switch($ext) {
             case "twig.php": return new TwigWrapper();
+            case "blade.php": return new BladeWrapper();
         }
 
         return NULL;

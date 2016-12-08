@@ -380,7 +380,7 @@ class indexEOSS extends EOSS
 
     public function load()
     {
-        $this->csi->setFile("indexView.php");
+        $this->csi->setFile("indexView.blade.php");
     }
 
     public function bind()
@@ -570,7 +570,9 @@ And this is it. So easy :).
 
 **Twig**
 
-To use templating engine Twig you just need to name your view as: xyz.twig.php. That's all you need to do to enable Twig as your templating engine. Note that xyz can be anything you want. If you want to clear your cache stored templates just remove everything from the `temp` directory.
+To use templating engine Twig you just need to name your view as: `xyz.twig.php`. That's all you need to do to enable Twig as your templating engine. Note that xyz can be anything you want. If you want to clear your cache stored templates just remove everything from the `temp` directory.
+
+To use Blade templating engine just save your view as: `xyz.blade.php`.
 
 # Data Binding
 

@@ -34,7 +34,7 @@ class indexEOSS extends EOSS
     public function load()
     {
         $this->csi->params->title = "Welcome To EOSS | EOSS2";
-        $this->csi->setFile("indexView.php");
+        $this->csi->setFile("indexView.blade.php");
     }
 
 
