@@ -10,9 +10,13 @@ namespace Templating;
 
 
 use Application\Config;
-use Debug\Linda;
 use Windwalker\Renderer\BladeRenderer;
 
+/**
+ * Blade templating engine wrapper.
+ * Class BladeWrapper
+ * @package Templating
+ */
 class BladeWrapper implements ITemplateWrapper
 {
 

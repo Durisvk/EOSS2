@@ -21,6 +21,7 @@ class TemplateFactory
         switch($ext) {
             case "twig.php": return new TwigWrapper();
             case "blade.php": return new BladeWrapper();
+            case "latte.php": return new LatteWrapper();
         }
 
         return NULL;

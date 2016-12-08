@@ -3,6 +3,7 @@
         "pimple/pimple": "~3.0",
         "windwalker/renderer": "2.*",
         "illuminate/view": "4.*",
-        "twig/twig": "~1.0"
+        "twig/twig": "~1.0",
+        "latte/latte": "^2.4"
     }
 }
