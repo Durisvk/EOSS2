@@ -63,6 +63,8 @@ class ApplicationLoader {
                 require_once $match;
                 /** @var EOSS $eoss */
                 $eoss=$this->createEOSSInstance($cls);
+                $this->injectDependencies($eoss);
+                $eoss->init();
                 if(!Request::getInstance()->isAjax()) {
                     $this->loadView($eoss->csi->getFile(), $eoss);
                 }
@@ -73,6 +75,8 @@ class ApplicationLoader {
                         require_once $match;
                         /** @var EOSS $eoss */
                         $eoss=$this->createEOSSInstance($cls);
+                        $this->injectDependencies($eoss);
+                        $eoss->init();
                         if(!Request::getInstance()->isAjax()) {
                             $this->loadView($eoss->csi->getFile(), $eoss);
                         }
@@ -82,6 +86,8 @@ class ApplicationLoader {
                     require_once $match;
                     /** @var EOSS $eoss */
                     $eoss=$this->createEOSSInstance($cls);
+                    $this->injectDependencies($eoss);
+                    $eoss->init();
                     if(!Request::getInstance()->isAjax()) {
                         $this->loadView($eoss->csi->getFile(), $eoss);
                     }
@@ -135,15 +141,59 @@ class ApplicationLoader {
     }
 
     /**
+     * Injects all of the dependencies to the EOSS.
+     * @param EOSS $eoss
+     * @throws \Exception
+     */
+    public function injectDependencies(EOSS $eoss) {
+        $reflection = new \ReflectionClass(get_class($eoss));
+
+        /** @var \ReflectionMethod $method */
+        foreach($reflection->getMethods() as $method) {
+            if(Strings::startsWith($method->getName(), "inject") && count($method->getParameters()) == 1 && $method->isPublic()) {
+                $param = $method->getParameters()[0];
+                $param->getClass()->getName();
+                if(isset($this->container[$param->getClass()->getName()])) {
+                    call_user_func_array(array($eoss, $method->getName()), array($this->container[$param->getClass()->getName()]));
+                } else {
+                    throw new \Exception(sprintf("You forgot to register the service \"%s\". Go to services.eoss and register it.", $param->getClass()->getName()));
+                }
+            }
+        }
+
+        /** @var \ReflectionProperty $property */
+        foreach($reflection->getProperties() as $property) {
+            $doc = $property->getDocComment();
+            if (strpos($doc, "@inject") && $property->isPublic()) {
+                $matches = [];
+                preg_match("/[\/\*\n ]+@var ([A-Za-z]{1}[A-Za-z0-9]+) @inject[\*\n \/]+/", $doc, $matches);
+                if(count($matches) >= 2) {
+                    if (isset($this->container[$matches[1]])) {
+                        $eoss->{$property->getName()} = $this->container[$matches[1]];
+                    } else {
+                        throw new \Exception(sprintf("You forgot to register the service \"%s\". Go to services.eoss and register it.", $matches[1]));
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Creates an EOSS instance with injected dependencies through constructor.
      * @param string $cls
-     * @return EOSS
+     * @return object
+     * @throws \Exception
      */
     public function createEOSSInstance($cls) {
         $reflection = new \ReflectionClass($cls);
         $args = [];
         /** @var \ReflectionParameter $param */
         foreach($reflection->getConstructor()->getParameters() as $param) {
-            $args[] = $this->container[$param->getClass()->getName()];
+            if(isset($this->container[$param->getClass()->getName()])) {
+                $args[] = $this->container[$param->getClass()->getName()];
+            } else {
+                throw new \Exception(sprintf("You forgot to register the service \"%s\". Go to services.eoss and register it.", $param->getClass()->getName()));
+            }
         }
         return $reflection->newInstanceArgs($args);
     }
@@ -162,7 +212,11 @@ class ApplicationLoader {
                 if($reflection->getConstructor()) {
                     /** @var \ReflectionParameter $param */
                     foreach ($reflection->getConstructor()->getParameters() as $param) {
-                        $args[] = $c[$param->getClass()->getName()];
+                        if(isset($c[$param->getClass()->getName()])) {
+                            $args[] = $c[$param->getClass()->getName()];
+                        } else {
+                            throw new \Exception(sprintf("You forgot to register the service \"%s\". Go to services.eoss and register it.", $param->getClass()->getName()));
+                        }
                     }
                 }
                 return $reflection->newInstanceArgs($args);

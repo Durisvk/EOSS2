@@ -14,9 +14,15 @@ class indexEOSS extends EOSS
     public $model;
 
     public function __construct(ExampleModel $model) {
-        $this->model = $model;
         parent::__construct();
+
+        $this->model = $model;
     }
+
+
+/*    public function injectExampleModel(ExampleModel $model) {
+        $this->model = $model;
+    }*/
 
     /**
      * Load is called when the EOSS is initialized.

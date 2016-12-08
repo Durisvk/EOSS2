@@ -39,9 +39,16 @@ abstract class EOSS
     public function __construct()
     {
         $this->flashes = Session::getInstance()->get("flashes") ?: [];
+    }
+
+    /**
+     * Called after the dependencies are injected.
+     */
+    public function init() {
         $this->csi = new CSI($this);
         $this->load();
     }
+
     /**
      * Loads the generated CSI from genCSI.php file/
      */

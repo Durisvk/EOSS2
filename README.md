@@ -770,8 +770,8 @@ class indexEOSS extends EOSS
     public $model;
 
     public function __construct(ExampleModel $model) {
+    	parent::__construct();
         $this->model = $model;
-        parent::__construct();
     }
 
     public function load() {
@@ -784,9 +784,55 @@ class indexEOSS extends EOSS
 }
 ```
 
-What now happens is that your ExampleModel will be passed into the constructor and you are well ready to use it.
+What now happens is that your ExampleModel will be automatically passed into the constructor and you are well ready to use it.
 
-Notice that the class name before argument is required (e.g. ExampleModel). Otherwise you get an error.
+We can do the same thing using **inject\*** method. The method must be public and must start with keyword **inject**.
+
+
+```php
+<?php
+use EOSS\EOSS;
+
+class indexEOSS extends EOSS
+{
+
+    public $model;
+
+    public function injectModel(ExampleModel $model) {
+    	$this->model = $model;
+    }
+
+    public function load() {
+    	...
+    }
+
+    public function bind() {
+    	...
+    }
+}
+```
+
+Notice that the class name before argument is required (e.g. `ExampleModel $param`). Otherwise you get an error.
+
+
+The last way to inject dependencies and services is not recommended. You can use public property with annotation which will look like this:
+
+```php
+use EOSS\EOSS;
+
+class indexEOSS extends EOSS
+{
+    /**
+     * @var ExampleModel @inject
+     */
+    public $model;
+
+    public function load() { ... }
+    public function bind() { ... }
+}
+```
+
+This is the most unsecure way to gain dependencies. The `@inject` anotation is required.
 
 Notice that the instance of the object passed into indexEOSS is always the one and the same. No 2 instances of a same class will be created this way.
 
