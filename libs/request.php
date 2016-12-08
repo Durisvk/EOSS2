@@ -2,6 +2,8 @@
 
 $start = microtime(TRUE);
 
+require_once "vendor/autoload.php";
+
 define('DIR', getcwd() . '/../');
 define('DIR_LIBS', getcwd().'/');
 define('DIR_APP', getcwd().'/../app/');

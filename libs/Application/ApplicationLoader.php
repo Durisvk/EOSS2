@@ -5,6 +5,7 @@ use Application\Config;
 use Debug\Linda;
 use EOSS\EOSS;
 use Http\Request;
+use Pimple\Container;
 use Templating\TemplateFactory;
 use Utils\RequireHelper;
 use Utils\Session;
@@ -24,9 +25,15 @@ class ApplicationLoader {
     public $app=array();
 
     /**
+     * @var Container
+     */
+    private $container;
+
+    /**
      * ApplicationLoader constructor.
      */
     public function __construct() {
+        $this->container = new Container();
         $this->goThroughAppFiles(DIR_APP);
     }
 
@@ -43,6 +50,8 @@ class ApplicationLoader {
             Session::getInstance()->clearEOSSData();
         }
 
+        $this->loadServices();
+
         $eoss = NULL;
         $matches=preg_grep("/([a-zA-Z])+EOSS\.php/",$this->app);
         foreach($matches as $match) {
@@ -53,7 +62,7 @@ class ApplicationLoader {
             if(isset($eossreq) && $eossreq==$cls) {
                 require_once $match;
                 /** @var EOSS $eoss */
-                $eoss=new $cls;
+                $eoss=$this->createEOSSInstance($cls);
                 if(!Request::getInstance()->isAjax()) {
                     $this->loadView($eoss->csi->getFile(), $eoss);
                 }
@@ -63,7 +72,7 @@ class ApplicationLoader {
                     if($cls==Session::getInstance()->get('currentEOSS') || Strings::startsWith($cls, Session::getInstance()->get('currentEOSS'))) {
                         require_once $match;
                         /** @var EOSS $eoss */
-                        $eoss=new $cls;
+                        $eoss=$this->createEOSSInstance($cls);
                         if(!Request::getInstance()->isAjax()) {
                             $this->loadView($eoss->csi->getFile(), $eoss);
                         }
@@ -72,7 +81,7 @@ class ApplicationLoader {
                     Session::getInstance()->set("currentEOSS",Config::getParam("home_eoss"));
                     require_once $match;
                     /** @var EOSS $eoss */
-                    $eoss=new $cls;
+                    $eoss=$this->createEOSSInstance($cls);
                     if(!Request::getInstance()->isAjax()) {
                         $this->loadView($eoss->csi->getFile(), $eoss);
                     }
@@ -122,6 +131,43 @@ class ApplicationLoader {
         $dir = DIR_APP . \Application\Config::getParam("models");
         if(file_exists($dir)) {
             RequireHelper::requireFilesInDirectory($dir);
+        }
+    }
+
+    /**
+     * @param string $cls
+     * @return EOSS
+     */
+    public function createEOSSInstance($cls) {
+        $reflection = new \ReflectionClass($cls);
+        $args = [];
+        /** @var \ReflectionParameter $param */
+        foreach($reflection->getConstructor()->getParameters() as $param) {
+            $args[] = $this->container[$param->getClass()->getName()];
+        }
+        return $reflection->newInstanceArgs($args);
+    }
+
+    /**
+     * Loads the all services specified inside services.eoss.
+     */
+    public function loadServices() {
+        $services = Config::getParam("services");
+
+        foreach($services as $service) {
+
+            $this->container[$service] = function($c) use($service) {
+                $reflection = new \ReflectionClass($service);
+                $args = [];
+                if($reflection->getConstructor()) {
+                    /** @var \ReflectionParameter $param */
+                    foreach ($reflection->getConstructor()->getParameters() as $param) {
+                        $args[] = $c[$param->getClass()->getName()];
+                    }
+                }
+                return $reflection->newInstanceArgs($args);
+            };
+
         }
     }
 

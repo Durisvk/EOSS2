@@ -1,6 +1,8 @@
 <?php
 
 namespace Application;
+use Debug\Linda;
+use Utils\JSON;
 
 
 /**
@@ -27,6 +29,15 @@ class Config
         if(!self::$file) {
             self::$file = file_get_contents (DIR_APP."config.eoss");
         }
+
+        if($param == 'services') {
+            if(file_exists(DIR_APP."services.eoss")) {
+                $file = file_get_contents(DIR_APP."services.eoss");
+                $json = JSON::decode($file);
+                return $json["services"];
+            } else return [];
+        }
+
         $rf = "{".self::$file."}";
         $config=json_decode($rf);
         if(isset($config->$param)) {

@@ -743,3 +743,50 @@ And this is it. The **Element to Property** data binding.
 Working with the property binding you will get the understoodable errors. Either the specified **SourcePath** is not correct (the property for example doesn't exist) or any of the parts of the specified **SourcePath** aren't accessible (are for example private and no getter/setter are defined).
 
 Notice that the getter and the setter to the property must be in the format: `getPropertyName()` / `setPropertyName($value)`. Getter should not take an argument and should return any value, the setter should take argument. The getters and the setters need to be `camelCase`.
+
+
+# Dependency Injection and Services
+
+If you need to pass an instance (e.g. of a model) to the EOSS class by constructor, you can simply do that with Dependency Injection and Services.
+
+First you need to register a service. Inside app folder create file `app/services.eoss` which can look something like this:
+
+```json
+services: [
+    "ExampleModel"
+]
+```
+
+We suppose you have already created an ExampleModel. Now what you can do in your xyzEOSS class is this:
+
+
+```php
+<?php
+use EOSS\EOSS;
+
+class indexEOSS extends EOSS
+{
+
+    public $model;
+
+    public function __construct(ExampleModel $model) {
+        $this->model = $model;
+        parent::__construct();
+    }
+
+    public function load() {
+    	...
+    }
+
+    public function bind() {
+    	...
+    }
+}
+
+What now happens is that your ExampleModel will be passed into the constructor and you are well ready to use it.
+
+Notice that the class name before argument is required (e.g. ExampleModel). Otherwise you get an error.
+
+Notice that the instance of the object passed into indexEOSS is always the one and the same. No 2 instances of a same class will be created this way.
+
+PS: I am using [Pimple](http://pimple.sensiolabs.org/) to create this magic.

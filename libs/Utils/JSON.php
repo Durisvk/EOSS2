@@ -25,6 +25,7 @@ class JSON
             array('\"', '"'),
             $s
         );
+        $s = str_replace("\\\"", "\"", $s);
         $s = preg_replace('/(\w+):/i', '"\1":', $s);
         if(!strpos($s, "{")) {
             return json_decode(sprintf("{%s}", $s), $asArray);

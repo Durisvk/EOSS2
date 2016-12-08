@@ -13,6 +13,10 @@ class indexEOSS extends EOSS
 
     public $model;
 
+    public function __construct(ExampleModel $model) {
+        $this->model = $model;
+        parent::__construct();
+    }
 
     /**
      * Load is called when the EOSS is initialized.
@@ -23,7 +27,6 @@ class indexEOSS extends EOSS
      */
     public function load()
     {
-        $this->model = new ExampleModel();
         $this->csi->params->title = "Welcome To EOSS | EOSS2";
         $this->csi->setFile("indexView.php");
     }

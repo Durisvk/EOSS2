@@ -2,6 +2,8 @@
 $start = microtime(TRUE);
 
 
+require_once "vendor/autoload.php";
+
 //require_once "Utils/RequireHelper.php";
 //\Utils\RequireHelper::requireFilesInDirectory(DIR_LIBS, array("LindaLayout.php", "request.php", "autoloader.php", "requireJS.php"));
 
