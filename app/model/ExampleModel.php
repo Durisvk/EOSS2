@@ -1,10 +1,12 @@
 <?php
 
+use \Binding\IBindableProperty;
+
 class ExampleModel
 {
 
     /**
-     * @var int
+     * @var IBindableProperty
      */
     private $range;
 
@@ -13,7 +15,7 @@ class ExampleModel
      */
     public function getRange()
     {
-        return $this->range;
+        return $this->range->get();
     }
 
     /**
@@ -21,7 +23,7 @@ class ExampleModel
      */
     public function setRange($range)
     {
-        $this->range = $range;
+        $this->range->set($range);
     }
 
 

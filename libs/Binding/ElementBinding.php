@@ -2,7 +2,11 @@
 
 namespace Binding;
 
-
+/**
+ * Takes care of element to element binding.
+ * Class ElementBinding
+ * @package Binding
+ */
 class ElementBinding
 {
 

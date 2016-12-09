@@ -68,7 +68,7 @@ class Template9d3fa4406f extends Latte\Runtime\Template
         <br>
         Here is another binding example:
         <div class="example">
-            <input type="text" data-binding="SourcePath: 'model.range', TargetAttribute: 'value'" class="lblRange">
+            <input type="text" id="txtRange" data-binding="SourcePath: 'model.range', TargetAttribute: 'value'" class="lblRange">
             <input type="range" data-binding="SourceElement: '.lblRange', SourceAttribute: 'value', TargetAttribute: 'value'" value="50" min="0" max="100">
         </div>
         There is a lot work to be done. The EOSS2 is not finished yet.

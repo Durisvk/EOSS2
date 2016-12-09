@@ -5,6 +5,7 @@ require_once __DIR__ . '/genElements/txtSource.php';
 require_once __DIR__ . '/genElements/lblCopy.php';
 require_once __DIR__ . '/genElements/lblTodos.php';
 require_once __DIR__ . '/genElements/txtTodo.php';
+require_once __DIR__ . '/genElements/txtRange.php';
 require_once __DIR__ . '/genElements/lblButtons.php';
 
 class indexEOSSGenCSI extends \EOSS\CSI {
@@ -36,6 +37,10 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 	 */
 	public $txtTodo;
 	/**
+	 * @var txtRange
+	 */
+	public $txtRange;
+	/**
 	 * @var lblButtons
 	 */
 	public $lblButtons;
@@ -51,6 +56,7 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 		$this->lblCopy=new lblCopy;
 		$this->lblTodos=new lblTodos;
 		$this->txtTodo=new txtTodo;
+		$this->txtRange=new txtRange;
 		$this->lblButtons=new lblButtons;
 	}
 	public function setFile($dir) {

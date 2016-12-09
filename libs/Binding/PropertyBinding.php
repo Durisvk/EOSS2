@@ -3,10 +3,10 @@
 namespace Binding;
 
 
-use Debug\Linda;
 use EOSS\EOSS;
 
 /**
+ * Takes care of the element to property binding.
  * Class PropertyBinding
  * @package Binding
  */
@@ -33,15 +33,17 @@ class PropertyBinding
      */
     private $string;
 
+    /** @var NULL|string */
+    private $element;
 
     /**
-     * Sets the property value.
+     * Gets the object by path.
      * @param EOSS $eoss
-     * @param string $sourcePath
-     * @param mixed $value
+     * @param $sourcePath
+     * @return array
      * @throws \Exception
      */
-    public static function setValue(EOSS $eoss, $sourcePath, $value) {
+    public static function getObjectByPath(EOSS $eoss, $sourcePath) {
         $path = explode(".", $sourcePath);
         $key = array_pop($path);
 
@@ -81,6 +83,23 @@ class PropertyBinding
         } else {
             $obj = $eoss;
         }
+
+        return ["object" => $obj, "key" => $key];
+    }
+
+    /**
+     * Sets the property value.
+     * @param EOSS $eoss
+     * @param string $sourcePath
+     * @param mixed $value
+     * @throws \Exception
+     */
+    public static function setValue(EOSS $eoss, $sourcePath, $value) {
+
+        $array = self::getObjectByPath($eoss, $sourcePath);
+
+        $obj = $array["object"];
+        $key = $array["key"];
 
         if(property_exists($obj, $key)) {
             $reflector = new \ReflectionClass(get_class($obj));
@@ -95,11 +114,23 @@ class PropertyBinding
                     throw new \Exception("Property \"{$key}\" is inaccessible.");
                 }
             } else {
-                $obj->{$key} = $value;
+                if($obj->{$key} instanceof IBindableProperty) {
+                    $obj->{$key}->set($value);
+                } else {
+                    $obj->{$key} = $value;
+                }
             }
         } else {
             throw new \Exception("Property cannot be binded, \"{$key}\" was not found.");
         }
+    }
+
+    /**
+     * @return NULL|string
+     */
+    public function getElement()
+    {
+        return $this->element;
     }
 
 
@@ -111,45 +142,11 @@ class PropertyBinding
      * @throws \Exception
      */
     public static function getValue(EOSS $eoss, $sourcePath) {
-        $path = explode(".", $sourcePath);
-        $key = array_pop($path);
 
-        if(count($path) > 0) {
-            if(property_exists($eoss, $path[0])) {
-                $obj = NULL;
-                $refl = new \ReflectionClass(get_class($eoss));
-                if ($refl->getProperty($path[0])->isPublic()) {
-                    $obj = $eoss->{$path[0]};
-                } else if(method_exists($eoss, "get".ucfirst($path[0]))) {
-                    $method = "get".ucfirst($path[0]);
-                    $obj = $eoss->$method();
-                } else {
-                    throw new \Exception("Property \"{$path[0]}\" is inaccessible inside \"" . get_class($eoss) . "\"");
-                }
-                array_shift($path);
-                foreach ($path as $p) {
-                    if($obj) {
-                        if(property_exists($obj, $p)) {
-                            $refl = new \ReflectionClass($obj);
-                            if($refl->getProperty($p)->isPublic()) {
-                                $obj = $obj->{$p};
-                            } else if(method_exists($obj, "get".ucfirst($p))) {
-                                $method = "get".ucfirst($p);
-                                $obj = $obj->$method();
-                            } else {
-                                throw new \Exception("Property \"{$p}\" is inaccessible inside \"" . get_class($obj) . "\"");
-                            }
-                        } else {
-                            throw new \Exception("Invalid Binding SourcePath: \"{$sourcePath}\". Property \"{$p}\" doesn't exist inside \"" . get_class($obj) . "\".");
-                        }
-                    }
-                }
-            } else {
-                throw new \Exception("Invalid Binding SourcePath: \"{$sourcePath}\". Property \"{$path[0]}\" doesn't exist inside \"" . get_class($eoss) . "\".");
-            }
-        } else {
-            $obj = $eoss;
-        }
+        $array = self::getObjectByPath($eoss, $sourcePath);
+
+        $obj = $array["object"];
+        $key = $array["key"];
 
         $val = NULL;
 
@@ -166,7 +163,11 @@ class PropertyBinding
                     throw new \Exception("Property \"{$key}\" is inaccessible.");
                 }
             } else {
-                $val = $obj->{$key};
+                if($obj->{$key} instanceof IBindableProperty) {
+                    $val = $obj->{$key}->get();
+                } else {
+                    $val = $obj->{$key};
+                }
             }
         } else {
             throw new \Exception("Property cannot be binded, \"{$key}\" was not found.");
@@ -181,12 +182,16 @@ class PropertyBinding
      * @param string $targetAttribute
      * @param string $mode
      * @param string $string
+     * @param null|array $element
      */
-    public function __construct($sourcePath, $targetAttribute, $mode, $string) {
+    public function __construct($sourcePath, $targetAttribute, $mode, $string, $element = NULL) {
         $this->sourcePath = $sourcePath;
         $this->targetAttribute = $targetAttribute;
         $this->mode = $mode;
         $this->string = $string;
+        if($element) {
+            $this->element = $element["id"];
+        }
     }
 
     /**

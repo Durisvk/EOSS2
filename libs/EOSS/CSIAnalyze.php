@@ -64,10 +64,10 @@ class CSIAnalyze
         } else {
             $rf = get_include_contents($this->file, $this->csi->params->toArray());
         }
-        $elements = HTML::getElements($rf);
+        $elements = JSON::decode(HTML::getElements($rf));
         $groups = HTML::getGroups($rf);
         $bindings = HTML::getBindings($rf);
-        $this->processBindings($bindings);
+        $this->processBindings($bindings, $elements);
         $requires="<?php\n";
         $gencsi="\nclass " . $this->eossClassName . "GenCSI extends \\EOSS\\CSI {\n\n";
         $gencsi.="\n\n";
@@ -82,19 +82,23 @@ class CSIAnalyze
             $csivi .= "\tpublic $".$group.";\n";
             $csic .= "\t\t$"."this->".$group."=new ".$group.";\n";
         }
-        foreach (json_decode($elements) as $element) {
-            if(property_exists($element, 'data-ignore') && get_object_vars($element)['data-ignore'] == 'true') {
+        foreach ($elements as $element) {
+            if(key_exists('data_ignore', $element) && $element['data_ignore'] == 'true') {
                 continue;
             }
 
-            $file = "<?php\nclass ".$element->id." { \n\n";
-            $csivi .= "\t/**\n\t * @var " . $element->id . "\n\t */\n";
-            $csivi .= "\tpublic $".$element->id.";\n";
-            $requires .= "require_once __DIR__ . '/genElements/".$element->id.".php';\n";
-            $csic .= "\t\t$"."this->".$element->id."=new ".$element->id.";\n";
+            $file = "<?php\nclass {$element["id"]} { \n\n";
+            $csivi .= "\t/**\n\t * @var {$element["id"]}\n\t */\n";
+            $csivi .= "\tpublic $".$element["id"].";\n";
+            $requires .= "require_once __DIR__ . '/genElements/".$element["id"].".php';\n";
+            $csic .= "\t\t$"."this->".$element["id"]."=new ".$element["id"].";\n";
             foreach ($element as $key => $attribute) {
-                $file .= "\t/**\n\t * @var string\n\t */\n";
-                $file .= "\tpublic $" . str_replace("-", "_", $key). ";\n\n";
+                if($this->isBounded($element["id"], $key)) {
+                    $file .= "\t/**\n\t * @var \\Binding\\IBindedAttribute\n\t */\n";
+                } else {
+                    $file .= "\t/**\n\t * @var string\n\t */\n";
+                }
+                $file .= "\tpublic $" . $key. ";\n\n";
             }
             $listOfEvents=json_decode(file_get_contents(DIR_LIBS."EOSS/eventList.json"));
             foreach ($listOfEvents as $key => $value) {
@@ -104,11 +108,11 @@ class CSIAnalyze
             $file .= "\n\tpublic function __construct() { \n";
             foreach ($element as $key => $attribute) {
                 $attribute=str_replace('"', '\"', $attribute);
-                $file .= "\t\t$"."this->" . str_replace("-", "_", $key) . '="'.$attribute.'"'.";\n";
+                $file .= "\t\t$"."this->" . $key . '="'.$attribute.'"'.";\n";
             }
             $file .= "\t}\n\n";
             $file .= "}\n";
-            CSIHelper::genElement($element->id, $file);
+            CSIHelper::genElement($element["id"], $file);
         }
         $gencsi = $requires.$gencsi;
         $gencsi .= $csivi."\n";
@@ -152,10 +156,17 @@ class CSIAnalyze
         CSIHelper::genElement($groupName, $file);
     }
 
-    private function processBindings($bindings) {
+    private function processBindings($bindings, $elements) {
 
         foreach($bindings as $binding) {
             $json = JSON::decode($binding);
+
+            $bindedElement = NULL;
+            foreach($elements as $element) {
+                if(key_exists('data_binding', $element) && $element['data_binding'] == $binding) {
+                    $bindedElement = $element;
+                }
+            }
 
             if(!isset($json["Mode"])) {
                 $json["Mode"] = "two-way";
@@ -164,12 +175,27 @@ class CSIAnalyze
             if(isset($json["SourceElement"]) && isset($json["SourceAttribute"]) && isset($json["TargetAttribute"])) {
                 $this->csi->bindings[] = new ElementBinding($json["SourceElement"], $json["SourceAttribute"], $json["TargetAttribute"], $json["Mode"], $binding);
             } else if(isset($json["SourcePath"]) && isset($json["TargetAttribute"])) {
-                $this->csi->bindings[] = new PropertyBinding($json["SourcePath"], $json["TargetAttribute"], $json["Mode"], $binding);
+                $this->csi->bindings[] = new PropertyBinding($json["SourcePath"], $json["TargetAttribute"], $json["Mode"], $binding, $bindedElement);
             }
         }
 
     }
 
+    /**
+     * @param string $elementID
+     * @param string $attribute
+     * @return bool
+     */
+    private function isBounded($elementID, $attribute) {
+        foreach($this->csi->bindings as $binding) {
+            if($binding instanceof PropertyBinding) {
+                if($binding->getMode() == "two-way" && $binding->getTargetAttribute() == $attribute && $binding->getElement() == $elementID) {
+                    return TRUE;
+                }
+            }
+        }
+        return FALSE;
+    }
 
 
 }

@@ -61,6 +61,7 @@ abstract class EOSS
         $this->csi = $r->newInstanceArgs([$this]);
         $this->csi->params = $params;
         $this->csi->bindings = $bindings;
+        $this->csi->processBindings();
         $this->bind();
         JavascriptGenerator::generateJavascript($this);
     }

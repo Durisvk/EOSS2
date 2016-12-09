@@ -77,11 +77,14 @@ class HTML
             if(!$el) continue;
             $json.='"'.$el->getAttribute("id").'": {';
             foreach ($el->attributes as $name => $attr) {
-                $json.= '"'.$name.'": "'.$attr->value.'"';
+                $json.= '"'.str_replace("-", "_", $name).'": "'.$attr->value.'"';
                 $json.=', ';
             }
             if(!$el->getAttribute("type")) {
                 $json .= '"type": "' . $el->tagName . '",';
+            }
+            if($el->tagName == 'input' && !$el->getAttribute('value')) {
+                $json .= '"value": "",';
             }
             $innerHtml=self::getInnerHTML($el);
             $innerHtml=str_replace('"', '\"', $innerHtml);

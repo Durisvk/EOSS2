@@ -1,6 +1,10 @@
 <?php
 
 namespace EOSS;
+use Binding\BindableProperty;
+use Binding\BindedAttribute;
+use Binding\PropertyBinding;
+use Debug\Linda;
 
 
 /**
@@ -72,6 +76,43 @@ class CSI
      */
     public function getFile() {
         return $this->file;
+    }
+
+    /**
+     * Processes the bindings. Shouldn't be called by the user.
+     */
+    public function processBindings() {
+
+        foreach($this->bindings as $binding) {
+            if($binding instanceof PropertyBinding) {
+                $element = $this->{$binding->getElement()} ?: NULL;
+
+                $array = PropertyBinding::getObjectByPath($this->eoss, $binding->getSourcePath());
+                $obj = $array["object"];
+                $key = $array["key"];
+                if(property_exists($obj, $key)) {
+                    $reflector = new \ReflectionClass(get_class($obj));
+
+                    $prop = $reflector->getProperty($key);
+
+                    if ($prop->isPrivate() || $prop->isProtected()) {
+                        // Hack:
+                        $prop->setAccessible(TRUE);
+                        $value = $prop->getValue($obj);
+                        $prop->setValue($obj, new BindableProperty($value, $element, $binding->getTargetAttribute()));
+                    } else {
+                        $obj->{$key} = new BindableProperty($obj->{$key}, $element, $binding->getTargetAttribute());
+                    }
+                } else {
+                    throw new \Exception("Property cannot be binded, \"{$key}\" was not found.");
+                }
+                if($element && $binding->getMode() == "two-way") {
+                    $val = $element->{$binding->getTargetAttribute()};
+                    $element->{$binding->getTargetAttribute()} = new BindedAttribute($val, $obj, $key);
+                }
+            }
+        }
+
     }
 
 }

@@ -612,17 +612,27 @@ Let's bind our range to the property in our indexEOSS. Let's create it.
 ```php
 <?php
 use EOSS\EOSS;
+use Binding\IBindableProperty
 
 class indexEOSS extends EOSS
 {
 
+	/**
+	 * @var IBindableProperty
+	 */
     public $range;
 
     public function load() {
     	$this->setFile("index.php");
     }
 
-    public function bind() {}
+    public function bind() {
+    	$this->csi->button->onclick[] = "someMethod";
+    }
+
+    public function someMethod() {
+    	$this->range->set($this->range->get() + 10);
+    }
 }
 
 ```
@@ -630,20 +640,26 @@ class indexEOSS extends EOSS
 Now we can bind to that property.
 
 ```html
+<input type="button" id="button"/>
 <input type="range" data-binding="SourcePath: 'range', TargetAttribute: 'value'"/>
 ```
 
-We have successfully bound the range value to the range property in our indexEOSS.
+We have successfully bound the range value to the range property in our indexEOSS. Notice that the property implements the IBindableProperty interface BUT! just after the load phase when the binding comes in play.
+
 What if we want to keep our range private. Then we need to create the getter and the setter for that property.
 
 ```php
 <?php
 
 use EOSS\EOSS;
+use Binding\IBindableProperty
 
 class indexEOSS extends EOSS
 {
 
+	/**
+	 *	@var IBindableProperty
+	 */
     private $range = 50;
 
     public function load() {
@@ -653,16 +669,16 @@ class indexEOSS extends EOSS
     public function bind() {}
 
     public function getRange() {
-    	return $this->range;
+    	return $this->range->get();
     }
 
     public function setRange($range) {
-    	$this->range = $range;
+    	$this->range->set($range);
     }
 }
 ```
 
-Notice how we can set the initial value to the property. It will get reflected on the range input element's initial value.
+Notice how we can set the initial value to the property. It will get reflected on the range input element's initial value. **Be careful** and before the *bind()* phase set the property value normally by **assignment**. After and inside the *bind()* phase set the property value with `$this->property->set($value)` -- `set` method.
 
 If we want to bind a property of our model which is contained by the indexEOSS we can do that.
 
@@ -676,6 +692,9 @@ use EOSS\EOSS;
 class indexEOSS extends EOSS
 {
 
+	/**
+	 * @var ExampleModel
+	 */
     public $model;
 
     public function load() {
@@ -698,6 +717,9 @@ use EOSS\EOSS;
 class indexEOSS extends EOSS
 {
 
+	/**
+	 * @var ExampleModel
+	 */
     private $model;
 
     public function load() {
@@ -721,16 +743,19 @@ And our `ExampleModel` will look like this:
 class ExampleModel
 {
 
+	/**
+	 * @var IBindableProperty
+	 */
     private $range;
 
     public function getRange()
     {
-        return $this->range;
+        return $this->range->get();
     }
 
     public function setRange($range)
     {
-        $this->range = $range;
+        $this->range->set($range);
     }
 
 }
@@ -743,6 +768,16 @@ We can now bind to our model instead.
 ```
 
 And this is it. The **Element to Property** data binding.
+
+If we now want to change the bounded attribute of an element we use IBindedAttribute set method. Let's say we want to change the value of a range input with id `range` which is bounded to some property, we will do this like that:
+
+```php
+	public function buttonClicked($sender) {
+		$this->csi->range->value->set(69);
+	}
+```
+
+We need to use method `set` to keep the binding working.
 
 **Troubleshooting**:
 
