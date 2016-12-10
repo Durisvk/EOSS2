@@ -58,20 +58,16 @@ class HTML
 
     /**
      * Gets the elements in JSON format from string in format of HTML
+     * @param \DOMDocument $dom
      * @param string $str
      * @return string
      */
-    public static function getElements($str) {
+    public static function getElements($dom, $str) {
         $ids=self::getIds($str);
-        $dom=new \DOMDocument();
-        libxml_use_internal_errors(true);
-        $dom->loadHTML($str);
-        libxml_clear_errors();
         $elements=array();
         foreach ($ids as $id) {
             $elements[] =self::getElementById($id,$dom);
         }
-        $attributes = array();
         $json='{';
         foreach ($elements as $el) {
             if(!$el) continue;
@@ -131,14 +127,10 @@ class HTML
 
     /**
      * Gets all the data-group attribute values.
-     * @param string $str
+     * @param \DOMNode $dom
      * @return array
      */
-    public static function getGroups($str) {
-        $dom=new \DOMDocument();
-        libxml_use_internal_errors(true);
-        $dom->loadHTML($str);
-        libxml_clear_errors();
+    public static function getGroups($dom) {
         $groups = [];
 
         self::getAttrWithNameOfNode($dom, $groups, "data-group");
@@ -146,11 +138,11 @@ class HTML
         return $groups;
     }
 
-    public static function getBindings($str) {
-        $dom=new \DOMDocument();
-        libxml_use_internal_errors(true);
-        $dom->loadHTML($str);
-        libxml_clear_errors();
+    /**
+     * @param \DOMNode $dom
+     * @return array
+     */
+    public static function getBindings($dom) {
         $bindings = [];
 
         self::getAttrWithNameOfNode($dom, $bindings, "data-binding");
@@ -158,4 +150,25 @@ class HTML
         return $bindings;
     }
 
+    /**
+     * Gets the element with attribute value.
+     * @param \DOMNode $domNode
+     * @param string $attribute
+     * @param string $value
+     * @return \DOMNode
+     */
+    public static function getElementByAttributeValue(\DOMNode $domNode, $attribute, $value) {
+        /** @var \DOMNode $node */
+        foreach($domNode->childNodes as $node) {
+            if($node->attributes && $node->attributes->length > 0) {
+                $attrValue = self::getAttribute($attribute, $node->attributes);
+                if($attrValue && strcmp($attrValue, $value) == 0) {
+                    return $node;
+                }
+            }
+            if($node->hasChildNodes()) {
+                return self::getElementByAttributeValue($node, $attribute, $value);
+            }
+        }
+    }
 }

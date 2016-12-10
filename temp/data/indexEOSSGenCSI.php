@@ -49,7 +49,7 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 
 	parent::__construct($eoss);
 		$this->eoss=$eoss;
-		$this->file='/home/lchost/EOSS2/app/view/indexView.latte.php';
+		$this->file='/home/lchost/EOSS2/libs/../app/view/indexView.latte.php';
 		$this->buttons=new buttons;
 		$this->flashes=new flashes;
 		$this->txtSource=new txtSource;

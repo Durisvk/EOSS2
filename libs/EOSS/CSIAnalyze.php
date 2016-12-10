@@ -64,9 +64,13 @@ class CSIAnalyze
         } else {
             $rf = get_include_contents($this->file, $this->csi->params->toArray());
         }
-        $elements = JSON::decode(HTML::getElements($rf));
-        $groups = HTML::getGroups($rf);
-        $bindings = HTML::getBindings($rf);
+        $dom=new \DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHTML($rf);
+        libxml_clear_errors();
+        $elements = JSON::decode(HTML::getElements($dom, $rf));
+        $groups = HTML::getGroups($dom);
+        $bindings = HTML::getBindings($dom);
         $this->processBindings($bindings, $elements);
         $requires="<?php\n";
         $gencsi="\nclass " . $this->eossClassName . "GenCSI extends \\EOSS\\CSI {\n\n";
@@ -176,6 +180,8 @@ class CSIAnalyze
                 $this->csi->bindings[] = new ElementBinding($json["SourceElement"], $json["SourceAttribute"], $json["TargetAttribute"], $json["Mode"], $binding);
             } else if(isset($json["SourcePath"]) && isset($json["TargetAttribute"])) {
                 $this->csi->bindings[] = new PropertyBinding($json["SourcePath"], $json["TargetAttribute"], $json["Mode"], $binding, $bindedElement);
+            } else if(isset($json["ItemSourcePath"])) {
+
             }
         }
 
