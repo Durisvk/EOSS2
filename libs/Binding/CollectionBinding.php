@@ -25,6 +25,11 @@ class CollectionBinding
     private $string;
 
     /**
+     * @var string
+     */
+    private $element;
+
+    /**
      * Sets the property value.
      * @param EOSS $eoss
      * @param string $sourcePath
@@ -106,11 +111,13 @@ class CollectionBinding
      * @param string $itemSourcePath
      * @param string $template
      * @param string $string
+     * @param null|array $element
      */
-    public function __construct($itemSourcePath, $template, $string) {
+    public function __construct($itemSourcePath, $template, $string, $element = NULL) {
         $this->itemSourcePath = $itemSourcePath;
         $this->template = $template;
         $this->string = $string;
+        $this->element = $element["id"];
     }
 
     /**
@@ -139,6 +146,15 @@ class CollectionBinding
 
         return $str;
     }
+
+    /**
+     * @return string
+     */
+    public function getElement()
+    {
+        return $this->element;
+    }
+
 
     /**
      * @return string

@@ -187,7 +187,7 @@ class CSIAnalyze
             } else if(isset($json["SourcePath"]) && isset($json["TargetAttribute"])) {
                 $this->csi->bindings[] = new PropertyBinding($json["SourcePath"], $json["TargetAttribute"], $json["Mode"], $binding, $bindedElement);
             } else if(isset($json["ItemSourcePath"])) {
-                $this->csi->bindings[] = new CollectionBinding($json["ItemSourcePath"], HTML::getInnerHTML(HTML::getElementByAttributeValue($dom, "data-binding", $binding)), $binding);
+                $this->csi->bindings[] = new CollectionBinding($json["ItemSourcePath"], HTML::getInnerHTML(HTML::getElementByAttributeValue($dom, "data-binding", $binding)), $binding, $bindedElement);
             }
         }
 

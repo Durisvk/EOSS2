@@ -8,6 +8,7 @@ require_once __DIR__ . '/genElements/lblTodos.php';
 require_once __DIR__ . '/genElements/txtTodo.php';
 require_once __DIR__ . '/genElements/txtRange.php';
 require_once __DIR__ . '/genElements/lblButtons.php';
+require_once __DIR__ . '/genElements/personsList.php';
 
 class indexEOSSGenCSI extends \EOSS\CSI {
 
@@ -49,12 +50,16 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 	 * @var lblButtons
 	 */
 	public $lblButtons;
+	/**
+	 * @var personsList
+	 */
+	public $personsList;
 
 	public function __construct($eoss) {
 
 	parent::__construct($eoss);
 		$this->eoss=$eoss;
-		$this->file='/home/lchost/EOSS2/app/view/indexView.latte.php';
+		$this->file='/home/lchost/EOSS2/libs/../app/view/indexView.latte.php';
 		$this->buttons=new buttons;
 		$this->deletePerson=new deletePerson;
 		$this->flashes=new flashes;
@@ -64,6 +69,7 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 		$this->txtTodo=new txtTodo;
 		$this->txtRange=new txtRange;
 		$this->lblButtons=new lblButtons;
+		$this->personsList=new personsList;
 	}
 	public function setFile($dir) {
 		$this->file=$dir;

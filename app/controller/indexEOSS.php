@@ -98,7 +98,7 @@ class indexEOSS extends EOSS
      * @param $sender
      */
     public function deleteThePerson($sender) {
-        $this->collection->removeWhere("id", $sender->data_id);
+        $this->collection->removeFirstWhere("id", $sender->data_id);
     }
 
 

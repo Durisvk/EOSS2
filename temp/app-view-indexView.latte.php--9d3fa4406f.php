@@ -81,7 +81,7 @@ class Template9d3fa4406f extends Latte\Runtime\Template
         </div>
         Here is an example with Collection data binding:
         <div class="example">
-            <ul data-binding="ItemSourcePath: 'collection'">
+            <ul id="personsList" data-binding="ItemSourcePath: 'collection'">
                 <li>Person <b data-key="name"></b> is  <span data-key="age"></span> years old. <a href="" data-id="(*id*)" data-group="deletePerson">X</a></li>
             </ul>
         </div>

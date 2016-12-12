@@ -87,7 +87,10 @@ class CSI
 
         foreach($this->bindings as $binding) {
             if($binding instanceof PropertyBinding) {
-                $element = $this->{$binding->getElement()} ?: NULL;
+                $element = NULL;
+                if(property_exists($this, $binding->getElement())) {
+                    $element = $this->{$binding->getElement()};
+                }
 
                 $array = PropertyBinding::getObjectByPath($this->eoss, $binding->getSourcePath());
                 $obj = $array["object"];
@@ -113,6 +116,11 @@ class CSI
                     $element->{$binding->getTargetAttribute()} = new BindedAttribute($val, $obj, $key);
                 }
             } else if($binding instanceof CollectionBinding) {
+                $element = NULL;
+                if(property_exists($this, $binding->getElement())) {
+                    $element = $this->{$binding->getElement()};
+                }
+
                 $array = PropertyBinding::getObjectByPath($this->eoss, $binding->getItemSourcePath());
                 $obj = $array["object"];
                 $key = $array["key"];
@@ -125,9 +133,9 @@ class CSI
                         // Hack:
                         $prop->setAccessible(TRUE);
                         $value = $prop->getValue($obj);
-                        $prop->setValue($obj, new BindableCollection($value));
+                        $prop->setValue($obj, new BindableCollection($value, $binding, $element));
                     } else {
-                        $obj->{$key} = new BindableCollection($obj->{$key});
+                        $obj->{$key} = new BindableCollection($obj->{$key}, $binding, $element);
                     }
                 } else {
                     throw new \Exception("Property cannot be binded, \"{$key}\" was not found inside \"" . get_class($obj) . "\".");
