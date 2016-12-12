@@ -1,0 +1,1 @@
+php ../libs/vendor/phpunit/phpunit/phpunit --bootstrap bootstrap.php --no-configuration ./
