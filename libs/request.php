@@ -74,7 +74,11 @@ foreach(json_decode($request->getParameter('values')) as $value) {
         }
     } else if(property_exists($value, 'binding')) {
         $json = \Utils\JSON::decode($value->binding);
-        \Binding\PropertyBinding::setValue($eoss, $json["SourcePath"], $value->attribute);
+        if(property_exists($value, 'attribute')) {
+            \Binding\PropertyBinding::setValue($eoss, $json["SourcePath"], $value->attribute);
+        } else if(property_exists($value, 'collection')) {
+            \Binding\CollectionBinding::setValue($eoss, $json["ItemSourcePath"], \Utils\JSON::decode($value->collection));
+        }
     }
 }
 if ($request->getParameter('curValue') && $request->getParameter('id')) {

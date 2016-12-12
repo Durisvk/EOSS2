@@ -4,6 +4,7 @@ namespace Utils;
 
 
 use Application\Config;
+use Binding\CollectionBinding;
 use Binding\ElementBinding;
 use Binding\PropertyBinding;
 use Debug\Linda;
@@ -83,10 +84,10 @@ class JavascriptGenerator
 });";
             } else if($attr && property_exists($attr,$key) && count($attr->$key) > 0 && (property_exists($attr, "type") && $attr->type == "group")) {
                 // Generate group:
-                $js.="\n\n$( '[data-group=\"" . $attr->id . "\"]' ).on('".$prop."',function (";
+                $js.="\n\n$('body').on('{$prop}', '[data-group=\"" . $attr->id . "\"]', function (";
                 $js.="event";
-                $js.=") {\nvar $" . "self = $(this);\n";
-                $js.= $attr->type == "a" ? "event.preventDefault();\n" : "";
+                $js.=") {\nvar $" . "self = $(event.target);\n";
+                $js.="if($" . "self.is('a')) {\nevent.preventDefault()\n}\n";
                 $js.="var data = {'eoss':'{$class}', 'id':'{$attr->id}', 'event':'{$key}','values':createJSON()";
                 $e ? $js .= ",'param': event.{$param}, curValue:$(this).val()+String.fromCharCode(event.keyCode)" : $js.="";
                 $js.="};\n";
@@ -101,6 +102,7 @@ class JavascriptGenerator
         eval(data);
         ".$attr->id.$key."(data);
     });
+    if($"."self.is('a')) return false;
 });";
             }
 
@@ -197,6 +199,8 @@ class JavascriptGenerator
                 }
             } else if($binding instanceof PropertyBinding) {
                 $js .= $binding->initialJavascript($eoss) . "\n\n";
+            } else if($binding instanceof CollectionBinding) {
+                $js .= $binding->getJavascript($eoss) . "\n\n";
             }
         }
 
@@ -255,6 +259,8 @@ class JavascriptGenerator
                     if($binding->getMode() == "two-way") {
                         $js .= $binding->getResponseJavascript($eoss);
                     }
+                } else if($binding instanceof CollectionBinding) {
+                    $js .= $binding->getJavascript($eoss);
                 }
             }
 
@@ -262,9 +268,6 @@ class JavascriptGenerator
             $js.="location.reload();";
         }
         $js.="}";
-        /*$genjs=fopen(DIR_TEMP . "data/genJs/genFunctions.js", "w") or die("Check out your permissions on file libs/data/!");
-        fwrite($genjs, $js);
-        fclose($genjs);*/
         Response::getInstance()->append($js, FALSE);
     }
 

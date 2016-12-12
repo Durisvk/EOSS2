@@ -3,6 +3,7 @@
 namespace EOSS;
 
 
+use Binding\CollectionBinding;
 use Binding\ElementBinding;
 use Binding\PropertyBinding;
 use Debug\Linda;
@@ -71,7 +72,7 @@ class CSIAnalyze
         $elements = JSON::decode(HTML::getElements($dom, $rf));
         $groups = HTML::getGroups($dom);
         $bindings = HTML::getBindings($dom);
-        $this->processBindings($bindings, $elements);
+        $this->processBindings($bindings, $elements, $dom);
         $requires="<?php\n";
         $gencsi="\nclass " . $this->eossClassName . "GenCSI extends \\EOSS\\CSI {\n\n";
         $gencsi.="\n\n";
@@ -160,7 +161,12 @@ class CSIAnalyze
         CSIHelper::genElement($groupName, $file);
     }
 
-    private function processBindings($bindings, $elements) {
+    /**
+     * @param array $bindings
+     * @param array $elements
+     * @param \DOMDocument $dom
+     */
+    private function processBindings($bindings, $elements, $dom) {
 
         foreach($bindings as $binding) {
             $json = JSON::decode($binding);
@@ -181,7 +187,7 @@ class CSIAnalyze
             } else if(isset($json["SourcePath"]) && isset($json["TargetAttribute"])) {
                 $this->csi->bindings[] = new PropertyBinding($json["SourcePath"], $json["TargetAttribute"], $json["Mode"], $binding, $bindedElement);
             } else if(isset($json["ItemSourcePath"])) {
-
+                $this->csi->bindings[] = new CollectionBinding($json["ItemSourcePath"], HTML::getInnerHTML(HTML::getElementByAttributeValue($dom, "data-binding", $binding)), $binding);
             }
         }
 

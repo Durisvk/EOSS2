@@ -1,7 +1,10 @@
 
 
-$( '[data-group="buttons"]' ).on('click',function (event) {
-var $self = $(this);
+$('body').on('click', '[data-group="buttons"]', function (event) {
+var $self = $(event.target);
+if($self.is('a')) {
+event.preventDefault()
+}
 var data = {'eoss':'indexEOSS', 'id':'buttons', 'event':'onclick','values':createJSON()};
 if(typeof $(this).attr("id") == "undefined" || $(this).attr("id") == "") {
 $(this).attr("id", randomString(10));
@@ -16,6 +19,29 @@ $.post('http://localhost/EOSS2/libs/request.php', data, function (data) {
         eval(data);
         buttonsonclick(data);
     });
+    if($self.is('a')) return false;
+});
+
+$('body').on('click', '[data-group="deletePerson"]', function (event) {
+var $self = $(event.target);
+if($self.is('a')) {
+event.preventDefault()
+}
+var data = {'eoss':'indexEOSS', 'id':'deletePerson', 'event':'onclick','values':createJSON()};
+if(typeof $(this).attr("id") == "undefined" || $(this).attr("id") == "") {
+$(this).attr("id", randomString(10));
+data.element_id = $(this).attr("id"); 
+data.anonymous = getAllAttributes($(this));
+
+} else {
+ data.element_id = $(this).attr('id'); 
+}
+$.post('http://localhost/EOSS2/libs/request.php', data, function (data) {
+        console.log(data);
+        eval(data);
+        deletePersononclick(data);
+    });
+    if($self.is('a')) return false;
 });
 $( '#txtSource' ).on('keypress',function (event) {
 $.post('http://localhost/EOSS2/libs/request.php',{'eoss':'indexEOSS','id':'txtSource','event':'onkeypress','values':createJSON(),'param': event.keyCode, curValue:$(this).val()+String.fromCharCode(event.keyCode)}, function (data) {
@@ -53,3 +79,6 @@ $( '.lblRange' ).val($(this).val());
 $( "[data-binding = \"SourceElement: '.lblRange', SourceAttribute: 'value', TargetAttribute: 'value'\"]" ).val($(this).val());
 
 });
+$( "[data-binding=\"ItemSourcePath: 'collection'\"]" ).html( '<li>Person <b data-key="name">Andrew Perkins</b> is  <span data-key="age">25</span> years old. <a href="" data-id="0" data-group="deletePerson">X</a></li><li>Person <b data-key="name">John Doe</b> is  <span data-key="age">43</span> years old. <a href="" data-id="1" data-group="deletePerson">X</a></li><li>Person <b data-key="name">Some Person</b> is  <span data-key="age">32</span> years old. <a href="" data-id="2" data-group="deletePerson">X</a></li>' ).attr("data-collection", '[{"id":0,"name":"Andrew Perkins","age":25},{"id":1,"name":"John Doe","age":43},{"id":2,"name":"Some Person","age":32}]');
+
+

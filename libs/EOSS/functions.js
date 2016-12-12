@@ -24,6 +24,12 @@ function createJSON() {
                     }
 
                     jsonObj.push(item);
+                } else if(typeof json["ItemSourcePath"] != 'undefined') {
+                    var item = {};
+                    item['binding'] = "{" + binding + "}";
+                    item['collection'] = $(this).attr('data-collection');
+
+                    jsonObj.push(item);
                 }
             }
 

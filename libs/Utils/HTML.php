@@ -151,24 +151,25 @@ class HTML
     }
 
     /**
+     * Gets the elements with attribute value.
+     * @param \DOMDocument $domNode
+     * @param string $attribute
+     * @param string $value
+     * @return \DOMNodeList
+     */
+    public static function getElementsByAttributeValue(\DOMDocument $domNode, $attribute, $value) {
+        $xpath = new \DOMXPath($domNode);
+        return $xpath->query("//*[@" . $attribute . "=\"" . $value . "\"]");
+    }
+
+    /**
      * Gets the element with attribute value.
-     * @param \DOMNode $domNode
+     * @param \DOMDocument $domNode
      * @param string $attribute
      * @param string $value
      * @return \DOMNode
      */
-    public static function getElementByAttributeValue(\DOMNode $domNode, $attribute, $value) {
-        /** @var \DOMNode $node */
-        foreach($domNode->childNodes as $node) {
-            if($node->attributes && $node->attributes->length > 0) {
-                $attrValue = self::getAttribute($attribute, $node->attributes);
-                if($attrValue && strcmp($attrValue, $value) == 0) {
-                    return $node;
-                }
-            }
-            if($node->hasChildNodes()) {
-                return self::getElementByAttributeValue($node, $attribute, $value);
-            }
-        }
+    public static function getElementByAttributeValue(\DOMDocument $domNode, $attribute, $value) {
+        return self::getElementsByAttributeValue($domNode, $attribute, $value)->item(0);
     }
 }

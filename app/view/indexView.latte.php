@@ -67,6 +67,12 @@
             <input type="button" data-group="buttons" value="2" />
             <input type="button" data-group="buttons" value="3" />
         </div>
+        Here is an example with Collection data binding:
+        <div class="example">
+            <ul data-binding="ItemSourcePath: 'collection'">
+                <li>Person <b data-key="name"></b> is  <span data-key="age"></span> years old. <a href="" data-id="(*id*)" data-group="deletePerson">X</a></li>
+            </ul>
+        </div>
         <div id="panel-footer" class="panel-footer" data-ignore="true">
             Thank You. Your EOSS team :).
         </div>

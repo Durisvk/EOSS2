@@ -13,6 +13,13 @@ class indexEOSS extends EOSS
 
     public $model;
 
+    /**
+     * @var array|\Binding\BindableCollection
+     */
+    public $collection = [["id" => 0, "name" => "Andrew Perkins", "age" => 25],
+                            ["id" => 1, "name" => "John Doe", "age" => 43],
+                            ["id" => 2, "name" => "Some Person", "age" => 32]];
+
     public function __construct(ExampleModel $model) {
         parent::__construct();
 
@@ -50,6 +57,7 @@ class indexEOSS extends EOSS
         $this->csi->txtSource->onkeypress[] = "rewrite";
         $this->csi->txtTodo->onenterpressed[] = "addTodo";
         $this->csi->buttons->onclick[] = "showNumber";
+        $this->csi->deletePerson->onclick[] = "deleteThePerson";
     }
 
     public function rewrite($sender, $keyCode) {
@@ -66,6 +74,10 @@ class indexEOSS extends EOSS
         $this->csi->lblButtons->html = $sender->value;
         $this->flashMessage("You've successfully clicked on " . $sender->value . " button.", "success");
         $sender->value += 1;
+    }
+
+    public function deleteThePerson($sender) {
+        $this->collection->removeWhere("id", $sender->data_id);
     }
 
 

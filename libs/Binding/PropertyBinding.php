@@ -125,14 +125,6 @@ class PropertyBinding
         }
     }
 
-    /**
-     * @return NULL|string
-     */
-    public function getElement()
-    {
-        return $this->element;
-    }
-
 
     /**
      * Gets the property value.
@@ -200,6 +192,14 @@ class PropertyBinding
     public function getSourcePath()
     {
         return $this->sourcePath;
+    }
+
+    /**
+     * @return NULL|string
+     */
+    public function getElement()
+    {
+        return $this->element;
     }
 
     /**

@@ -1,8 +1,10 @@
 <?php
 
 namespace EOSS;
+use Binding\BindableCollection;
 use Binding\BindableProperty;
 use Binding\BindedAttribute;
+use Binding\CollectionBinding;
 use Binding\PropertyBinding;
 use Debug\Linda;
 
@@ -104,11 +106,31 @@ class CSI
                         $obj->{$key} = new BindableProperty($obj->{$key}, $element, $binding->getTargetAttribute());
                     }
                 } else {
-                    throw new \Exception("Property cannot be binded, \"{$key}\" was not found.");
+                    throw new \Exception("Property cannot be binded, \"{$key}\" was not found inside \"" . get_class($obj) . "\".");
                 }
                 if($element && $binding->getMode() == "two-way") {
                     $val = $element->{$binding->getTargetAttribute()};
                     $element->{$binding->getTargetAttribute()} = new BindedAttribute($val, $obj, $key);
+                }
+            } else if($binding instanceof CollectionBinding) {
+                $array = PropertyBinding::getObjectByPath($this->eoss, $binding->getItemSourcePath());
+                $obj = $array["object"];
+                $key = $array["key"];
+                if(property_exists($obj, $key)) {
+                    $reflector = new \ReflectionClass(get_class($obj));
+
+                    $prop = $reflector->getProperty($key);
+
+                    if ($prop->isPrivate() || $prop->isProtected()) {
+                        // Hack:
+                        $prop->setAccessible(TRUE);
+                        $value = $prop->getValue($obj);
+                        $prop->setValue($obj, new BindableCollection($value));
+                    } else {
+                        $obj->{$key} = new BindableCollection($obj->{$key});
+                    }
+                } else {
+                    throw new \Exception("Property cannot be binded, \"{$key}\" was not found inside \"" . get_class($obj) . "\".");
                 }
             }
         }
