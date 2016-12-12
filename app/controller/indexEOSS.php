@@ -1,7 +1,7 @@
 <?php
 
 use EOSS\EOSS;
-
+use Binding\IBindableCollection;
 
 /**
  * Startup class.
@@ -14,12 +14,16 @@ class indexEOSS extends EOSS
     public $model;
 
     /**
-     * @var array|\Binding\BindableCollection
+     * @var array|IBindableCollection
      */
     public $collection = [["id" => 0, "name" => "Andrew Perkins", "age" => 25],
                             ["id" => 1, "name" => "John Doe", "age" => 43],
                             ["id" => 2, "name" => "Some Person", "age" => 32]];
 
+    /**
+     * indexEOSS constructor.
+     * @param ExampleModel $model
+     */
     public function __construct(ExampleModel $model) {
         parent::__construct();
 
@@ -60,22 +64,39 @@ class indexEOSS extends EOSS
         $this->csi->deletePerson->onclick[] = "deleteThePerson";
     }
 
+    /**
+     * Rewrites the value of txtSource to the html of lblCopy
+     * @param txtSource $sender
+     * @param int $keyCode
+     */
     public function rewrite($sender, $keyCode) {
         $this->csi->lblCopy->html = "<b>" . $this->csi->txtSource->value . "</b>";
     }
 
+    /**
+     * Adds to-do to the to-do list.
+     * @param txtTodo $sender
+     */
     public function addTodo($sender) {
         $this->csi->lblTodos->html .= "<div><b>" . $this->counter . ".: </b>" . $this->csi->txtTodo->value . "</div>";
         $this->csi->txtTodo->value = "";
         $this->counter++;
     }
 
+    /**
+     * Shows the number of a button to the lblButtons.
+     * @param \EOSS\AnonymousSender $sender
+     */
     public function showNumber($sender) {
         $this->csi->lblButtons->html = $sender->value;
         $this->flashMessage("You've successfully clicked on " . $sender->value . " button.", "success");
         $sender->value += 1;
     }
 
+    /**
+     * Deletes the person from the collection.
+     * @param $sender
+     */
     public function deleteThePerson($sender) {
         $this->collection->removeWhere("id", $sender->data_id);
     }

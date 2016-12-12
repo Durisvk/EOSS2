@@ -3,7 +3,7 @@
 namespace Binding;
 
 
-class BindableCollection
+class BindableCollection implements IBindableCollection
 {
 
     /**

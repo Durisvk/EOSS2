@@ -580,7 +580,7 @@ You can for example (if needed) use one templating engine for some views and ano
 
 # Data Binding
 
-There are two ways of data binding inside EOSS. One is the **Element to Element** data binding. The second one is the **Element to Property** binding. To make it clear, the element you are specifying `data-binding` attribute to is the **Target**. The **Source** is what you specify inside `data-binding` attribute and it's either the other element or path to a property.
+There are three ways of data binding inside EOSS. One is the **Element to Element** data binding. The second one is the **Element to Property** binding. The third one is **Collection Item Source Binding**. To make it clear, the element you are specifying `data-binding` attribute to is the **Target**. The **Source** is what you specify inside `data-binding` attribute and it's either the other element or path to a property.
 
 **Element to Element Binding**:
 
@@ -779,9 +779,68 @@ If we now want to change the bounded attribute of an element we use IBindedAttri
 
 We need to use method `set` to keep the binding working.
 
+**Collection Item Source Binding**
+
+EOSS is able to bind to the collection. It's again more advanced topic, but I hope it's not too difficult to understand.
+
+We'll create a list of persons with `name`, `age` and `id`. We will start with the indexEOSS
+
+`app/controller/indexEOSS.php`:
+```php
+<?php
+use EOSS\EOSS;
+use Binding\IBindableCollection
+
+class indexEOSS extends EOSS
+{
+
+	/**
+	 *	@var array|IBindableCollection
+	 */
+	public $collection = [["id" => 0, "name" => "Andrew Perkins", "age" => 25],
+                            ["id" => 1, "name" => "John Doe", "age" => 43],
+                            ["id" => 2, "name" => "Some Person", "age" => 32]];
+
+    // Here we deal with collection as an array.
+
+	public function load() {
+		// Here we deal with collection as an array.
+		$this->csi->setFile("index.latte.php");
+	}
+
+	public function bind() {
+		// Here we start to deal with IBindableCollection
+		// instead of array.
+		$this->csi->removePerson->onclick[] = "removeThePerson";
+	}
+
+	public function removeThePerson($sender) {
+		// Here we deal with IBindableCollection
+		$this->collection->removeWhere("id", $sender->data_id);
+	}
+
+}
+
+```
+
+Notice where we deal with collection as IBindableCollection and where we deal with it as an array.
+Now we can move on and create the view.
+
+`app/view/index.latte.php`:
+```html
+	<ul data-binding="ItemSourcePath: 'collection'">
+        <li>Person <b data-key="name"></b> is  <span data-key="age"></span> years old. <a href="" data-id="(*id*)" data-group="deletePerson">X</a></li>
+    </ul>
+```
+
+Notice you can use `data-key` attribute to get the value from the data of collection OR you can use `(*attribute*)` notation to get the value of data from collection.
+
+And this is the **Collection Item Source Binding**. We now get our list of persons on the page.
+
+
 **Troubleshooting**:
 
-Working with the property binding you will get the understoodable errors. Either the specified **SourcePath** is not correct (the property for example doesn't exist) or any of the parts of the specified **SourcePath** aren't accessible (are for example private and no getter/setter are defined).
+Working with the property and collection binding you will get the understoodable errors. Either the specified **SourcePath** is not correct (the property for example doesn't exist) or any of the parts of the specified **SourcePath** aren't accessible (are for example private and no getter/setter are defined).
 
 Notice that the getter and the setter to the property must be in the format: `getPropertyName()` / `setPropertyName($value)`. Getter should not take an argument and should return any value, the setter should take argument. The getters and the setters need to be `camelCase`.
 
