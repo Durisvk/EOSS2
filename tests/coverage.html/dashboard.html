@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/lchost/EOSS2/libs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/nv.d3.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <header>
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="index.html">/home/lchost/EOSS2/libs</a></li>
+        <li class="active">(Dashboard)</li>
+
+      </ol>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Application/ApplicationLoader.php.html#19">ApplicationLoader</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Templating/LatteWrapper.php.html#14">LatteWrapper</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/TextArea.php.html#11">TextArea</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/TextInput.php.html#11">TextInput</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#25">Form</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/SubmittedForm.php.html#16">SubmittedForm</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#17">FileUpload</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Request.php.html#11">Request</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Response.php.html#11">Response</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Templating/BladeWrapper.php.html#20">BladeWrapper</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Templating/TemplateFactory.php.html#11">TemplateFactory</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/SelectBox.php.html#6">SelectBox</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Templating/TwigWrapper.php.html#9">TwigWrapper</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/CSIHelper.php.html#11">CSIHelper</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Client.php.html#10">Client</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/EOSSHelper.php.html#9">EOSSHelper</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#11">HTML</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#20">JavascriptGenerator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/RequireHelper.php.html#11">RequireHelper</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Session.php.html#12">Session</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Submit.php.html#11">Submit</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/RadioList.php.html#17">RadioList</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application/Config.php.html#13">Config</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/AnonymousSender.php.html#12">AnonymousSender</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#10">BindableCollection</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableProperty.php.html#10">BindableProperty</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindedAttribute.php.html#11">BindedAttribute</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#9">CollectionBinding</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#10">ElementBinding</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#13">PropertyBinding</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/PDOWrapper.php.html#10">PDOWrapper</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#13">Linda</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/CSI.php.html#19">CSI</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/OptionsBasedElement.php.html#12">OptionsBasedElement</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/CSIAnalyze.php.html#21">CSIAnalyze</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#13">EOSS</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/Parameters.php.html#10">Parameters</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/Registry.php.html#7">Registry</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#10">BaseElement</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Checkbox.php.html#17">Checkbox</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/FileInput.php.html#10">FileInput</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/HiddenInput.php.html#11">HiddenInput</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Strings.php.html#6">Strings</a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#20">JavascriptGenerator</a></td><td class="text-right">4422</td></tr>
+       <tr><td><a href="Forms/Form.php.html#25">Form</a></td><td class="text-right">2450</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#19">ApplicationLoader</a></td><td class="text-right">2450</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#13">PropertyBinding</a></td><td class="text-right">1560</td></tr>
+       <tr><td><a href="EOSS/CSIAnalyze.php.html#21">CSIAnalyze</a></td><td class="text-right">1122</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#11">HTML</a></td><td class="text-right">756</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#9">CollectionBinding</a></td><td class="text-right">600</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#10">ElementBinding</a></td><td class="text-right">600</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#10">BindableCollection</a></td><td class="text-right">600</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#13">Linda</a></td><td class="text-right">506</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#13">EOSS</a></td><td class="text-right">420</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#10">BaseElement</a></td><td class="text-right">420</td></tr>
+       <tr><td><a href="Utils/Session.php.html#12">Session</a></td><td class="text-right">306</td></tr>
+       <tr><td><a href="EOSS/CSI.php.html#19">CSI</a></td><td class="text-right">306</td></tr>
+       <tr><td><a href="Forms/Controls/SelectBox.php.html#6">SelectBox</a></td><td class="text-right">240</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#17">FileUpload</a></td><td class="text-right">210</td></tr>
+       <tr><td><a href="Forms/Controls/Submit.php.html#11">Submit</a></td><td class="text-right">182</td></tr>
+       <tr><td><a href="Utils/EOSSHelper.php.html#9">EOSSHelper</a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Utils/RequireHelper.php.html#11">RequireHelper</a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="Forms/Controls/OptionsBasedElement.php.html#12">OptionsBasedElement</a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="EOSS/Registry.php.html#7">Registry</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Forms/Controls/HiddenInput.php.html#11">HiddenInput</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Forms/Controls/FileInput.php.html#10">FileInput</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Http/Request.php.html#11">Request</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Http/Response.php.html#11">Response</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Binding/BindedAttribute.php.html#11">BindedAttribute</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Utils/CSIHelper.php.html#11">CSIHelper</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Binding/BindableProperty.php.html#10">BindableProperty</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Application/Config.php.html#13">Config</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Forms/Controls/TextInput.php.html#11">TextInput</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Forms/Controls/Checkbox.php.html#17">Checkbox</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="EOSS/AnonymousSender.php.html#12">AnonymousSender</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="EOSS/Parameters.php.html#10">Parameters</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Forms/Controls/RadioList.php.html#17">RadioList</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Templating/TemplateFactory.php.html#11">TemplateFactory</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Utils/Strings.php.html#6">Strings</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Utils/Client.php.html#10">Client</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Forms/SubmittedForm.php.html#16">SubmittedForm</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Forms/Controls/TextArea.php.html#11">TextArea</a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Application/ApplicationLoader.php.html#35"><abbr title="ApplicationLoader::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#208"><abbr title="Form::containsFile">containsFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/TextArea.php.html#18"><abbr title="TextArea::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/TextInput.php.html#30"><abbr title="TextInput::setType">setType</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/TextInput.php.html#40"><abbr title="TextInput::getType">getType</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/TextInput.php.html#48"><abbr title="TextInput::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#78"><abbr title="Form::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#97"><abbr title="Form::asRaw">asRaw</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#117"><abbr title="Form::asIWant">asIWant</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#140"><abbr title="Form::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#161"><abbr title="Form::asTable">asTable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#192"><abbr title="Form::openTag">openTag</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#200"><abbr title="Form::setContainsFile">setContainsFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#216"><abbr title="Form::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Submit.php.html#101"><abbr title="Submit::getAttributesAsString">getAttributesAsString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#224"><abbr title="Form::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#234"><abbr title="Form::addComponent">addComponent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#243"><abbr title="Form::getComponents">getComponents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#254"><abbr title="Form::addText">addText</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#267"><abbr title="Form::addPassword">addPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#282"><abbr title="Form::addNumber">addNumber</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#296"><abbr title="Form::addEmail">addEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#312"><abbr title="Form::addTextArea">addTextArea</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#333"><abbr title="Form::addSelect">addSelect</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#347"><abbr title="Form::addCheckbox">addCheckbox</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#360"><abbr title="Form::addHidden">addHidden</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#374"><abbr title="Form::addRadioList">addRadioList</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Submit.php.html#116"><abbr title="Submit::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Submit.php.html#85"><abbr title="Submit::getAttribute">getAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#401"><abbr title="Form::addSubmit">addSubmit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/OptionsBasedElement.php.html#62"><abbr title="OptionsBasedElement::setOptions">setOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/FileInput.php.html#35"><abbr title="FileInput::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/FileInput.php.html#49"><abbr title="FileInput::isMultiple">isMultiple</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/FileInput.php.html#58"><abbr title="FileInput::setMultiple">setMultiple</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/HiddenInput.php.html#35"><abbr title="HiddenInput::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/HiddenInput.php.html#46"><abbr title="HiddenInput::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/HiddenInput.php.html#55"><abbr title="HiddenInput::getValue">getValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/HiddenInput.php.html#65"><abbr title="HiddenInput::setValue">setValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/HiddenInput.php.html#70"><abbr title="HiddenInput::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/HiddenInput.php.html#78"><abbr title="HiddenInput::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/OptionsBasedElement.php.html#28"><abbr title="OptionsBasedElement::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/OptionsBasedElement.php.html#40"><abbr title="OptionsBasedElement::addOption">addOption</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/OptionsBasedElement.php.html#50"><abbr title="OptionsBasedElement::addOptions">addOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/OptionsBasedElement.php.html#74"><abbr title="OptionsBasedElement::getOptionText">getOptionText</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Submit.php.html#74"><abbr title="Submit::getAttributes">getAttributes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/OptionsBasedElement.php.html#90"><abbr title="OptionsBasedElement::getOptions">getOptions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/RadioList.php.html#27"><abbr title="RadioList::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/SelectBox.php.html#28"><abbr title="SelectBox::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/SelectBox.php.html#38"><abbr title="SelectBox::setValue">setValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/SelectBox.php.html#60"><abbr title="SelectBox::getValue">getValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/SelectBox.php.html#68"><abbr title="SelectBox::isMultiple">isMultiple</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/SelectBox.php.html#78"><abbr title="SelectBox::setMultiple">setMultiple</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/SelectBox.php.html#89"><abbr title="SelectBox::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Submit.php.html#35"><abbr title="Submit::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Submit.php.html#45"><abbr title="Submit::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Submit.php.html#53"><abbr title="Submit::getValue">getValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Submit.php.html#65"><abbr title="Submit::addAttribute">addAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#388"><abbr title="Form::addFile">addFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Form.php.html#409"><abbr title="Form::setDefaults">setDefaults</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Checkbox.php.html#47"><abbr title="Checkbox::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#119"><abbr title="JavascriptGenerator::generateIntervals">generateIntervals</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#19"><abbr title="HTML::getIds">getIds</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#35"><abbr title="HTML::getElementById">getElementById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#46"><abbr title="HTML::getInnerHTML">getInnerHTML</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#65"><abbr title="HTML::getElements">getElements</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#99"><abbr title="HTML::getAttrWithNameOfNode">getAttrWithNameOfNode</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#116"><abbr title="HTML::getAttribute">getAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#133"><abbr title="HTML::getGroups">getGroups</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#145"><abbr title="HTML::getBindings">getBindings</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#160"><abbr title="HTML::getElementsByAttributeValue">getElementsByAttributeValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#172"><abbr title="HTML::getElementByAttributeValue">getElementByAttributeValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#27"><abbr title="JavascriptGenerator::generateJavascript">generateJavascript</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#50"><abbr title="JavascriptGenerator::checkForEvents">checkForEvents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#134"><abbr title="JavascriptGenerator::generateForms">generateForms</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/EOSSHelper.php.html#18"><abbr title="EOSSHelper::restoreClassVariables">restoreClassVariables</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#169"><abbr title="JavascriptGenerator::generateFlashes">generateFlashes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#186"><abbr title="JavascriptGenerator::generateBindings">generateBindings</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#217"><abbr title="JavascriptGenerator::writeJsResponse">writeJsResponse</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/RequireHelper.php.html#18"><abbr title="RequireHelper::requireFilesInDirectory">requireFilesInDirectory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Session.php.html#23"><abbr title="Session::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Session.php.html#39"><abbr title="Session::get">get</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Session.php.html#57"><abbr title="Session::set">set</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Session.php.html#69"><abbr title="Session::clear">clear</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Session.php.html#78"><abbr title="Session::clearEOSSData">clearEOSSData</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Session.php.html#95"><abbr title="Session::getInstance">getInstance</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Strings.php.html#15"><abbr title="Strings::startsWith">startsWith</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Strings.php.html#27"><abbr title="Strings::endsWith">endsWith</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/EOSSHelper.php.html#23"><abbr title="EOSSHelper::jsonToEoss">jsonToEoss</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/EOSSHelper.php.html#12"><abbr title="EOSSHelper::storeClassVariables">storeClassVariables</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/SubmittedForm.php.html#30"><abbr title="SubmittedForm::__get">__get</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Request.php.html#43"><abbr title="Request::getParameter">getParameter</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/SubmittedForm.php.html#43"><abbr title="SubmittedForm::__set">__set</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#46"><abbr title="FileUpload::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#65"><abbr title="FileUpload::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#75"><abbr title="FileUpload::getSize">getSize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#84"><abbr title="FileUpload::getTemporaryFile">getTemporaryFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#93"><abbr title="FileUpload::__toString">__toString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#102"><abbr title="FileUpload::getError">getError</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#111"><abbr title="FileUpload::isOk">isOk</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#122"><abbr title="FileUpload::move">move</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#138"><abbr title="FileUpload::getContents">getContents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Request.php.html#28"><abbr title="Request::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Request.php.html#38"><abbr title="Request::isAjax">isAjax</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Request.php.html#60"><abbr title="Request::getInstance">getInstance</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Client.php.html#17"><abbr title="Client::getIPAddress">getIPAddress</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Response.php.html#37"><abbr title="Response::append">append</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Response.php.html#50"><abbr title="Response::flush">flush</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Response.php.html#62"><abbr title="Response::getInstance">getInstance</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Templating/BladeWrapper.php.html#28"><abbr title="BladeWrapper::initialize">initialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Templating/BladeWrapper.php.html#35"><abbr title="BladeWrapper::render">render</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Templating/LatteWrapper.php.html#22"><abbr title="LatteWrapper::initialize">initialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Templating/LatteWrapper.php.html#31"><abbr title="LatteWrapper::render">render</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Templating/TemplateFactory.php.html#18"><abbr title="TemplateFactory::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Templating/TwigWrapper.php.html#17"><abbr title="TwigWrapper::initialize">initialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Templating/TwigWrapper.php.html#24"><abbr title="TwigWrapper::render">render</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/CSIHelper.php.html#19"><abbr title="CSIHelper::genCSI">genCSI</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/CSIHelper.php.html#44"><abbr title="CSIHelper::genElement">genElement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/FileInput.php.html#25"><abbr title="FileInput::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Checkbox.php.html#39"><abbr title="Checkbox::isChecked">isChecked</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#46"><abbr title="ApplicationLoader::eossInit">eossInit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#107"><abbr title="ElementBinding::getJavascriptAction">getJavascriptAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#153"><abbr title="CollectionBinding::getElement">getElement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#162"><abbr title="CollectionBinding::getItemSourcePath">getItemSourcePath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#170"><abbr title="CollectionBinding::getTemplate">getTemplate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#178"><abbr title="CollectionBinding::getString">getString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#188"><abbr title="CollectionBinding::getJavascript">getJavascript</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#48"><abbr title="ElementBinding::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#62"><abbr title="ElementBinding::getSourceElement">getSourceElement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#71"><abbr title="ElementBinding::getSourceAttribute">getSourceAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#80"><abbr title="ElementBinding::getTargetAttribute">getTargetAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#89"><abbr title="ElementBinding::getString">getString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#98"><abbr title="ElementBinding::getMode">getMode</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#123"><abbr title="ElementBinding::getJavascriptValue">getJavascriptValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#116"><abbr title="CollectionBinding::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#139"><abbr title="ElementBinding::getJavascriptSecondWay">getJavascriptSecondWay</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#159"><abbr title="ElementBinding::getJavascriptValueSecondWay">getJavascriptValueSecondWay</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#172"><abbr title="ElementBinding::initialBindingJavascript">initialBindingJavascript</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#46"><abbr title="PropertyBinding::getObjectByPath">getObjectByPath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#97"><abbr title="PropertyBinding::setValue">setValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#136"><abbr title="PropertyBinding::getValue">getValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#179"><abbr title="PropertyBinding::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#192"><abbr title="PropertyBinding::getSourcePath">getSourcePath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#200"><abbr title="PropertyBinding::getElement">getElement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#208"><abbr title="PropertyBinding::getTargetAttribute">getTargetAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#216"><abbr title="PropertyBinding::getMode">getMode</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#224"><abbr title="PropertyBinding::getString">getString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#128"><abbr title="CollectionBinding::injectIntoTemplate">injectIntoTemplate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#78"><abbr title="CollectionBinding::getValue">getValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#260"><abbr title="PropertyBinding::getResponseJavascript">getResponseJavascript</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#76"><abbr title="BindableCollection::findFirstWhere">findFirstWhere</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#106"><abbr title="ApplicationLoader::goThroughAppFiles">goThroughAppFiles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#123"><abbr title="ApplicationLoader::loadView">loadView</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#136"><abbr title="ApplicationLoader::includeModels">includeModels</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#148"><abbr title="ApplicationLoader::injectDependencies">injectDependencies</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#187"><abbr title="ApplicationLoader::createEOSSInstance">createEOSSInstance</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#204"><abbr title="ApplicationLoader::loadServices">loadServices</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#209"><abbr title="ApplicationLoader::anonymous function">anonymous function</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application/Config.php.html#28"><abbr title="Config::getParam">getParam</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#28"><abbr title="BindableCollection::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#38"><abbr title="BindableCollection::add">add</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#46"><abbr title="BindableCollection::removeFirstWhere">removeFirstWhere</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#61"><abbr title="BindableCollection::removeAllWhere">removeAllWhere</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#88"><abbr title="BindableCollection::findAllWhere">findAllWhere</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#39"><abbr title="CollectionBinding::setValue">setValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#101"><abbr title="BindableCollection::updateAllWhere">updateAllWhere</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#116"><abbr title="BindableCollection::updateFirstWhere">updateFirstWhere</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#131"><abbr title="BindableCollection::getValue">getValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#140"><abbr title="BindableCollection::setValue">setValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#150"><abbr title="BindableCollection::updateElement">updateElement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableProperty.php.html#28"><abbr title="BindableProperty::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableProperty.php.html#38"><abbr title="BindableProperty::set">set</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindableProperty.php.html#54"><abbr title="BindableProperty::get">get</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindedAttribute.php.html#35"><abbr title="BindedAttribute::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindedAttribute.php.html#46"><abbr title="BindedAttribute::set">set</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindedAttribute.php.html#72"><abbr title="BindedAttribute::setWithoutBinding">setWithoutBinding</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/BindedAttribute.php.html#81"><abbr title="BindedAttribute::get">get</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#235"><abbr title="PropertyBinding::initialJavascript">initialJavascript</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/PDOWrapper.php.html#26"><abbr title="PDOWrapper::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/Checkbox.php.html#30"><abbr title="Checkbox::setChecked">setChecked</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/Registry.php.html#64"><abbr title="Registry::getInstance">getInstance</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#115"><abbr title="EOSS::getForm">getForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#134"><abbr title="EOSS::flashMessage">flashMessage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#144"><abbr title="EOSS::popFlashMessage">popFlashMessage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#159"><abbr title="EOSS::getCountOfFlashMessages">getCountOfFlashMessages</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#163"><abbr title="EOSS::__destruct">__destruct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/Parameters.php.html#24"><abbr title="Parameters::__get">__get</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/Parameters.php.html#37"><abbr title="Parameters::__set">__set</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/Parameters.php.html#45"><abbr title="Parameters::toArray">toArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/Registry.php.html#24"><abbr title="Registry::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/Registry.php.html#31"><abbr title="Registry::__destruct">__destruct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/Registry.php.html#42"><abbr title="Registry::__get">__get</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/Registry.php.html#55"><abbr title="Registry::__set">__set</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#50"><abbr title="BaseElement::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#97"><abbr title="EOSS::registerForm">registerForm</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#64"><abbr title="BaseElement::setRequired">setRequired</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#73"><abbr title="BaseElement::isRequired">isRequired</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#83"><abbr title="BaseElement::addAttribute">addAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#92"><abbr title="BaseElement::getAttributes">getAttributes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#100"><abbr title="BaseElement::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#108"><abbr title="BaseElement::getLabel">getLabel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#117"><abbr title="BaseElement::getValue">getValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#126"><abbr title="BaseElement::setValue">setValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#137"><abbr title="BaseElement::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#150"><abbr title="BaseElement::getAttribute">getAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#166"><abbr title="BaseElement::getAttributesAsString">getAttributesAsString</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#181"><abbr title="BaseElement::getLabelAsHtml">getLabelAsHtml</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#104"><abbr title="EOSS::getForms">getForms</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#85"><abbr title="EOSS::redirect">redirect</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/PDOWrapper.php.html#35"><abbr title="PDOWrapper::queryAndFetchAll">queryAndFetchAll</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/AnonymousSender.php.html#25"><abbr title="AnonymousSender::__get">__get</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/PDOWrapper.php.html#44"><abbr title="PDOWrapper::queryAndFetch">queryAndFetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/PDOWrapper.php.html#53"><abbr title="PDOWrapper::query">query</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/PDOWrapper.php.html#62"><abbr title="PDOWrapper::prepareExecuteAndFetch">prepareExecuteAndFetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/PDOWrapper.php.html#75"><abbr title="PDOWrapper::prepareExecuteAndFetchAll">prepareExecuteAndFetchAll</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/PDOWrapper.php.html#88"><abbr title="PDOWrapper::prepareAndExecute">prepareAndExecute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#34"><abbr title="Linda::showError">showError</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#44"><abbr title="Linda::outputLinda">outputLinda</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#65"><abbr title="Linda::outputLindaForPHPError">outputLindaForPHPError</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#96"><abbr title="Linda::showDebugBar">showDebugBar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#163"><abbr title="Linda::updateDebugBar">updateDebugBar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#175"><abbr title="Linda::dd">dd</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#189"><abbr title="Linda::dump">dump</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/AnonymousSender.php.html#38"><abbr title="AnonymousSender::__set">__set</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#55"><abbr title="EOSS::loadGeneratedCSI">loadGeneratedCSI</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/AnonymousSender.php.html#46"><abbr title="AnonymousSender::toArray">toArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/CSI.php.html#56"><abbr title="CSI::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/CSI.php.html#66"><abbr title="CSI::setFile">setFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/CSI.php.html#79"><abbr title="CSI::getFile">getFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/CSI.php.html#86"><abbr title="CSI::processBindings">processBindings</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/CSIAnalyze.php.html#46"><abbr title="CSIAnalyze::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/CSIAnalyze.php.html#61"><abbr title="CSIAnalyze::analyzeCsi">analyzeCsi</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/CSIAnalyze.php.html#144"><abbr title="CSIAnalyze::generateGroup">generateGroup</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/CSIAnalyze.php.html#169"><abbr title="CSIAnalyze::processBindings">processBindings</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/CSIAnalyze.php.html#201"><abbr title="CSIAnalyze::isBounded">isBounded</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#39"><abbr title="EOSS::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#47"><abbr title="EOSS::init">init</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Utils/Strings.php.html#42"><abbr title="Strings::generateRandom">generateRandom</abbr></a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#217"><abbr title="JavascriptGenerator::writeJsResponse">writeJsResponse</abbr></a></td><td class="text-right">506</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#50"><abbr title="JavascriptGenerator::checkForEvents">checkForEvents</abbr></a></td><td class="text-right">462</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#46"><abbr title="ApplicationLoader::eossInit">eossInit</abbr></a></td><td class="text-right">210</td></tr>
+       <tr><td><a href="EOSS/CSI.php.html#86"><abbr title="CSI::processBindings">processBindings</abbr></a></td><td class="text-right">210</td></tr>
+       <tr><td><a href="EOSS/CSIAnalyze.php.html#169"><abbr title="CSIAnalyze::processBindings">processBindings</abbr></a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#148"><abbr title="ApplicationLoader::injectDependencies">injectDependencies</abbr></a></td><td class="text-right">132</td></tr>
+       <tr><td><a href="EOSS/CSIAnalyze.php.html#61"><abbr title="CSIAnalyze::analyzeCsi">analyzeCsi</abbr></a></td><td class="text-right">132</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#65"><abbr title="Linda::outputLindaForPHPError">outputLindaForPHPError</abbr></a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#46"><abbr title="PropertyBinding::getObjectByPath">getObjectByPath</abbr></a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Forms/Form.php.html#409"><abbr title="Form::setDefaults">setDefaults</abbr></a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Utils/RequireHelper.php.html#18"><abbr title="RequireHelper::requireFilesInDirectory">requireFilesInDirectory</abbr></a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#65"><abbr title="HTML::getElements">getElements</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Utils/EOSSHelper.php.html#23"><abbr title="EOSSHelper::jsonToEoss">jsonToEoss</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#99"><abbr title="HTML::getAttrWithNameOfNode">getAttrWithNameOfNode</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#106"><abbr title="ApplicationLoader::goThroughAppFiles">goThroughAppFiles</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#27"><abbr title="JavascriptGenerator::generateJavascript">generateJavascript</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Utils/Session.php.html#78"><abbr title="Session::clearEOSSData">clearEOSSData</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Application/Config.php.html#28"><abbr title="Config::getParam">getParam</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Forms/Controls/SelectBox.php.html#89"><abbr title="SelectBox::__toString">__toString</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#39"><abbr title="CollectionBinding::setValue">setValue</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="EOSS/CSIAnalyze.php.html#201"><abbr title="CSIAnalyze::isBounded">isBounded</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#186"><abbr title="JavascriptGenerator::generateBindings">generateBindings</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#136"><abbr title="PropertyBinding::getValue">getValue</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#97"><abbr title="PropertyBinding::setValue">setValue</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#260"><abbr title="PropertyBinding::getResponseJavascript">getResponseJavascript</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#235"><abbr title="PropertyBinding::initialJavascript">initialJavascript</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#128"><abbr title="CollectionBinding::injectIntoTemplate">injectIntoTemplate</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#172"><abbr title="ElementBinding::initialBindingJavascript">initialBindingJavascript</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Forms/Controls/FileInput.php.html#35"><abbr title="FileInput::__toString">__toString</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#204"><abbr title="ApplicationLoader::loadServices">loadServices</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Forms/Controls/SelectBox.php.html#38"><abbr title="SelectBox::setValue">setValue</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#78"><abbr title="CollectionBinding::getValue">getValue</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Utils/CSIHelper.php.html#19"><abbr title="CSIHelper::genCSI">genCSI</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Forms/Controls/RadioList.php.html#27"><abbr title="RadioList::__toString">__toString</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#115"><abbr title="EOSS::getForm">getForm</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Forms/Form.php.html#140"><abbr title="Form::__toString">__toString</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Forms/Controls/Submit.php.html#101"><abbr title="Submit::getAttributesAsString">getAttributesAsString</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Forms/Form.php.html#117"><abbr title="Form::asIWant">asIWant</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Forms/Form.php.html#161"><abbr title="Form::asTable">asTable</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Templating/TemplateFactory.php.html#18"><abbr title="TemplateFactory::create">create</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Utils/Session.php.html#39"><abbr title="Session::get">get</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#169"><abbr title="JavascriptGenerator::generateFlashes">generateFlashes</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Request.php.html#43"><abbr title="Request::getParameter">getParameter</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#166"><abbr title="BaseElement::getAttributesAsString">getAttributesAsString</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#139"><abbr title="ElementBinding::getJavascriptSecondWay">getJavascriptSecondWay</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Binding/BindableProperty.php.html#38"><abbr title="BindableProperty::set">set</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Binding/BindedAttribute.php.html#46"><abbr title="BindedAttribute::set">set</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#209"><abbr title="ApplicationLoader::anonymous function">anonymous function</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#76"><abbr title="BindableCollection::findFirstWhere">findFirstWhere</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#88"><abbr title="BindableCollection::findAllWhere">findAllWhere</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Forms/Controls/TextInput.php.html#48"><abbr title="TextInput::__toString">__toString</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Forms/Form.php.html#78"><abbr title="Form::__construct">__construct</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Forms/Form.php.html#97"><abbr title="Form::asRaw">asRaw</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#159"><abbr title="ElementBinding::getJavascriptValueSecondWay">getJavascriptValueSecondWay</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Forms/Form.php.html#312"><abbr title="Form::addTextArea">addTextArea</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#123"><abbr title="ElementBinding::getJavascriptValue">getJavascriptValue</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#116"><abbr title="HTML::getAttribute">getAttribute</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Forms/Controls/Submit.php.html#85"><abbr title="Submit::getAttribute">getAttribute</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Binding/ElementBinding.php.html#107"><abbr title="ElementBinding::getJavascriptAction">getJavascriptAction</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#85"><abbr title="EOSS::redirect">redirect</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#46"><abbr title="FileUpload::__construct">__construct</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#122"><abbr title="FileUpload::move">move</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Utils/Client.php.html#17"><abbr title="Client::getIPAddress">getIPAddress</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#96"><abbr title="Linda::showDebugBar">showDebugBar</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#44"><abbr title="Linda::outputLinda">outputLinda</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Binding/CollectionBinding.php.html#188"><abbr title="CollectionBinding::getJavascript">getJavascript</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Debug/Linda.php.html#175"><abbr title="Linda::dd">dd</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Forms/Controls/OptionsBasedElement.php.html#74"><abbr title="OptionsBasedElement::getOptionText">getOptionText</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#119"><abbr title="JavascriptGenerator::generateIntervals">generateIntervals</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Forms/Controls/HiddenInput.php.html#78"><abbr title="HiddenInput::__toString">__toString</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Utils/JavascriptGenerator.php.html#134"><abbr title="JavascriptGenerator::generateForms">generateForms</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Forms/Controls/Checkbox.php.html#47"><abbr title="Checkbox::__toString">__toString</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#61"><abbr title="BindableCollection::removeAllWhere">removeAllWhere</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#46"><abbr title="BindableCollection::removeFirstWhere">removeFirstWhere</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#150"><abbr title="BaseElement::getAttribute">getAttribute</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#187"><abbr title="ApplicationLoader::createEOSSInstance">createEOSSInstance</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#116"><abbr title="BindableCollection::updateFirstWhere">updateFirstWhere</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Http/Response.php.html#37"><abbr title="Response::append">append</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#101"><abbr title="BindableCollection::updateAllWhere">updateAllWhere</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#46"><abbr title="HTML::getInnerHTML">getInnerHTML</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#39"><abbr title="EOSS::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Utils/Session.php.html#23"><abbr title="Session::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#136"><abbr title="ApplicationLoader::includeModels">includeModels</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Utils/Session.php.html#57"><abbr title="Session::set">set</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Application/ApplicationLoader.php.html#123"><abbr title="ApplicationLoader::loadView">loadView</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Utils/Session.php.html#95"><abbr title="Session::getInstance">getInstance</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Utils/HTML.php.html#19"><abbr title="HTML::getIds">getIds</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Forms/SubmittedForm.php.html#30"><abbr title="SubmittedForm::__get">__get</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Binding/BindableCollection.php.html#150"><abbr title="BindableCollection::updateElement">updateElement</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EOSS/CSIAnalyze.php.html#46"><abbr title="CSIAnalyze::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EOSS/CSIAnalyze.php.html#144"><abbr title="CSIAnalyze::generateGroup">generateGroup</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EOSS/EOSS.php.html#144"><abbr title="EOSS::popFlashMessage">popFlashMessage</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EOSS/Parameters.php.html#24"><abbr title="Parameters::__get">__get</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EOSS/Registry.php.html#24"><abbr title="Registry::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EOSS/Registry.php.html#42"><abbr title="Registry::__get">__get</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EOSS/Registry.php.html#64"><abbr title="Registry::getInstance">getInstance</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#50"><abbr title="BaseElement::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Forms/Controls/BaseElement.php.html#181"><abbr title="BaseElement::getLabelAsHtml">getLabelAsHtml</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Utils/CSIHelper.php.html#44"><abbr title="CSIHelper::genElement">genElement</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EOSS/AnonymousSender.php.html#25"><abbr title="AnonymousSender::__get">__get</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Forms/Controls/OptionsBasedElement.php.html#50"><abbr title="OptionsBasedElement::addOptions">addOptions</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Binding/PropertyBinding.php.html#179"><abbr title="PropertyBinding::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Forms/Controls/TextArea.php.html#18"><abbr title="TextArea::__toString">__toString</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Forms/Form.php.html#192"><abbr title="Form::openTag">openTag</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/FileUpload.php.html#138"><abbr title="FileUpload::getContents">getContents</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Request.php.html#60"><abbr title="Request::getInstance">getInstance</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Response.php.html#62"><abbr title="Response::getInstance">getInstance</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Utils/Strings.php.html#27"><abbr title="Strings::endsWith">endsWith</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 4.0.3</a> using <a href="https://secure.php.net/" target="_top">PHP 7.0.14-1+deb.sury.org~trusty+1</a> with <a href="https://xdebug.org/">Xdebug 2.5.0</a> and <a href="https://phpunit.de/">PHPUnit 5.5.4</a> at Mon Dec 12 23:00:39 UTC 2016.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="js/holder.min.js" type="text/javascript"></script>
+  <script src="js/d3.min.js" type="text/javascript"></script>
+  <script src="js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([43,0,0,0,0,0,0,0,0,0,0,2], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([237,0,0,0,0,0,0,0,0,0,0,5], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,49,"<a href=\"Application\/ApplicationLoader.php.html#19\">ApplicationLoader<\/a>"],[0,6,"<a href=\"Application\/Config.php.html#13\">Config<\/a>"],[0,24,"<a href=\"Binding\/BindableCollection.php.html#10\">BindableCollection<\/a>"],[0,6,"<a href=\"Binding\/BindableProperty.php.html#10\">BindableProperty<\/a>"],[0,7,"<a href=\"Binding\/BindedAttribute.php.html#11\">BindedAttribute<\/a>"],[0,24,"<a href=\"Binding\/CollectionBinding.php.html#9\">CollectionBinding<\/a>"],[0,24,"<a href=\"Binding\/ElementBinding.php.html#10\">ElementBinding<\/a>"],[0,39,"<a href=\"Binding\/PropertyBinding.php.html#13\">PropertyBinding<\/a>"],[0,7,"<a href=\"Database\/PDOWrapper.php.html#10\">PDOWrapper<\/a>"],[0,22,"<a href=\"Debug\/Linda.php.html#13\">Linda<\/a>"],[0,4,"<a href=\"EOSS\/AnonymousSender.php.html#12\">AnonymousSender<\/a>"],[0,17,"<a href=\"EOSS\/CSI.php.html#19\">CSI<\/a>"],[0,33,"<a href=\"EOSS\/CSIAnalyze.php.html#21\">CSIAnalyze<\/a>"],[0,20,"<a href=\"EOSS\/EOSS.php.html#13\">EOSS<\/a>"],[0,4,"<a href=\"EOSS\/Parameters.php.html#10\">Parameters<\/a>"],[0,8,"<a href=\"EOSS\/Registry.php.html#7\">Registry<\/a>"],[0,20,"<a href=\"Forms\/Controls\/BaseElement.php.html#10\">BaseElement<\/a>"],[0,5,"<a href=\"Forms\/Controls\/Checkbox.php.html#17\">Checkbox<\/a>"],[0,8,"<a href=\"Forms\/Controls\/FileInput.php.html#10\">FileInput<\/a>"],[0,8,"<a href=\"Forms\/Controls\/HiddenInput.php.html#11\">HiddenInput<\/a>"],[0,9,"<a href=\"Forms\/Controls\/OptionsBasedElement.php.html#12\">OptionsBasedElement<\/a>"],[0,4,"<a href=\"Forms\/Controls\/RadioList.php.html#17\">RadioList<\/a>"],[0,15,"<a href=\"Forms\/Controls\/SelectBox.php.html#6\">SelectBox<\/a>"],[0,13,"<a href=\"Forms\/Controls\/Submit.php.html#11\">Submit<\/a>"],[0,2,"<a href=\"Forms\/Controls\/TextArea.php.html#11\">TextArea<\/a>"],[0,5,"<a href=\"Forms\/Controls\/TextInput.php.html#11\">TextInput<\/a>"],[0,49,"<a href=\"Forms\/Form.php.html#25\">Form<\/a>"],[0,3,"<a href=\"Forms\/SubmittedForm.php.html#16\">SubmittedForm<\/a>"],[0,14,"<a href=\"Http\/FileUpload.php.html#17\">FileUpload<\/a>"],[0,8,"<a href=\"Http\/Request.php.html#11\">Request<\/a>"],[0,7,"<a href=\"Http\/Response.php.html#11\">Response<\/a>"],[0,2,"<a href=\"Templating\/BladeWrapper.php.html#20\">BladeWrapper<\/a>"],[0,2,"<a href=\"Templating\/LatteWrapper.php.html#14\">LatteWrapper<\/a>"],[0,4,"<a href=\"Templating\/TemplateFactory.php.html#11\">TemplateFactory<\/a>"],[0,2,"<a href=\"Templating\/TwigWrapper.php.html#9\">TwigWrapper<\/a>"],[0,7,"<a href=\"Utils\/CSIHelper.php.html#11\">CSIHelper<\/a>"],[0,3,"<a href=\"Utils\/Client.php.html#10\">Client<\/a>"],[0,10,"<a href=\"Utils\/EOSSHelper.php.html#9\">EOSSHelper<\/a>"],[100,6,"<a href=\"Utils\/File.php.html#10\">File<\/a>"],[0,27,"<a href=\"Utils\/HTML.php.html#11\">HTML<\/a>"],[100,3,"<a href=\"Utils\/JSON.php.html#11\">JSON<\/a>"],[0,66,"<a href=\"Utils\/JavascriptGenerator.php.html#20\">JavascriptGenerator<\/a>"],[0,9,"<a href=\"Utils\/RequireHelper.php.html#11\">RequireHelper<\/a>"],[0,17,"<a href=\"Utils\/Session.php.html#12\">Session<\/a>"],[0,4,"<a href=\"Utils\/Strings.php.html#6\">Strings<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Application\/ApplicationLoader.php.html#35\">ApplicationLoader::__construct<\/a>"],[0,14,"<a href=\"Application\/ApplicationLoader.php.html#46\">ApplicationLoader::eossInit<\/a>"],[0,7,"<a href=\"Application\/ApplicationLoader.php.html#106\">ApplicationLoader::goThroughAppFiles<\/a>"],[0,2,"<a href=\"Application\/ApplicationLoader.php.html#123\">ApplicationLoader::loadView<\/a>"],[0,2,"<a href=\"Application\/ApplicationLoader.php.html#136\">ApplicationLoader::includeModels<\/a>"],[0,11,"<a href=\"Application\/ApplicationLoader.php.html#148\">ApplicationLoader::injectDependencies<\/a>"],[0,3,"<a href=\"Application\/ApplicationLoader.php.html#187\">ApplicationLoader::createEOSSInstance<\/a>"],[0,5,"<a href=\"Application\/ApplicationLoader.php.html#204\">ApplicationLoader::loadServices<\/a>"],[0,4,"<a href=\"Application\/ApplicationLoader.php.html#209\">ApplicationLoader::anonymous function<\/a>"],[0,6,"<a href=\"Application\/Config.php.html#28\">Config::getParam<\/a>"],[0,1,"<a href=\"Binding\/BindableCollection.php.html#28\">BindableCollection::__construct<\/a>"],[0,1,"<a href=\"Binding\/BindableCollection.php.html#38\">BindableCollection::add<\/a>"],[0,3,"<a href=\"Binding\/BindableCollection.php.html#46\">BindableCollection::removeFirstWhere<\/a>"],[0,3,"<a href=\"Binding\/BindableCollection.php.html#61\">BindableCollection::removeAllWhere<\/a>"],[0,3,"<a href=\"Binding\/BindableCollection.php.html#76\">BindableCollection::findFirstWhere<\/a>"],[0,3,"<a href=\"Binding\/BindableCollection.php.html#88\">BindableCollection::findAllWhere<\/a>"],[0,3,"<a href=\"Binding\/BindableCollection.php.html#101\">BindableCollection::updateAllWhere<\/a>"],[0,3,"<a href=\"Binding\/BindableCollection.php.html#116\">BindableCollection::updateFirstWhere<\/a>"],[0,1,"<a href=\"Binding\/BindableCollection.php.html#131\">BindableCollection::getValue<\/a>"],[0,1,"<a href=\"Binding\/BindableCollection.php.html#140\">BindableCollection::setValue<\/a>"],[0,2,"<a href=\"Binding\/BindableCollection.php.html#150\">BindableCollection::updateElement<\/a>"],[0,1,"<a href=\"Binding\/BindableProperty.php.html#28\">BindableProperty::__construct<\/a>"],[0,4,"<a href=\"Binding\/BindableProperty.php.html#38\">BindableProperty::set<\/a>"],[0,1,"<a href=\"Binding\/BindableProperty.php.html#54\">BindableProperty::get<\/a>"],[0,1,"<a href=\"Binding\/BindedAttribute.php.html#35\">BindedAttribute::__construct<\/a>"],[0,4,"<a href=\"Binding\/BindedAttribute.php.html#46\">BindedAttribute::set<\/a>"],[0,1,"<a href=\"Binding\/BindedAttribute.php.html#72\">BindedAttribute::setWithoutBinding<\/a>"],[0,1,"<a href=\"Binding\/BindedAttribute.php.html#81\">BindedAttribute::get<\/a>"],[0,6,"<a href=\"Binding\/CollectionBinding.php.html#39\">CollectionBinding::setValue<\/a>"],[0,5,"<a href=\"Binding\/CollectionBinding.php.html#78\">CollectionBinding::getValue<\/a>"],[0,1,"<a href=\"Binding\/CollectionBinding.php.html#116\">CollectionBinding::__construct<\/a>"],[0,5,"<a href=\"Binding\/CollectionBinding.php.html#128\">CollectionBinding::injectIntoTemplate<\/a>"],[0,1,"<a href=\"Binding\/CollectionBinding.php.html#153\">CollectionBinding::getElement<\/a>"],[0,1,"<a href=\"Binding\/CollectionBinding.php.html#162\">CollectionBinding::getItemSourcePath<\/a>"],[0,1,"<a href=\"Binding\/CollectionBinding.php.html#170\">CollectionBinding::getTemplate<\/a>"],[0,1,"<a href=\"Binding\/CollectionBinding.php.html#178\">CollectionBinding::getString<\/a>"],[0,3,"<a href=\"Binding\/CollectionBinding.php.html#188\">CollectionBinding::getJavascript<\/a>"],[0,1,"<a href=\"Binding\/ElementBinding.php.html#48\">ElementBinding::__construct<\/a>"],[0,1,"<a href=\"Binding\/ElementBinding.php.html#62\">ElementBinding::getSourceElement<\/a>"],[0,1,"<a href=\"Binding\/ElementBinding.php.html#71\">ElementBinding::getSourceAttribute<\/a>"],[0,1,"<a href=\"Binding\/ElementBinding.php.html#80\">ElementBinding::getTargetAttribute<\/a>"],[0,1,"<a href=\"Binding\/ElementBinding.php.html#89\">ElementBinding::getString<\/a>"],[0,1,"<a href=\"Binding\/ElementBinding.php.html#98\">ElementBinding::getMode<\/a>"],[0,3,"<a href=\"Binding\/ElementBinding.php.html#107\">ElementBinding::getJavascriptAction<\/a>"],[0,3,"<a href=\"Binding\/ElementBinding.php.html#123\">ElementBinding::getJavascriptValue<\/a>"],[0,4,"<a href=\"Binding\/ElementBinding.php.html#139\">ElementBinding::getJavascriptSecondWay<\/a>"],[0,3,"<a href=\"Binding\/ElementBinding.php.html#159\">ElementBinding::getJavascriptValueSecondWay<\/a>"],[0,5,"<a href=\"Binding\/ElementBinding.php.html#172\">ElementBinding::initialBindingJavascript<\/a>"],[0,10,"<a href=\"Binding\/PropertyBinding.php.html#46\">PropertyBinding::getObjectByPath<\/a>"],[0,6,"<a href=\"Binding\/PropertyBinding.php.html#97\">PropertyBinding::setValue<\/a>"],[0,6,"<a href=\"Binding\/PropertyBinding.php.html#136\">PropertyBinding::getValue<\/a>"],[0,2,"<a href=\"Binding\/PropertyBinding.php.html#179\">PropertyBinding::__construct<\/a>"],[0,1,"<a href=\"Binding\/PropertyBinding.php.html#192\">PropertyBinding::getSourcePath<\/a>"],[0,1,"<a href=\"Binding\/PropertyBinding.php.html#200\">PropertyBinding::getElement<\/a>"],[0,1,"<a href=\"Binding\/PropertyBinding.php.html#208\">PropertyBinding::getTargetAttribute<\/a>"],[0,1,"<a href=\"Binding\/PropertyBinding.php.html#216\">PropertyBinding::getMode<\/a>"],[0,1,"<a href=\"Binding\/PropertyBinding.php.html#224\">PropertyBinding::getString<\/a>"],[0,5,"<a href=\"Binding\/PropertyBinding.php.html#235\">PropertyBinding::initialJavascript<\/a>"],[0,5,"<a href=\"Binding\/PropertyBinding.php.html#260\">PropertyBinding::getResponseJavascript<\/a>"],[0,1,"<a href=\"Database\/PDOWrapper.php.html#26\">PDOWrapper::__construct<\/a>"],[0,1,"<a href=\"Database\/PDOWrapper.php.html#35\">PDOWrapper::queryAndFetchAll<\/a>"],[0,1,"<a href=\"Database\/PDOWrapper.php.html#44\">PDOWrapper::queryAndFetch<\/a>"],[0,1,"<a href=\"Database\/PDOWrapper.php.html#53\">PDOWrapper::query<\/a>"],[0,1,"<a href=\"Database\/PDOWrapper.php.html#62\">PDOWrapper::prepareExecuteAndFetch<\/a>"],[0,1,"<a href=\"Database\/PDOWrapper.php.html#75\">PDOWrapper::prepareExecuteAndFetchAll<\/a>"],[0,1,"<a href=\"Database\/PDOWrapper.php.html#88\">PDOWrapper::prepareAndExecute<\/a>"],[0,1,"<a href=\"Debug\/Linda.php.html#34\">Linda::showError<\/a>"],[0,3,"<a href=\"Debug\/Linda.php.html#44\">Linda::outputLinda<\/a>"],[0,10,"<a href=\"Debug\/Linda.php.html#65\">Linda::outputLindaForPHPError<\/a>"],[0,3,"<a href=\"Debug\/Linda.php.html#96\">Linda::showDebugBar<\/a>"],[0,1,"<a href=\"Debug\/Linda.php.html#163\">Linda::updateDebugBar<\/a>"],[0,3,"<a href=\"Debug\/Linda.php.html#175\">Linda::dd<\/a>"],[0,1,"<a href=\"Debug\/Linda.php.html#189\">Linda::dump<\/a>"],[0,2,"<a href=\"EOSS\/AnonymousSender.php.html#25\">AnonymousSender::__get<\/a>"],[0,1,"<a href=\"EOSS\/AnonymousSender.php.html#38\">AnonymousSender::__set<\/a>"],[0,1,"<a href=\"EOSS\/AnonymousSender.php.html#46\">AnonymousSender::toArray<\/a>"],[0,1,"<a href=\"EOSS\/CSI.php.html#56\">CSI::__construct<\/a>"],[0,1,"<a href=\"EOSS\/CSI.php.html#66\">CSI::setFile<\/a>"],[0,1,"<a href=\"EOSS\/CSI.php.html#79\">CSI::getFile<\/a>"],[0,14,"<a href=\"EOSS\/CSI.php.html#86\">CSI::processBindings<\/a>"],[0,2,"<a href=\"EOSS\/CSIAnalyze.php.html#46\">CSIAnalyze::__construct<\/a>"],[0,11,"<a href=\"EOSS\/CSIAnalyze.php.html#61\">CSIAnalyze::analyzeCsi<\/a>"],[0,2,"<a href=\"EOSS\/CSIAnalyze.php.html#144\">CSIAnalyze::generateGroup<\/a>"],[0,12,"<a href=\"EOSS\/CSIAnalyze.php.html#169\">CSIAnalyze::processBindings<\/a>"],[0,6,"<a href=\"EOSS\/CSIAnalyze.php.html#201\">CSIAnalyze::isBounded<\/a>"],[0,2,"<a href=\"EOSS\/EOSS.php.html#39\">EOSS::__construct<\/a>"],[0,1,"<a href=\"EOSS\/EOSS.php.html#47\">EOSS::init<\/a>"],[0,1,"<a href=\"EOSS\/EOSS.php.html#55\">EOSS::loadGeneratedCSI<\/a>"],[100,1,"<a href=\"EOSS\/EOSS.php.html#72\">EOSS::load<\/a>"],[100,1,"<a href=\"EOSS\/EOSS.php.html#78\">EOSS::bind<\/a>"],[0,3,"<a href=\"EOSS\/EOSS.php.html#85\">EOSS::redirect<\/a>"],[0,1,"<a href=\"EOSS\/EOSS.php.html#97\">EOSS::registerForm<\/a>"],[0,1,"<a href=\"EOSS\/EOSS.php.html#104\">EOSS::getForms<\/a>"],[0,4,"<a href=\"EOSS\/EOSS.php.html#115\">EOSS::getForm<\/a>"],[0,1,"<a href=\"EOSS\/EOSS.php.html#134\">EOSS::flashMessage<\/a>"],[0,2,"<a href=\"EOSS\/EOSS.php.html#144\">EOSS::popFlashMessage<\/a>"],[0,1,"<a href=\"EOSS\/EOSS.php.html#159\">EOSS::getCountOfFlashMessages<\/a>"],[0,1,"<a href=\"EOSS\/EOSS.php.html#163\">EOSS::__destruct<\/a>"],[0,2,"<a href=\"EOSS\/Parameters.php.html#24\">Parameters::__get<\/a>"],[0,1,"<a href=\"EOSS\/Parameters.php.html#37\">Parameters::__set<\/a>"],[0,1,"<a href=\"EOSS\/Parameters.php.html#45\">Parameters::toArray<\/a>"],[0,2,"<a href=\"EOSS\/Registry.php.html#24\">Registry::__construct<\/a>"],[0,1,"<a href=\"EOSS\/Registry.php.html#31\">Registry::__destruct<\/a>"],[0,2,"<a href=\"EOSS\/Registry.php.html#42\">Registry::__get<\/a>"],[0,1,"<a href=\"EOSS\/Registry.php.html#55\">Registry::__set<\/a>"],[0,2,"<a href=\"EOSS\/Registry.php.html#64\">Registry::getInstance<\/a>"],[0,2,"<a href=\"Forms\/Controls\/BaseElement.php.html#50\">BaseElement::__construct<\/a>"],[0,1,"<a href=\"Forms\/Controls\/BaseElement.php.html#64\">BaseElement::setRequired<\/a>"],[0,1,"<a href=\"Forms\/Controls\/BaseElement.php.html#73\">BaseElement::isRequired<\/a>"],[0,1,"<a href=\"Forms\/Controls\/BaseElement.php.html#83\">BaseElement::addAttribute<\/a>"],[0,1,"<a href=\"Forms\/Controls\/BaseElement.php.html#92\">BaseElement::getAttributes<\/a>"],[0,1,"<a href=\"Forms\/Controls\/BaseElement.php.html#100\">BaseElement::getName<\/a>"],[0,1,"<a href=\"Forms\/Controls\/BaseElement.php.html#108\">BaseElement::getLabel<\/a>"],[0,1,"<a href=\"Forms\/Controls\/BaseElement.php.html#117\">BaseElement::getValue<\/a>"],[0,1,"<a href=\"Forms\/Controls\/BaseElement.php.html#126\">BaseElement::setValue<\/a>"],[0,1,"<a href=\"Forms\/Controls\/BaseElement.php.html#137\">BaseElement::getId<\/a>"],[0,3,"<a href=\"Forms\/Controls\/BaseElement.php.html#150\">BaseElement::getAttribute<\/a>"],[0,4,"<a href=\"Forms\/Controls\/BaseElement.php.html#166\">BaseElement::getAttributesAsString<\/a>"],[0,2,"<a href=\"Forms\/Controls\/BaseElement.php.html#181\">BaseElement::getLabelAsHtml<\/a>"],[0,1,"<a href=\"Forms\/Controls\/Checkbox.php.html#30\">Checkbox::setChecked<\/a>"],[0,1,"<a href=\"Forms\/Controls\/Checkbox.php.html#39\">Checkbox::isChecked<\/a>"],[0,3,"<a href=\"Forms\/Controls\/Checkbox.php.html#47\">Checkbox::__toString<\/a>"],[0,1,"<a href=\"Forms\/Controls\/FileInput.php.html#25\">FileInput::__construct<\/a>"],[0,5,"<a href=\"Forms\/Controls\/FileInput.php.html#35\">FileInput::__toString<\/a>"],[0,1,"<a href=\"Forms\/Controls\/FileInput.php.html#49\">FileInput::isMultiple<\/a>"],[0,1,"<a href=\"Forms\/Controls\/FileInput.php.html#58\">FileInput::setMultiple<\/a>"],[0,1,"<a href=\"Forms\/Controls\/HiddenInput.php.html#35\">HiddenInput::__construct<\/a>"],[0,1,"<a href=\"Forms\/Controls\/HiddenInput.php.html#46\">HiddenInput::getName<\/a>"],[0,1,"<a href=\"Forms\/Controls\/HiddenInput.php.html#55\">HiddenInput::getValue<\/a>"],[0,1,"<a href=\"Forms\/Controls\/HiddenInput.php.html#65\">HiddenInput::setValue<\/a>"],[0,1,"<a href=\"Forms\/Controls\/HiddenInput.php.html#70\">HiddenInput::getId<\/a>"],[0,3,"<a href=\"Forms\/Controls\/HiddenInput.php.html#78\">HiddenInput::__toString<\/a>"],[0,1,"<a href=\"Forms\/Controls\/OptionsBasedElement.php.html#28\">OptionsBasedElement::__construct<\/a>"],[0,1,"<a href=\"Forms\/Controls\/OptionsBasedElement.php.html#40\">OptionsBasedElement::addOption<\/a>"],[0,2,"<a href=\"Forms\/Controls\/OptionsBasedElement.php.html#50\">OptionsBasedElement::addOptions<\/a>"],[0,1,"<a href=\"Forms\/Controls\/OptionsBasedElement.php.html#62\">OptionsBasedElement::setOptions<\/a>"],[0,3,"<a href=\"Forms\/Controls\/OptionsBasedElement.php.html#74\">OptionsBasedElement::getOptionText<\/a>"],[0,1,"<a href=\"Forms\/Controls\/OptionsBasedElement.php.html#90\">OptionsBasedElement::getOptions<\/a>"],[0,4,"<a href=\"Forms\/Controls\/RadioList.php.html#27\">RadioList::__toString<\/a>"],[0,1,"<a href=\"Forms\/Controls\/SelectBox.php.html#28\">SelectBox::__construct<\/a>"],[0,5,"<a href=\"Forms\/Controls\/SelectBox.php.html#38\">SelectBox::setValue<\/a>"],[0,1,"<a href=\"Forms\/Controls\/SelectBox.php.html#60\">SelectBox::getValue<\/a>"],[0,1,"<a href=\"Forms\/Controls\/SelectBox.php.html#68\">SelectBox::isMultiple<\/a>"],[0,1,"<a href=\"Forms\/Controls\/SelectBox.php.html#78\">SelectBox::setMultiple<\/a>"],[0,6,"<a href=\"Forms\/Controls\/SelectBox.php.html#89\">SelectBox::__toString<\/a>"],[0,1,"<a href=\"Forms\/Controls\/Submit.php.html#35\">Submit::__construct<\/a>"],[0,1,"<a href=\"Forms\/Controls\/Submit.php.html#45\">Submit::getName<\/a>"],[0,1,"<a href=\"Forms\/Controls\/Submit.php.html#53\">Submit::getValue<\/a>"],[0,1,"<a href=\"Forms\/Controls\/Submit.php.html#65\">Submit::addAttribute<\/a>"],[0,1,"<a href=\"Forms\/Controls\/Submit.php.html#74\">Submit::getAttributes<\/a>"],[0,3,"<a href=\"Forms\/Controls\/Submit.php.html#85\">Submit::getAttribute<\/a>"],[0,4,"<a href=\"Forms\/Controls\/Submit.php.html#101\">Submit::getAttributesAsString<\/a>"],[0,1,"<a href=\"Forms\/Controls\/Submit.php.html#116\">Submit::__toString<\/a>"],[0,2,"<a href=\"Forms\/Controls\/TextArea.php.html#18\">TextArea::__toString<\/a>"],[0,1,"<a href=\"Forms\/Controls\/TextInput.php.html#30\">TextInput::setType<\/a>"],[0,1,"<a href=\"Forms\/Controls\/TextInput.php.html#40\">TextInput::getType<\/a>"],[0,3,"<a href=\"Forms\/Controls\/TextInput.php.html#48\">TextInput::__toString<\/a>"],[0,3,"<a href=\"Forms\/Form.php.html#78\">Form::__construct<\/a>"],[0,3,"<a href=\"Forms\/Form.php.html#97\">Form::asRaw<\/a>"],[0,4,"<a href=\"Forms\/Form.php.html#117\">Form::asIWant<\/a>"],[0,4,"<a href=\"Forms\/Form.php.html#140\">Form::__toString<\/a>"],[0,4,"<a href=\"Forms\/Form.php.html#161\">Form::asTable<\/a>"],[0,2,"<a href=\"Forms\/Form.php.html#192\">Form::openTag<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#200\">Form::setContainsFile<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#208\">Form::containsFile<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#216\">Form::getId<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#224\">Form::getName<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#234\">Form::addComponent<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#243\">Form::getComponents<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#254\">Form::addText<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#267\">Form::addPassword<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#282\">Form::addNumber<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#296\">Form::addEmail<\/a>"],[0,3,"<a href=\"Forms\/Form.php.html#312\">Form::addTextArea<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#333\">Form::addSelect<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#347\">Form::addCheckbox<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#360\">Form::addHidden<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#374\">Form::addRadioList<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#388\">Form::addFile<\/a>"],[0,1,"<a href=\"Forms\/Form.php.html#401\">Form::addSubmit<\/a>"],[0,10,"<a href=\"Forms\/Form.php.html#409\">Form::setDefaults<\/a>"],[0,2,"<a href=\"Forms\/SubmittedForm.php.html#30\">SubmittedForm::__get<\/a>"],[0,1,"<a href=\"Forms\/SubmittedForm.php.html#43\">SubmittedForm::__set<\/a>"],[0,3,"<a href=\"Http\/FileUpload.php.html#46\">FileUpload::__construct<\/a>"],[0,1,"<a href=\"Http\/FileUpload.php.html#65\">FileUpload::getName<\/a>"],[0,1,"<a href=\"Http\/FileUpload.php.html#75\">FileUpload::getSize<\/a>"],[0,1,"<a href=\"Http\/FileUpload.php.html#84\">FileUpload::getTemporaryFile<\/a>"],[0,1,"<a href=\"Http\/FileUpload.php.html#93\">FileUpload::__toString<\/a>"],[0,1,"<a href=\"Http\/FileUpload.php.html#102\">FileUpload::getError<\/a>"],[0,1,"<a href=\"Http\/FileUpload.php.html#111\">FileUpload::isOk<\/a>"],[0,3,"<a href=\"Http\/FileUpload.php.html#122\">FileUpload::move<\/a>"],[0,2,"<a href=\"Http\/FileUpload.php.html#138\">FileUpload::getContents<\/a>"],[0,1,"<a href=\"Http\/Request.php.html#28\">Request::__construct<\/a>"],[0,1,"<a href=\"Http\/Request.php.html#38\">Request::isAjax<\/a>"],[0,4,"<a href=\"Http\/Request.php.html#43\">Request::getParameter<\/a>"],[0,2,"<a href=\"Http\/Request.php.html#60\">Request::getInstance<\/a>"],[100,1,"<a href=\"Http\/Response.php.html#28\">Response::__construct<\/a>"],[0,3,"<a href=\"Http\/Response.php.html#37\">Response::append<\/a>"],[0,1,"<a href=\"Http\/Response.php.html#50\">Response::flush<\/a>"],[0,2,"<a href=\"Http\/Response.php.html#62\">Response::getInstance<\/a>"],[0,1,"<a href=\"Templating\/BladeWrapper.php.html#28\">BladeWrapper::initialize<\/a>"],[0,1,"<a href=\"Templating\/BladeWrapper.php.html#35\">BladeWrapper::render<\/a>"],[0,1,"<a href=\"Templating\/LatteWrapper.php.html#22\">LatteWrapper::initialize<\/a>"],[0,1,"<a href=\"Templating\/LatteWrapper.php.html#31\">LatteWrapper::render<\/a>"],[0,4,"<a href=\"Templating\/TemplateFactory.php.html#18\">TemplateFactory::create<\/a>"],[0,1,"<a href=\"Templating\/TwigWrapper.php.html#17\">TwigWrapper::initialize<\/a>"],[0,1,"<a href=\"Templating\/TwigWrapper.php.html#24\">TwigWrapper::render<\/a>"],[0,5,"<a href=\"Utils\/CSIHelper.php.html#19\">CSIHelper::genCSI<\/a>"],[0,2,"<a href=\"Utils\/CSIHelper.php.html#44\">CSIHelper::genElement<\/a>"],[0,3,"<a href=\"Utils\/Client.php.html#17\">Client::getIPAddress<\/a>"],[0,1,"<a href=\"Utils\/EOSSHelper.php.html#12\">EOSSHelper::storeClassVariables<\/a>"],[0,1,"<a href=\"Utils\/EOSSHelper.php.html#18\">EOSSHelper::restoreClassVariables<\/a>"],[0,8,"<a href=\"Utils\/EOSSHelper.php.html#23\">EOSSHelper::jsonToEoss<\/a>"],[100,6,"<a href=\"Utils\/File.php.html#20\">File::getLine<\/a>"],[0,2,"<a href=\"Utils\/HTML.php.html#19\">HTML::getIds<\/a>"],[0,1,"<a href=\"Utils\/HTML.php.html#35\">HTML::getElementById<\/a>"],[0,2,"<a href=\"Utils\/HTML.php.html#46\">HTML::getInnerHTML<\/a>"],[0,8,"<a href=\"Utils\/HTML.php.html#65\">HTML::getElements<\/a>"],[0,7,"<a href=\"Utils\/HTML.php.html#99\">HTML::getAttrWithNameOfNode<\/a>"],[0,3,"<a href=\"Utils\/HTML.php.html#116\">HTML::getAttribute<\/a>"],[0,1,"<a href=\"Utils\/HTML.php.html#133\">HTML::getGroups<\/a>"],[0,1,"<a href=\"Utils\/HTML.php.html#145\">HTML::getBindings<\/a>"],[0,1,"<a href=\"Utils\/HTML.php.html#160\">HTML::getElementsByAttributeValue<\/a>"],[0,1,"<a href=\"Utils\/HTML.php.html#172\">HTML::getElementByAttributeValue<\/a>"],[100,3,"<a href=\"Utils\/JSON.php.html#19\">JSON::decode<\/a>"],[0,7,"<a href=\"Utils\/JavascriptGenerator.php.html#27\">JavascriptGenerator::generateJavascript<\/a>"],[0,21,"<a href=\"Utils\/JavascriptGenerator.php.html#50\">JavascriptGenerator::checkForEvents<\/a>"],[0,3,"<a href=\"Utils\/JavascriptGenerator.php.html#119\">JavascriptGenerator::generateIntervals<\/a>"],[0,3,"<a href=\"Utils\/JavascriptGenerator.php.html#134\">JavascriptGenerator::generateForms<\/a>"],[0,4,"<a href=\"Utils\/JavascriptGenerator.php.html#169\">JavascriptGenerator::generateFlashes<\/a>"],[0,6,"<a href=\"Utils\/JavascriptGenerator.php.html#186\">JavascriptGenerator::generateBindings<\/a>"],[0,22,"<a href=\"Utils\/JavascriptGenerator.php.html#217\">JavascriptGenerator::writeJsResponse<\/a>"],[0,9,"<a href=\"Utils\/RequireHelper.php.html#18\">RequireHelper::requireFilesInDirectory<\/a>"],[0,2,"<a href=\"Utils\/Session.php.html#23\">Session::__construct<\/a>"],[0,4,"<a href=\"Utils\/Session.php.html#39\">Session::get<\/a>"],[0,2,"<a href=\"Utils\/Session.php.html#57\">Session::set<\/a>"],[0,1,"<a href=\"Utils\/Session.php.html#69\">Session::clear<\/a>"],[0,6,"<a href=\"Utils\/Session.php.html#78\">Session::clearEOSSData<\/a>"],[0,2,"<a href=\"Utils\/Session.php.html#95\">Session::getInstance<\/a>"],[0,1,"<a href=\"Utils\/Strings.php.html#15\">Strings::startsWith<\/a>"],[0,2,"<a href=\"Utils\/Strings.php.html#27\">Strings::endsWith<\/a>"],[0,1,"<a href=\"Utils\/Strings.php.html#42\">Strings::generateRandom<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
