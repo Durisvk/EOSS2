@@ -9,6 +9,7 @@ require_once __DIR__ . '/genElements/txtTodo.php';
 require_once __DIR__ . '/genElements/txtRange.php';
 require_once __DIR__ . '/genElements/lblButtons.php';
 require_once __DIR__ . '/genElements/personsList.php';
+require_once __DIR__ . '/genElements/personsSelect.php';
 
 class indexEOSSGenCSI extends \EOSS\CSI {
 
@@ -54,6 +55,10 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 	 * @var personsList
 	 */
 	public $personsList;
+	/**
+	 * @var personsSelect
+	 */
+	public $personsSelect;
 
 	public function __construct($eoss) {
 
@@ -70,6 +75,7 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 		$this->txtRange=new txtRange;
 		$this->lblButtons=new lblButtons;
 		$this->personsList=new personsList;
+		$this->personsSelect=new personsSelect;
 	}
 	public function setFile($dir) {
 		$this->file=$dir;

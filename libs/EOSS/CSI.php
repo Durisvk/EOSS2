@@ -104,9 +104,13 @@ class CSI
                         // Hack:
                         $prop->setAccessible(TRUE);
                         $value = $prop->getValue($obj);
-                        $prop->setValue($obj, new BindableProperty($value, $element, $binding->getTargetAttribute()));
+                        if(!$value instanceof BindableProperty) {
+                            $prop->setValue($obj, new BindableProperty($value, $element, $binding->getTargetAttribute()));
+                        }
                     } else {
-                        $obj->{$key} = new BindableProperty($obj->{$key}, $element, $binding->getTargetAttribute());
+                        if(!$obj->{$key} instanceof BindableProperty) {
+                            $obj->{$key} = new BindableProperty($obj->{$key}, $element, $binding->getTargetAttribute());
+                        }
                     }
                 } else {
                     throw new \Exception("Property cannot be binded, \"{$key}\" was not found inside \"" . get_class($obj) . "\".");
@@ -133,9 +137,13 @@ class CSI
                         // Hack:
                         $prop->setAccessible(TRUE);
                         $value = $prop->getValue($obj);
-                        $prop->setValue($obj, new BindableCollection($value, $binding, $element));
+                        if(!$value instanceof BindableCollection) {
+                            $prop->setValue($obj, new BindableCollection($value, $binding, $element));
+                        }
                     } else {
-                        $obj->{$key} = new BindableCollection($obj->{$key}, $binding, $element);
+                        if(!$obj->{$key} instanceof BindableCollection) {
+                            $obj->{$key} = new BindableCollection($obj->{$key}, $binding, $element);
+                        }
                     }
                 } else {
                     throw new \Exception("Property cannot be binded, \"{$key}\" was not found inside \"" . get_class($obj) . "\".");

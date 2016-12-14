@@ -82,3 +82,6 @@ $( "[data-binding = \"SourceElement: '.lblRange', SourceAttribute: 'value', Targ
 $( "#personsList" ).html( '<li>Person <b data-key="name">Andrew Perkins</b> is  <span data-key="age">25</span> years old. <a href="" data-id="0" data-group="deletePerson">X</a></li><li>Person <b data-key="name">John Doe</b> is  <span data-key="age">43</span> years old. <a href="" data-id="1" data-group="deletePerson">X</a></li><li>Person <b data-key="name">Some Person</b> is  <span data-key="age">32</span> years old. <a href="" data-id="2" data-group="deletePerson">X</a></li>' ).attr("data-collection", '[{"id":0,"name":"Andrew Perkins","age":25},{"id":1,"name":"John Doe","age":43},{"id":2,"name":"Some Person","age":32}]');
 
 
+$( "#personsSelect" ).html( '<option>Andrew Perkins - 25</option><option>John Doe - 43</option><option>Some Person - 32</option>' ).attr("data-collection", '[{"id":0,"name":"Andrew Perkins","age":25},{"id":1,"name":"John Doe","age":43},{"id":2,"name":"Some Person","age":32}]');
+
+

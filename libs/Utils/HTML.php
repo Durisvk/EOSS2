@@ -96,23 +96,44 @@ class HTML
     }
 
 
-    private static function getAttrWithNameOfNode(\DOMNode $domNode, &$array, $attrName) {
+    /**
+     * Fills the array with attributes - values combination.
+     * @param \DOMNode $domNode
+     * @param array $array
+     * @param string $attrName
+     * @param bool $canBeMultiple
+     */
+    private static function getAttrWithNameOfNode(\DOMNode $domNode, &$array, $attrName, $canBeMultiple = TRUE) {
         /** @var \DOMNode $node */
         foreach($domNode->childNodes as $node) {
             if($node->attributes && $node->attributes->length > 0) {
                 $attrValue = self::getAttribute($attrName, $node->attributes);
                 if($attrValue) {
-                    if(!in_array($attrValue, $array)) {
-                        $array[] = $attrValue;
+                    if(!$canBeMultiple) {
+                        if (!in_array($attrValue, $array)) {
+                            $array[] = $attrValue;
+                        }
+                    } else {
+                        if($id = self::getAttribute("id", $node->attributes)) {
+                            $array[] = ["id" => $id, $attrName => $attrValue];
+                        } else {
+                            $array[] = $attrValue;
+                        }
                     }
                 }
             }
             if($node->hasChildNodes()) {
-                self::getAttrWithNameOfNode($node, $array, $attrName);
+                self::getAttrWithNameOfNode($node, $array, $attrName, $canBeMultiple);
             }
         }
     }
 
+    /**
+     * Gets an attribute from DOMNamedNodeMap of attributes with name.
+     * @param string $name
+     * @param \DOMNamedNodeMap $att
+     * @return null|string
+     */
     public static function getAttribute($name, $att)
     {
         /** @var \DOMAttr $i */
@@ -133,12 +154,13 @@ class HTML
     public static function getGroups($dom) {
         $groups = [];
 
-        self::getAttrWithNameOfNode($dom, $groups, "data-group");
+        self::getAttrWithNameOfNode($dom, $groups, "data-group", FALSE);
 
         return $groups;
     }
 
     /**
+     * Gets the elements with attribute data-binding.
      * @param \DOMNode $dom
      * @return array
      */

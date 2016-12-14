@@ -169,14 +169,28 @@ class CSIAnalyze
     private function processBindings($bindings, $elements, $dom) {
 
         foreach($bindings as $binding) {
-            $json = JSON::decode($binding);
 
-            $bindedElement = NULL;
-            foreach($elements as $element) {
-                if(key_exists('data_binding', $element) && $element['data_binding'] == $binding) {
-                    $bindedElement = $element;
+            if(is_array($binding)) {
+                $id = $binding["id"];
+                $bindedElement = NULL;
+                foreach($elements as $element) {
+                    if(key_exists('id', $element) && $element['id'] == $id) {
+                        $bindedElement = $element;
+                    }
+                }
+                $binding = $binding["data-binding"];
+            } else {
+                $bindedElement = NULL;
+                foreach($elements as $element) {
+                    if(key_exists('data_binding', $element) && $element['data_binding'] == $binding) {
+                        $bindedElement = $element;
+                    }
                 }
             }
+
+
+
+            $json = JSON::decode($binding);
 
             if(!isset($json["Mode"])) {
                 $json["Mode"] = "two-way";
@@ -187,7 +201,13 @@ class CSIAnalyze
             } else if(isset($json["SourcePath"]) && isset($json["TargetAttribute"])) {
                 $this->csi->bindings[] = new PropertyBinding($json["SourcePath"], $json["TargetAttribute"], $json["Mode"], $binding, $bindedElement);
             } else if(isset($json["ItemSourcePath"])) {
-                $this->csi->bindings[] = new CollectionBinding($json["ItemSourcePath"], HTML::getInnerHTML(HTML::getElementByAttributeValue($dom, "data-binding", $binding)), $binding, $bindedElement);
+                if($bindedElement) {
+                    $element = HTML::getElementByAttributeValue($dom, "id", $bindedElement["id"]);
+                } else {
+                    $element = HTML::getElementByAttributeValue($dom, "data-binding", $binding);
+                }
+
+                $this->csi->bindings[] = new CollectionBinding($json["ItemSourcePath"], HTML::getInnerHTML($element), $binding, $bindedElement);
             }
         }
 

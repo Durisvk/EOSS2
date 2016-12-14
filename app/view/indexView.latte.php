@@ -72,6 +72,9 @@
             <ul id="personsList" data-binding="ItemSourcePath: 'collection'">
                 <li>Person <b data-key="name"></b> is  <span data-key="age"></span> years old. <a href="" data-id="(*id*)" data-group="deletePerson">X</a></li>
             </ul>
+            <select id="personsSelect" data-binding="ItemSourcePath: 'collection'">
+                <option>(*name*) - (*age*)</option>
+            </select>
         </div>
         <div id="panel-footer" class="panel-footer" data-ignore="true">
             Thank You. Your EOSS team :).
