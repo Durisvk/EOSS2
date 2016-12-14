@@ -835,6 +835,8 @@ Now we can move on and create the view.
 
 Notice you can use `data-key` attribute to get the value from the data of collection OR you can use `(*attribute*)` notation to get the value of data from collection.
 
+**If you want to bind two or more elements to the one and the same collection just assign them an id attribute.**
+
 And this is the **Collection Item Source Binding**. We now get our list of persons on the page.
 
 

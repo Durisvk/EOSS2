@@ -79,6 +79,6 @@ $( '.lblRange' ).val($(this).val());
 $( "[data-binding = \"SourceElement: '.lblRange', SourceAttribute: 'value', TargetAttribute: 'value'\"]" ).val($(this).val());
 
 });
-$( "[data-binding=\"ItemSourcePath: 'collection'\"]" ).html( '<li>Person <b data-key="name">Andrew Perkins</b> is  <span data-key="age">25</span> years old. <a href="" data-id="0" data-group="deletePerson">X</a></li><li>Person <b data-key="name">John Doe</b> is  <span data-key="age">43</span> years old. <a href="" data-id="1" data-group="deletePerson">X</a></li><li>Person <b data-key="name">Some Person</b> is  <span data-key="age">32</span> years old. <a href="" data-id="2" data-group="deletePerson">X</a></li>' ).attr("data-collection", '[{"id":0,"name":"Andrew Perkins","age":25},{"id":1,"name":"John Doe","age":43},{"id":2,"name":"Some Person","age":32}]');
+$( "#personsList" ).html( '<li>Person <b data-key="name">Andrew Perkins</b> is  <span data-key="age">25</span> years old. <a href="" data-id="0" data-group="deletePerson">X</a></li><li>Person <b data-key="name">John Doe</b> is  <span data-key="age">43</span> years old. <a href="" data-id="1" data-group="deletePerson">X</a></li><li>Person <b data-key="name">Some Person</b> is  <span data-key="age">32</span> years old. <a href="" data-id="2" data-group="deletePerson">X</a></li>' ).attr("data-collection", '[{"id":0,"name":"Andrew Perkins","age":25},{"id":1,"name":"John Doe","age":43},{"id":2,"name":"Some Person","age":32}]');
 
 
