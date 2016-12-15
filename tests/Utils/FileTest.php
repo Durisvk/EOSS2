@@ -21,4 +21,9 @@ class FileTest extends TestCase
         File::getLine(23, "Hey there,\n Hello people, \nand Hello World, \nHow are You?");
     }
 
+    public function testFileSave() {
+        File::save(TESTS_TEMP_PATH . "fileTest.txt", "this is the random text");
+        $this->assertFileExists(TESTS_TEMP_PATH . "fileTest.txt");
+    }
+
 }

@@ -17,9 +17,7 @@ class CSIHelper
      * @param string $name
      */
     public static function genCSI($file, $name) {
-        $genCSI=fopen(DIR_TEMP . "data/" . $name . "GenCSI.php", "w+") or die("Check out your permissions on file libs/data/!");
-        fwrite($genCSI, $file);
-        fclose($genCSI);
+        File::save(DIR_TEMP . "data/" . $name . "GenCSI.php", $file);
         $eossPath = DIR_LIBS . 'EOSS/EOSS.php';
         $eossFile = fopen($eossPath, 'rw');
         $data =fread($eossFile, filesize($eossPath));
@@ -42,9 +40,7 @@ class CSIHelper
      * @param string $file
      */
     public static function genElement($name,$file) {
-        $genel=fopen(DIR_TEMP . "data/genElements/".$name.".php", "w+") or die("Check out your permissions on file libs/data/!");
-        fwrite($genel, $file);
-        fclose($genel);
+        File::save(DIR_TEMP . "data/genElements/".$name.".php", $file);
     }
 
 

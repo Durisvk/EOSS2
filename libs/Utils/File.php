@@ -35,6 +35,22 @@
             }
         }
 
+        /**
+         * Saves the file.
+         * @param string $filename
+         * @param string $content
+         * @throws \Exception
+         */
+        public static function save($filename, $content) {
+            $fp = fopen($filename, "w");
+            if(!$fp) {
+                throw new \Exception("Failed to open the file.");
+            }
+            fwrite($fp, $content);
+            fclose($fp);
+        }
+
+
     }
 
 ?>

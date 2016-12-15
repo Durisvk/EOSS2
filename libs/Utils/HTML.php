@@ -30,7 +30,7 @@ class HTML
      * Gets the element by its id from DOMDocument
      * @param string $id
      * @param \DOMDocument $dom
-     * @return mixed
+     * @return \DOMNode
      */
     public static function getElementById($id, $dom) {
         $xpath = new \DOMXPath($dom);
