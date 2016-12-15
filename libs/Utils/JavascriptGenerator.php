@@ -256,9 +256,7 @@ class JavascriptGenerator
 
             foreach($eoss->csi->bindings as $binding) {
                 if($binding instanceof PropertyBinding) {
-                    if($binding->getMode() == "two-way") {
-                        $js .= $binding->getResponseJavascript($eoss);
-                    }
+                    $js .= $binding->getResponseJavascript($eoss);
                 } else if($binding instanceof CollectionBinding) {
                     $js .= $binding->getJavascript($eoss);
                 }
