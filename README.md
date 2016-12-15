@@ -779,6 +779,9 @@ If we now want to change the bounded attribute of an element we use IBindedAttri
 
 We need to use method `set` to keep the binding working.
 
+**If you want to bind two or more elements to the one and the same property just assign them an id attribute.**
+
+
 **Collection Item Source Binding**
 
 EOSS is able to bind to the collection. It's again more advanced topic, but I hope it's not too difficult to understand.

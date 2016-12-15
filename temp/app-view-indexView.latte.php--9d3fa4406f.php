@@ -71,6 +71,10 @@ class Template9d3fa4406f extends Latte\Runtime\Template
             <input type="text" id="txtRange" data-binding="SourcePath: 'model.range', TargetAttribute: 'value'" class="lblRange">
             <input type="range" data-binding="SourceElement: '.lblRange', SourceAttribute: 'value', TargetAttribute: 'value'" value="50" min="0" max="100">
         </div>
+        <div class="example">
+            <input id="randomText1" type="text" data-binding="SourcePath: 'property', TargetAttribute: 'value'">
+            <input id="randomText2" type="text" data-binding="SourcePath: 'property', TargetAttribute: 'value'">
+        </div>
         There is a lot work to be done. The EOSS2 is not finished yet.
         Here is an example of data-groups functionallity:
         <div class="example">

@@ -7,6 +7,8 @@ require_once __DIR__ . '/genElements/lblCopy.php';
 require_once __DIR__ . '/genElements/lblTodos.php';
 require_once __DIR__ . '/genElements/txtTodo.php';
 require_once __DIR__ . '/genElements/txtRange.php';
+require_once __DIR__ . '/genElements/randomText1.php';
+require_once __DIR__ . '/genElements/randomText2.php';
 require_once __DIR__ . '/genElements/lblButtons.php';
 require_once __DIR__ . '/genElements/personsList.php';
 require_once __DIR__ . '/genElements/personsSelect.php';
@@ -48,6 +50,14 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 	 */
 	public $txtRange;
 	/**
+	 * @var randomText1
+	 */
+	public $randomText1;
+	/**
+	 * @var randomText2
+	 */
+	public $randomText2;
+	/**
 	 * @var lblButtons
 	 */
 	public $lblButtons;
@@ -64,7 +74,7 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 
 	parent::__construct($eoss);
 		$this->eoss=$eoss;
-		$this->file='/home/lchost/EOSS2/libs/../app/view/indexView.latte.php';
+		$this->file='/home/lchost/EOSS2/app/view/indexView.latte.php';
 		$this->buttons=new buttons;
 		$this->deletePerson=new deletePerson;
 		$this->flashes=new flashes;
@@ -73,6 +83,8 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 		$this->lblTodos=new lblTodos;
 		$this->txtTodo=new txtTodo;
 		$this->txtRange=new txtRange;
+		$this->randomText1=new randomText1;
+		$this->randomText2=new randomText2;
 		$this->lblButtons=new lblButtons;
 		$this->personsList=new personsList;
 		$this->personsSelect=new personsSelect;

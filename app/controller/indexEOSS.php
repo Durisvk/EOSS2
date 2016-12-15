@@ -2,6 +2,7 @@
 
 use EOSS\EOSS;
 use Binding\IBindableCollection;
+use Binding\IBindableProperty;
 
 /**
  * Startup class.
@@ -12,6 +13,11 @@ class indexEOSS extends EOSS
     public $counter = 1;
 
     public $model;
+
+    /**
+     * @var IBindableProperty
+     */
+    public $property = "random text";
 
     /**
      * @var array|IBindableCollection

@@ -38,21 +38,27 @@ class ElementBinding
     private $mode;
 
     /**
+     * @var string|null
+     */
+    private $element;
+
+    /**
      * ElementBinding constructor.
      * @param string $sourceElement
      * @param string $sourceAttribute
      * @param string $targetAttribute
      * @param string $mode
      * @param string $string
+     * @param array|null $element
      */
-    public function __construct($sourceElement, $sourceAttribute, $targetAttribute, $mode,$string) {
+    public function __construct($sourceElement, $sourceAttribute, $targetAttribute, $mode,$string, $element = NULL) {
 
         $this->sourceElement = $sourceElement;
         $this->sourceAttribute = $sourceAttribute;
         $this->targetAttribute = $targetAttribute;
         $this->string = $string;
         $this->mode = $mode;
-
+        $this->element = $element["id"];
     }
 
     /**
@@ -99,6 +105,14 @@ class ElementBinding
         return $this->mode;
     }
 
+    /**
+     * Returns the target element.
+     * @return null|string
+     */
+    public function getElement() {
+        return $this->element;
+    }
+
 
     /**
      * Returns the javascript action.
@@ -141,7 +155,7 @@ class ElementBinding
             return "";
         }
 
-        $js = "$( \"[data-binding = \\\"{$this->getString()}\\\"]\" ).";
+        $js = "$( \"" . ($this->getElement() ? "#" . $this->getElement() : "[data-binding = \\\"{$this->getString()}\\\"]") . "\" ).";
         if($this->getTargetAttribute() == 'html') {
             $js .= "html({$this->getJavascriptValueSecondWay()});";
         } else if($this->getTargetAttribute() == 'value') {
@@ -178,7 +192,7 @@ class ElementBinding
         } else {
             $js .= "attr(\"{$this->getSourceAttribute()}\", ";
         }
-        $js .= "$( \"[data-binding = \\\"{$this->getString()}\\\"]\" ).";
+        $js .= "$( \"" . ($this->getElement() ? "#" . $this->getElement() : "[data-binding = \\\"{$this->getString()}\\\"]") . "\" ).";
 
         if($this->getTargetAttribute() == 'html') {
             $js .= "html()";

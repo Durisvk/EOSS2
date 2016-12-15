@@ -235,7 +235,7 @@ class PropertyBinding
     public function initialJavascript(EOSS $eoss) {
 
         if($val = self::getValue($eoss, $this->getSourcePath())) {
-            $js = "$( \"[data-binding=\\\"{$this->getString()}\\\"]\" ).";
+            $js = "$( \"" . ($this->getElement() ? "#".$this->getElement() : "[data-binding=\\\"{$this->getString()}\\\"]") . "\" ).";
 
             if($this->getTargetAttribute() == "html") {
                 $js .= "html(";
@@ -247,7 +247,7 @@ class PropertyBinding
 
             $js .= is_string($val) ? "\"{$val}\"" : $val;
             $js .= ");";
-            $js = "$( \"[data-binding=\\\"{$this->getString()}\\\"]\" ).change();";
+            $js .= "$( \"" . ($this->getElement() ? "#".$this->getElement() : "[data-binding=\\\"{$this->getString()}\\\"]") . "\" ).change();";
         } else {
             $js = "";
         }
@@ -259,7 +259,7 @@ class PropertyBinding
 
     public function getResponseJavascript(EOSS $eoss) {
         if($val = self::getValue($eoss, $this->getSourcePath())) {
-            $js = "$( \"[data-binding=\\\"{$this->getString()}\\\"]\" ).";
+            $js = "$( \"" . ($this->getElement() ? "#".$this->getElement() : "[data-binding=\\\"{$this->getString()}\\\"]") . "\" ).";
 
             if($this->getTargetAttribute() == "html") {
                 $js .= "html(";
@@ -271,7 +271,7 @@ class PropertyBinding
 
             $js .= is_string($val) ? "\"{$val}\"" : $val;
             $js .= ");\n";
-            $js .= "$( \"[data-binding=\\\"{$this->getString()}\\\"]\" ).change();";
+            $js .= "$( \"" . ($this->getElement() ? "#".$this->getElement() : "[data-binding=\\\"{$this->getString()}\\\"]") . "\" ).change();";
         } else {
             $js = "";
         }

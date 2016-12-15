@@ -199,6 +199,11 @@ class CSIAnalyze
             if(isset($json["SourceElement"]) && isset($json["SourceAttribute"]) && isset($json["TargetAttribute"])) {
                 $this->csi->bindings[] = new ElementBinding($json["SourceElement"], $json["SourceAttribute"], $json["TargetAttribute"], $json["Mode"], $binding);
             } else if(isset($json["SourcePath"]) && isset($json["TargetAttribute"])) {
+                foreach($this->csi->bindings as $b) {
+                    if($b instanceof PropertyBinding && $b->getSourcePath() == $json["SourcePath"]) {
+                        $this->csi->bindings[] = new ElementBinding("#" .$b->getElement(), $b->getTargetAttribute(), $json["TargetAttribute"], $json["Mode"], $binding, $bindedElement);
+                    }
+                }
                 $this->csi->bindings[] = new PropertyBinding($json["SourcePath"], $json["TargetAttribute"], $json["Mode"], $binding, $bindedElement);
             } else if(isset($json["ItemSourcePath"])) {
                 if($bindedElement) {
