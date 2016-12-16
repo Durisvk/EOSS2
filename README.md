@@ -947,6 +947,6 @@ PS: I am using [Pimple](http://pimple.sensiolabs.org/) to create this magic.
 
 Lifecycle of EOSS can be described by this image:
 
-[EOSS lifecycle](https://postimg.org/image/7bj0xfw0j/)
+[![EOSS lifecycle](https://s29.postimg.org/8qklm5x3r/EOSS_lifecycle.png)](https://postimg.org/image/7bj0xfw0j/)
 
 Everything starts with *constructor* of `xyzEOSS`. The `flashes` are loaded in this phase. The dependencies are injected into `xyzEOSS` file. Then the other dependencies are injected through magic `inject*` method (mentioned in Dependency injection and Services) or through public variables with `@inject` annotation. After all the dependencies are injected, the *load* function is called. There you should set the view file for that particular `xyzEOSS`. After *load* the *bind* is called. There you should connect the view with the controller. All of the events should be binded in the *bind* phase. After the *bind* is called the *events* are triggered if there are any. If the page is first time launched, no events are triggered.
