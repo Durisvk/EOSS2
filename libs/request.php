@@ -75,7 +75,7 @@ foreach(json_decode($request->getParameter('values')) as $value) {
     } else if(property_exists($value, 'binding')) {
         $json = \Utils\JSON::decode($value->binding);
         if(property_exists($value, 'attribute')) {
-            if(array_key_exists("Mode", $json) && $json["Mode"] == "two-way") {
+            if(!array_key_exists("Mode", $json) || (array_key_exists("Mode", $json) && $json["Mode"] == "two-way")) {
                 \Binding\PropertyBinding::setValue($eoss, $json["SourcePath"], $value->attribute);
             }
         } else if(property_exists($value, 'collection')) {
