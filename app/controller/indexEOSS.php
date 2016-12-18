@@ -13,7 +13,7 @@ class indexEOSS extends EOSS
     public $counter = 1;
 
     public $model;
-
+    
     /**
      * @var IBindableProperty
      */

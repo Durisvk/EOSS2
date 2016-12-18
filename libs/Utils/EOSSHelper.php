@@ -4,6 +4,8 @@
 namespace Utils;
 
 
+use EOSS\EOSS;
+
 class EOSSHelper
 {
 
@@ -15,7 +17,13 @@ class EOSSHelper
                 $eoss->$key = $value->get();
             }
         }
-        Session::getInstance()->set($name,json_encode(get_object_vars($eoss)));
+        $vars = get_object_vars($eoss);
+        foreach($vars as $key => $value) {
+            if(!is_scalar($value) && $key != 'csi') {
+                $vars[$key] = 'model';
+            }
+        }
+        Session::getInstance()->set($name,json_encode());
 
     }
     public static function restoreClassVariables(&$eoss,$name) {
@@ -23,7 +31,13 @@ class EOSSHelper
         $eoss=self::jsonToEoss($eoss,JSON::decode($json));
     }
 
-    static function jsonToEoss ($eoss,$json) {
+    /**
+     * Loads the EOSS from JSON format
+     * @param EOSS $eoss
+     * @param array $json
+     * @return mixed
+     */
+    public static function jsonToEoss ($eoss,$json) {
         foreach ($json as $key=>$val) {
             if($key == "csi") {
                 foreach ($val as $elkey=>$elval) {
@@ -40,6 +54,9 @@ class EOSSHelper
                     } else if($eoss->$key instanceof \Binding\BindableCollection) {
                         $eoss->$key->setValue($val);
                     }else {
+                        if($val != "model") {
+                            continue;
+                        }
                         $eoss->$key = $val;
                     }
                 }
