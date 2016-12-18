@@ -16,6 +16,7 @@ class TemplateFactory
      * @return ITemplateWrapper|NULL
      */
     public static function create($filename) {
+        $filename = basename($filename);
         $ext = strstr($filename, '.');
         $ext = ltrim($ext, '.');
         switch($ext) {
