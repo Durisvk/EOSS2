@@ -21,11 +21,11 @@ class BindableCollection implements IBindableCollection
 
     /**
      * BindableCollection constructor.
-     * @param array $value
+     * @param array|null $value
      * @param CollectionBinding $binding
      * @param null|object $element
      */
-    public function __construct(array $value, CollectionBinding $binding, $element = NULL)
+    public function __construct($value, CollectionBinding $binding, $element = NULL)
     {
         $this->value = $value;
         $this->element = $element;
