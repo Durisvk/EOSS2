@@ -70,9 +70,11 @@ class CSIAnalyze
         $dom->loadHTML($rf);
         libxml_clear_errors();
         $elements = JSON::decode(HTML::getElements($dom, $rf));
+        $events = HTML::getEvents($dom);
         $groups = HTML::getGroups($dom);
         $bindings = HTML::getBindings($dom);
         $this->processBindings($bindings, $elements, $dom);
+        $this->processEvents($events);
         $requires="<?php\n";
         $gencsi="\nclass " . $this->eossClassName . "GenCSI extends \\EOSS\\CSI {\n\n";
         $gencsi.="\n\n";
@@ -216,6 +218,22 @@ class CSIAnalyze
             }
         }
 
+    }
+
+    /**
+     * @param array $events
+     */
+    private function processEvents($events) {
+        foreach($events as $event) {
+            if(is_array($event)) {
+                $event = $event["data-event"];
+            }
+            $json = JSON::decode($event);
+            $json["string"] = $event;
+            if(isset($json["Event"]) && isset($json["Action"]) && isset($json["string"])) {
+                $this->csi->events[] = $json;
+            }
+        }
     }
 
     /**

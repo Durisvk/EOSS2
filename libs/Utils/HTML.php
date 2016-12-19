@@ -151,7 +151,7 @@ class HTML
      * @param \DOMNode $dom
      * @return array
      */
-    public static function getGroups($dom) {
+    public static function getGroups(\DOMNode $dom) {
         $groups = [];
 
         self::getAttrWithNameOfNode($dom, $groups, "data-group", FALSE);
@@ -164,12 +164,25 @@ class HTML
      * @param \DOMNode $dom
      * @return array
      */
-    public static function getBindings($dom) {
+    public static function getBindings(\DOMNode $dom) {
         $bindings = [];
 
         self::getAttrWithNameOfNode($dom, $bindings, "data-binding");
 
         return $bindings;
+    }
+
+    /**
+     * Gets the elements with attribute data-event.
+     * @param \DOMNode $dom
+     * @return array
+     */
+    public static function getEvents(\DOMNode $dom) {
+        $events = [];
+
+        self::getAttrWithNameOfNode($dom, $events, "data-event", FALSE);
+
+        return $events;
     }
 
     /**

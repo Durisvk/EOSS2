@@ -56,11 +56,13 @@ abstract class EOSS
         /** @var Parameters $params */
         $params = $this->csi->params;
         $bindings = $this->csi->bindings;
+        $events = $this->csi->events;
         RequireHelper::requireFilesInDirectory(DIR_TEMP . "data/");
         $r = new \ReflectionClass("\\" . get_class($this) . "GenCSI");
         $this->csi = $r->newInstanceArgs([$this]);
         $this->csi->params = $params;
         $this->csi->bindings = $bindings;
+        $this->csi->events = $events;
         $this->csi->processBindings();
         $this->bind();
         JavascriptGenerator::generateJavascript($this);

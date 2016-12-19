@@ -3,7 +3,7 @@
 namespace Utils;
 
 /**
- * Helper class for CSI generating
+ * Helper class for CSI generating.
  * Class CSIHelper
  * @package Utils
  */

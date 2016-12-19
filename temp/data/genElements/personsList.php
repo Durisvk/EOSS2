@@ -76,7 +76,7 @@ class personsList {
 		$this->id="personsList";
 		$this->data_binding="ItemSourcePath: 'collection'";
 		$this->type="ul";
-		$this->html="<li>Person <b data-key=\"name\"></b> is <span data-key=\"age\"></span> years old. <a href=\"\" data-id=\"(*id*)\" data-group=\"deletePerson\">X</a></li>";
+		$this->html="<li>Person <b data-key=\"name\"></b> is <span data-key=\"age\"></span> years old. <a href=\"\" data-id=\"(*id*)\" data-event=\"Event: 'onclick', Action: 'deleteThePerson'\">X</a></li>";
 	}
 
 }

@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/genElements/buttons.php';
-require_once __DIR__ . '/genElements/deletePerson.php';
 require_once __DIR__ . '/genElements/flashes.php';
 require_once __DIR__ . '/genElements/txtSource.php';
 require_once __DIR__ . '/genElements/lblCopy.php';
@@ -21,10 +20,6 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 	 * @var buttons
 	 */
 	public $buttons;
-	/**
-	 * @var deletePerson
-	 */
-	public $deletePerson;
 	/**
 	 * @var flashes
 	 */
@@ -76,7 +71,6 @@ class indexEOSSGenCSI extends \EOSS\CSI {
 		$this->eoss=$eoss;
 		$this->file='/home/lchost/EOSS2/libs/../app/view/indexView.latte.php';
 		$this->buttons=new buttons;
-		$this->deletePerson=new deletePerson;
 		$this->flashes=new flashes;
 		$this->txtSource=new txtSource;
 		$this->lblCopy=new lblCopy;

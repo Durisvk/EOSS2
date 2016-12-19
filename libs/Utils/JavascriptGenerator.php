@@ -27,10 +27,11 @@ class JavascriptGenerator
     public static function generateJavascript(EOSS $eoss) {
         $js="";
         foreach($eoss->csi as $key=>$attr) {
-            if($attr != NULL && $key != 'params' && $key != 'intervals' && $key != 'bindings') { // Filter params and intervals from CSI
+            if($attr != NULL && $key != 'params' && $key != 'intervals' && $key != 'bindings' && $key != 'events') { // Filter params and intervals from CSI
                 $js .= self::checkForEvents($attr, get_class($eoss));
             }
         }
+        $js .= self::generateEvents($eoss->csi->events, get_class($eoss));
         $js .= self::generateIntervals($eoss->csi->intervals, get_class($eoss));
         $js .= self::generateForms($eoss->getForms(), get_class($eoss));
         $js .= self::generateFlashes($eoss);
@@ -108,6 +109,58 @@ class JavascriptGenerator
 
         }
         return $js;
+    }
+
+    public static function generateEvents($events, $class) {
+        $listOfEvents=JSON::decode(file_get_contents(DIR_LIBS."EOSS/eventList.json"));
+        $js = "";
+        foreach($events as $event) {
+
+            $prop = $listOfEvents[$event["Event"]];
+
+            $e=false;
+
+            $param = "";
+            if(strpos($prop,":")!=false) {
+                $e=true;
+                $s=explode(":",$prop);
+                $prop=$s[0];
+                $param=$s[1];
+            }
+
+            $condition = NULL;
+            if(strpos($prop, "-")) {
+                $s=explode("-", $prop);
+                $prop = $s[0];
+                $condition = $s[1];
+            }
+
+            $js.="\n\n$('body').on('{$prop}', \"[data-event=\\\"{$event["string"]}\\\"]\", function (";
+            $js.="event";
+            $js.=") {\nvar $" . "self = $(event.target);\n";
+            $js.="if($" . "self.is('a')) {\nevent.preventDefault()\n}\n";
+            $js.="var data = {'eoss':'{$class}', 'id':'anonymous', 'event':'{$event["Event"]}', 'action': '{$event["Action"]}','values':createJSON()";
+            $e ? $js .= ",'param': event.{$param}, curValue:$(this).val()+String.fromCharCode(event.keyCode)" : $js.="";
+            $js.="};\n";
+            $js.="if(typeof $(this).attr(\"id\") == \"undefined\" || $(this).attr(\"id\") == \"\") {\n";
+            $js .= "$(this).attr(\"id\", randomString(10));\n";
+            $js .= "data.element_id = $(this).attr(\"id\"); \n";
+            $js .= "data.anonymous = getAllAttributes($(this));\n";
+            $js.="\n} else {\n data.element_id = $(this).attr('id'); \n}\n";
+            $js.= $condition ? "if(" . $condition . ")\n\t" : "";
+            $js.="$.post('" . URL_LIBS . "request.php', data, function (data) {
+        " . (Config::getParam("enviroment") == "debug" ? "console.log(data);" : "") . "
+        eval(data);
+        anonymous{$event['Event']}(data);
+    });
+    if($"."self.is('a')) return false;
+});";
+
+
+        }
+
+        return $js;
+
     }
 
 
@@ -224,14 +277,17 @@ class JavascriptGenerator
                     if ($element && property_exists($element, $key)) {
 
                         if($key != "html" && $key != "value") {
-                            $js .= "$( '#" . $element->id . "' ).attr(\"" . str_replace("_", "-", $key) . "\", '";
+                            $js .= "$( '#" . $element->id . "' ).attr(\"" . str_replace("_", "-", $key) . "\", \"";
                         } else if($key == "html"){
-                            $js .= "$( '#" . $element->id . "' ).html('";
+                            $js .= "$( '#" . $element->id . "' ).html(\"";
                         } else if($key == "value") {
-                            $js .= "$( '#" . $element->id . "' ).val('";
+                            $js .= "$( '#" . $element->id . "' ).val(\"";
                         }
-                        $js .= preg_replace("/\r|\n/", "", $element->$key);
-                        $js .= "');\n";
+                        $str = preg_replace("/\r|\n/", "", $element->$key);
+                        $str = str_replace("\\\"", "\"", $str);
+                        $str = str_replace("\"", "\\\"", $str);
+                        $js .= $str;
+                        $js .= "\");\n";
                     }
 
                 }
@@ -240,14 +296,17 @@ class JavascriptGenerator
                 foreach($listOfAttr as $key=>$attr) {
                     if (key_exists($key, $anonymousSender->toArray())) {
                         if($key != "html" && $key != "value") {
-                            $js .= "$( '#" . $anonymousSender->id . "' ).attr(\"" . str_replace("_", "-", $key) . "\", '";
+                            $js .= "$( '#" . $anonymousSender->id . "' ).attr(\"" . str_replace("_", "-", $key) . "\", \"";
                         } else if($key == "html"){
-                            $js .= "$( '#" . $anonymousSender->id . "' ).html('";
+                            $js .= "$( '#" . $anonymousSender->id . "' ).html(\"";
                         } else if($key == "value") {
-                            $js .= "$( '#" . $anonymousSender->id . "' ).val('";
+                            $js .= "$( '#" . $anonymousSender->id . "' ).val(\"";
                         }
-                        $js .= preg_replace("/\r|\n/", "", $anonymousSender->$key);
-                        $js .= "');\n";
+                        $str = preg_replace("/\r|\n/", "", $anonymousSender->$key);
+                        $str = str_replace("\\\"", "\"", $str);
+                        $str = str_replace("\"", "\\\"", $str);
+                        $js .= $str;
+                        $js .= "\");\n";
                     }
                 }
                 $js .= "$( '#" . $anonymousSender->id . "' ).attr('id', \"\");\n";

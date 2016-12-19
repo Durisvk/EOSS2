@@ -95,17 +95,22 @@ if ($request->getParameter('curValue') && $request->getParameter('id')) {
 // store old values:
 $oldValues = [];
 foreach($eoss->csi as $key => $value) {
-    if($key != "params" && $key != "eoss" && $key != "intervals" && $key != "bindings") {
+    if($key != "params" && $key != "eoss" && $key != "intervals" && $key != "bindings" && $key != "events") {
         $oldValues[$key] = clone $eoss->csi->$key;
     }
 }
 
 $bind_event = "";
 //DO FUNCTION...
-if($request->getParameter('id')) {
-    $bind_event = $eoss->csi->{$request->getParameter('id')}->{$request->getParameter('event')};
-} else if($request->getParameter("form")) {
-    $bind_event = $eoss->getForm($request->getParameter("form"))->onsubmit;
+$id = $request->getParameter('id');
+if($id) {
+    if($id == 'anonymous') {
+        $bind_event = $request->getParameter('action');
+    } else {
+        $bind_event = $eoss->csi->{$id}->{$request->getParameter('event')};
+    }
+} else if($request->getParameter('form')) {
+    $bind_event = $eoss->getForm($request->getParameter('form'))->onsubmit;
 } else {
     $bind_event = $request->getParameter('event');
 }
@@ -114,15 +119,29 @@ $anonymousSender = NULL;;
 
 $called = [];
 if($request->getParameter('id')) {
-    if($eoss->csi->{$request->getParameter('id')}->type == "group") {
+    if($request->getParameter('id') == 'anonymous') {
+        // If is anonymous
+        $sender = NULL;
+        if ($attributes = $request->getParameter("anonymous")) {
+            $sender = new \EOSS\AnonymousSender();
+            foreach ($attributes as $key => $value) {
+                $key = str_replace("-", "_", $key);
+                $sender->$key = $value;
+            }
+            $anonymousSender = $sender;
+        } else {
+            $sender = $eoss->csi->{$request->getParameter('element_id')};
+        }
+        $request->getParameter('param') ? $eoss->$bind_event($sender, $request->getParameter('param')) : $eoss->$bind_event($sender);
+    } else if($eoss->csi->{$request->getParameter('id')}->type == "group") {
         // If is group
-        foreach($bind_event as $event) {
-            if(!in_array($event, $called)) {
+        foreach ($bind_event as $event) {
+            if (!in_array($event, $called)) {
 
                 $sender = NULL;
-                if($attributes = $request->getParameter("anonymous")) {
+                if ($attributes = $request->getParameter("anonymous")) {
                     $sender = new \EOSS\AnonymousSender();
-                    foreach($attributes as $key => $value) {
+                    foreach ($attributes as $key => $value) {
                         $key = str_replace("-", "_", $key);
                         $sender->$key = $value;
                     }

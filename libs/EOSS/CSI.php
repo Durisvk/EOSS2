@@ -49,6 +49,10 @@ class CSI
      */
     public $intervals = [];
 
+
+    /** @var array */
+    public $events = [];
+
     /**
      * CSI constructor.
      * @param EOSS $eoss

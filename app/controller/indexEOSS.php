@@ -67,7 +67,6 @@ class indexEOSS extends EOSS
         $this->csi->txtSource->onkeypress[] = "rewrite";
         $this->csi->txtTodo->onenterpressed[] = "addTodo";
         $this->csi->buttons->onclick[] = "showNumber";
-        $this->csi->deletePerson->onclick[] = "deleteThePerson";
     }
 
     /**

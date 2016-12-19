@@ -145,6 +145,8 @@ class CollectionBinding
             }
         }
 
+        $str = str_replace("\"", "\\\"", $str);
+
         return $str;
     }
 
@@ -195,7 +197,7 @@ class CollectionBinding
             $js = "$( \"" . ($this->getElement() ? "#".$this->getElement() : "([data-binding=\\\"{$this->getString()}\\\"])") . "\" ).";
             $html = $this->injectIntoTemplate($array);
             $html = str_replace("\n", "", $html);
-            $js .= "html( '" . $html . "' ).attr(\"data-collection\", '" . json_encode(array_values($array)) . "');\n";
+            $js .= "html( \"" . $html . "\" ).attr(\"data-collection\", '" . json_encode(array_values($array)) . "');\n";
 
             return $js;
         }
