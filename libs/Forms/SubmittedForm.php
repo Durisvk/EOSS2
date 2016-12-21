@@ -10,6 +10,8 @@ namespace Forms;
 
 /**
  * Received when the form is submitted as argument to the event.
+ *
+ * @author Juraj Čarnogurský
  * Class SubmittedForm
  * @package Forms
  */

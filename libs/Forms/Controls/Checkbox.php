@@ -11,6 +11,8 @@ namespace Forms\Controls;
 
 /**
  * Basic checkbox.
+ *
+ * @author Juraj Čarnogurský
  * Class Checkbox
  * @package Forms\Controls
  */

@@ -3,6 +3,13 @@
 namespace Forms\Controls;
 
 
+/**
+ * Simple selectbox control
+ *
+ * @author Juraj Čarnogurský
+ * Class SelectBox
+ * @package Forms\Controls
+ */
 class SelectBox extends OptionsBasedElement implements IElement
 {
 

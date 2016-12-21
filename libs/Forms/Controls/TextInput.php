@@ -5,6 +5,8 @@ namespace Forms\Controls;
 
 /**
  * Basic input class.
+ *
+ * @author Juraj Čarnogurský
  * Class TextInput
  * @package Forms\Controls
  */

@@ -4,6 +4,8 @@ namespace Utils;
 
 /**
  * Helper class for CSI generating.
+ *
+ * @author Juraj Čarnogurský
  * Class CSIHelper
  * @package Utils
  */

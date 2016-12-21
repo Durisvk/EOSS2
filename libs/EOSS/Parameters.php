@@ -4,6 +4,8 @@ namespace EOSS;
 
 /**
  * CSI holds this class to pass the variables into view
+ *
+ * @author Juraj Čarnogurský
  * Class Parameters
  * @package EOSS
  */

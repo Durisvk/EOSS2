@@ -4,6 +4,13 @@ namespace EOSS;
 
 use Utils\Session;
 
+/**
+ * Persistent Stateful class stored in the sessions.
+ *
+ * @author Juraj Čarnogurský
+ * Class Registry
+ * @package EOSS
+ */
 class Registry
 {
 
@@ -27,7 +34,9 @@ class Registry
         }
     }
 
-
+    /**
+     * Stores the registry into sessions.
+     */
     public function __destruct()
     {
         Session::getInstance()->set("registryEOSS", $this->params);

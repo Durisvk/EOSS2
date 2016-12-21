@@ -6,6 +6,8 @@ use Application\Config;
 
 /**
  * Singleton class that serves as session wrapper.
+ *
+ * @author Juraj Čarnogurský
  * Class Session
  * @package Utils
  */

@@ -19,6 +19,8 @@ use Forms\Controls\TextInput;
 
 /**
  * Basic form wrapper.
+ *
+ * @author Juraj Čarnogurský
  * Class Form
  * @package Forms
  */

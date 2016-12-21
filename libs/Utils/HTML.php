@@ -1,10 +1,11 @@
 <?php
 
 namespace Utils;
-use Debug\Linda;
 
 /**
  * Static Helper class for HTML manipulations with DOMDocument
+ *
+ * @author Juraj Čarnogurský
  * Class HTML
  * @package Utils
  */

@@ -4,6 +4,8 @@ namespace Binding;
 
 /**
  * Serves for collection item source binding.
+ *
+ * @author Juraj Čarnogurský
  * Interface IBindableCollection
  * @package Binding
  */
@@ -67,4 +69,11 @@ interface IBindableCollection
      * @param mixed $changeValue
      */
     public function updateFirstWhere($attr, $value, $attrToChange, $changeValue);
+
+    /**
+     * Sets the collection value.
+     * @param array $value
+     * @return mixed
+     */
+    public function setValue(array $value);
 }

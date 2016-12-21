@@ -7,6 +7,8 @@ use EOSS\EOSS;
 
 /**
  * Takes care of the element to property binding.
+ *
+ * @author Juraj Čarnogurský
  * Class PropertyBinding
  * @package Binding
  */
@@ -187,6 +189,7 @@ class PropertyBinding
     }
 
     /**
+     * Gets the source path.
      * @return string
      */
     public function getSourcePath()
@@ -195,6 +198,7 @@ class PropertyBinding
     }
 
     /**
+     * Gets the element id.
      * @return NULL|string
      */
     public function getElement()
@@ -203,6 +207,7 @@ class PropertyBinding
     }
 
     /**
+     * Gets the target attribute.
      * @return string
      */
     public function getTargetAttribute()
@@ -211,6 +216,7 @@ class PropertyBinding
     }
 
     /**
+     * Gets the mode either one-way or two-way.
      * @return string
      */
     public function getMode()
@@ -219,6 +225,7 @@ class PropertyBinding
     }
 
     /**
+     * Gets the data-binding attribute value as string.
      * @return string
      */
     public function getString()
@@ -228,6 +235,7 @@ class PropertyBinding
 
 
     /**
+     * Generates the initial javascript.
      * @param EOSS $eoss
      * @return string
      * @throws \Exception
@@ -257,6 +265,11 @@ class PropertyBinding
 
     }
 
+    /**
+     * Generates the response javascript.
+     * @param EOSS $eoss
+     * @return string
+     */
     public function getResponseJavascript(EOSS $eoss) {
         if($val = self::getValue($eoss, $this->getSourcePath())) {
             $js = "$( \"" . ($this->getElement() ? "#".$this->getElement() : "[data-binding=\\\"{$this->getString()}\\\"]") . "\" ).";

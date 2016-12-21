@@ -5,6 +5,8 @@ namespace Templating;
 
 /**
  * Factory for templating wrappers.
+ *
+ * @author Juraj Čarnogurský
  * Class TemplateFactory
  * @package Templating
  */

@@ -13,6 +13,8 @@ use Utils\Strings;
 
 /**
  * Loads the application
+ *
+ * @author Juraj Čarnogurský
  * Class ApplicationLoader
  * @package Application\ApplicationLoader
  */

@@ -4,7 +4,9 @@ namespace Http;
 
 
 /**
- * Simple response wrapper. Use as follows: Response::getInstance()->whatever...
+ * Simple response wrapper. Use as singleton: Response::getInstance()->whatever...
+ *
+ * @author Juraj Čarnogurský
  * Class Response
  * @package Http
  */

@@ -5,6 +5,8 @@ namespace Binding;
 
 /**
  * If the property is bounded to the element it should implement this interface.
+ *
+ * @author Juraj Čarnogurský
  * Interface IBindableProperty
  * @package Binding
  */

@@ -4,6 +4,8 @@ namespace Binding;
 
 /**
  * Collection that is bound to an element.
+ *
+ * @author Juraj Čarnogurský
  * Class BindableCollection
  * @package Binding
  */
@@ -134,10 +136,9 @@ class BindableCollection implements IBindableCollection
     }
 
     /**
-     * Sets the data to collection as array.
-     * @param array $value
+     * @inheritdoc
      */
-    public function setValue($value)
+    public function setValue(array $value)
     {
         $this->value = $value;
         $this->updateElement();

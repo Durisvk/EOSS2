@@ -5,6 +5,8 @@ namespace Forms\Controls;
 
 /**
  * Basic submit class.
+ *
+ * @author Juraj Čarnogurský
  * Class Submit
  * @package Forms\Controls
  */

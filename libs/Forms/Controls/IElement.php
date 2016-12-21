@@ -11,6 +11,8 @@ namespace Forms\Controls;
 
 /**
  * Every form element/control should implement this.
+ *
+ * @author Juraj Čarnogurský
  * Interface IElement
  * @package Forms\Controls
  */

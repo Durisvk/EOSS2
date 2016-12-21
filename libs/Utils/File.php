@@ -4,6 +4,8 @@
 
     /**
      * Helper for manipulation with Files.
+     *
+     * @author Juraj Čarnogurský
      * Class File
      * @package Utils
      */

@@ -5,6 +5,8 @@ namespace Http;
 
 /**
  * Simple request wrapper, use as follows: Request::getInstance()->whatever...
+ *
+ * @author Juraj Čarnogurský
  * Class Request
  * @package Http
  */

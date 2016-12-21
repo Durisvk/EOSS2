@@ -5,6 +5,8 @@ namespace Binding;
 
 /**
  * If attribute is bounded to the property it implements this interface.
+ *
+ * @author Juraj Čarnogurský
  * Interface IBindedAttribute
  * @package Binding
  */

@@ -5,6 +5,8 @@ namespace Templating;
 
 /**
  * Templating engine wrapper interface.
+ *
+ * @author Juraj Čarnogurský
  * Interface ITemplateWrapper
  * @package Templating
  */

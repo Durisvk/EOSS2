@@ -11,6 +11,8 @@ namespace Forms\Controls;
 
 /**
  * Basic radio list class.
+ *
+ * @author Juraj Čarnogurský
  * Class RadioList
  * @package Forms\Controls
  */

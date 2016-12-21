@@ -4,6 +4,8 @@ namespace Forms\Controls;
 
 /**
  * BaseElement helper.
+ *
+ * @author Juraj Čarnogurský
  * Class BaseElement
  * @package Forms\Controls
  */

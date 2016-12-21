@@ -6,10 +6,22 @@ namespace Utils;
 
 use EOSS\EOSS;
 
+/**
+ * Class that helps persist the EOSS state to make it stateful.
+ *
+ * @author Juraj Čarnogurský
+ * Class EOSSHelper
+ * @package Utils
+ */
 class EOSSHelper
 {
 
-    public static function storeClassVariables($eoss,$name) {
+    /**
+     * Stores EOSS state into the sessions.
+     * @param EOSS $eoss
+     * @param string $name
+     */
+    public static function storeClassVariables(EOSS $eoss,$name) {
         Session::getInstance()->set($name, "");
         unset($eoss->csi->eoss);
         foreach($eoss as $key => $value) {

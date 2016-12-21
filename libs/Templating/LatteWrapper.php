@@ -11,6 +11,13 @@ namespace Templating;
 
 use Latte\Engine;
 
+/**
+ * Latte templating engine wrapper.
+ *
+ * @author Juraj Čarnogurský
+ * Class LatteWrapper
+ * @package Templating
+ */
 class LatteWrapper implements ITemplateWrapper
 {
 
@@ -19,6 +26,9 @@ class LatteWrapper implements ITemplateWrapper
      */
     private $latte;
 
+    /**
+     * @inheritdoc
+     */
     public function initialize()
     {
 
@@ -28,6 +38,9 @@ class LatteWrapper implements ITemplateWrapper
 
     }
 
+    /**
+     * @inheritdoc
+     */
     public function render($path, $variables)
     {
         //$path = str_replace(DIR_APP.Config::getParam("layout_dir"), "", $path);

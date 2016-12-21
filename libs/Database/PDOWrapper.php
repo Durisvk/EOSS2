@@ -4,6 +4,9 @@ namespace Database;
 use Debug\Linda;
 
 /**
+ * Basic PDO database engine wrapper.
+ *
+ * @author Juraj Čarnogurský
  * Class PDOWrapper
  * @package Database
  */

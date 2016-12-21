@@ -14,6 +14,8 @@ use Windwalker\Renderer\BladeRenderer;
 
 /**
  * Blade templating engine wrapper.
+ *
+ * @author Juraj Čarnogurský
  * Class BladeWrapper
  * @package Templating
  */
@@ -25,6 +27,9 @@ class BladeWrapper implements ITemplateWrapper
      */
     private $blade;
 
+    /**
+     * @inheritdoc
+     */
     public function initialize()
     {
 
@@ -32,6 +37,9 @@ class BladeWrapper implements ITemplateWrapper
 
     }
 
+    /**
+     * @inheritdoc
+     */
     public function render($path, $variables)
     {
         $path = str_replace(DIR_APP.Config::getParam("layout_dir"), "", $path);

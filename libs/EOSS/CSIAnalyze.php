@@ -15,6 +15,8 @@ use Utils\JSON;
 
 /**
  * Analyzes the DOM structure of view and generates the php files with that structure.
+ *
+ * @author Juraj Čarnogurský
  * Class CSIAnalyze
  * @package EOSS
  */
@@ -164,6 +166,7 @@ class CSIAnalyze
     }
 
     /**
+     * Processes the bindings.
      * @param array $bindings
      * @param array $elements
      * @param \DOMDocument $dom
@@ -221,6 +224,7 @@ class CSIAnalyze
     }
 
     /**
+     * Processes the events.
      * @param array $events
      */
     private function processEvents($events) {

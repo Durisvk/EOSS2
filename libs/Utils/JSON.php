@@ -5,6 +5,8 @@ use Debug\Linda;
 
 /**
  * Simple JSON operations
+ *
+ * @author Juraj Čarnogurský
  * Class JSON
  * @package Utils
  */

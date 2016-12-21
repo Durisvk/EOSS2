@@ -9,6 +9,13 @@
 namespace Forms\Controls;
 
 
+/**
+ * Options based element should extend from this class.
+ *
+ * @author Juraj Čarnogurský
+ * Class OptionsBasedElement
+ * @package Forms\Controls
+ */
 abstract class OptionsBasedElement extends BaseElement
 {
 

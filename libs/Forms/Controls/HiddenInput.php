@@ -5,6 +5,8 @@ namespace Forms\Controls;
 
 /**
  * Basic hidden input.
+ *
+ * @author Juraj Čarnogurský
  * Class HiddenInput
  * @package Forms\Controls
  */

@@ -4,6 +4,8 @@ namespace Forms\Controls;
 
 /**
  * Basic file input.
+ *
+ * @author Juraj Čarnogurský
  * Class FileInput
  * @package Forms\Controls
  */

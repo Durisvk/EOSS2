@@ -4,6 +4,8 @@ namespace Utils;
 
 /**
  * Contains all of the basic clients information functions.
+ *
+ * @author Juraj Čarnogurský
  * Class Client
  * @package Utils
  */

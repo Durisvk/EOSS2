@@ -5,6 +5,8 @@ namespace Forms\Controls;
 
 /**
  * Basic textarea class.
+ *
+ * @author Juraj Čarnogurský
  * Class TextArea
  * @package Forms\Controls
  */

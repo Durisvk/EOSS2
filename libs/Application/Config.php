@@ -7,6 +7,8 @@ use Utils\JSON;
 
 /**
  * Reads the configuration file.
+ *
+ * @author Juraj Čarnogurský
  * Class Config
  * @package Application\Config
  */

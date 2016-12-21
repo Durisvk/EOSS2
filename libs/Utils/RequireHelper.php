@@ -5,6 +5,8 @@ namespace Utils;
 
 /**
  * Class that requires all of the files inside directory
+ *
+ * @author Juraj Čarnogurský
  * Class RequireHelper
  * @package Utils
  */
@@ -12,6 +14,7 @@ class RequireHelper
 {
 
     /**
+     * Requires all of the files inside directory except specified in array as the second argument.
      * @param string $dir
      * @param array $except
      */

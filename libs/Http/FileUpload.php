@@ -14,6 +14,12 @@ namespace Http;
 
 use Debug\Linda;
 
+/**
+ * Basic File Upload class inspirated from NETTE Framework
+ *
+ * Class FileUpload
+ * @package Http
+ */
 class FileUpload
 {
 

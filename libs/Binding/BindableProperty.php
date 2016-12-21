@@ -4,6 +4,8 @@ namespace Binding;
 
 /**
  * Bindable property implementation.
+ *
+ * @author Juraj Čarnogurský
  * Class BindableProperty
  * @package Binding
  */

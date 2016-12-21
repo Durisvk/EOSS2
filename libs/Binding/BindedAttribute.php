@@ -5,6 +5,8 @@ namespace Binding;
 
 /**
  * IBindable attribute implementation.
+ *
+ * @author Juraj Čarnogurský
  * Class BindedAttribute
  * @package Binding
  */

@@ -7,6 +7,13 @@ use Debug\Linda;
 use EOSS\EOSS;
 use Utils\HTML;
 
+/**
+ * Makes the collection binding work.
+ *
+ * @author Juraj Čarnogurský
+ * Class CollectionBinding
+ * @package Binding
+ */
 class CollectionBinding
 {
 

@@ -7,6 +7,8 @@ use Utils\RequireHelper;
 use Utils\Session;
 /**
  * Base class for controllers.
+ *
+ * @author Juraj Čarnogurský
  * Class EOSS
  * @package EOSS
  */

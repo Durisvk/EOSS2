@@ -7,13 +7,14 @@ use Application\Config;
 use Binding\CollectionBinding;
 use Binding\ElementBinding;
 use Binding\PropertyBinding;
-use Debug\Linda;
 use EOSS\EOSS;
 use Forms\Form;
 use Http\Response;
 
 /**
  * Generates ajax communication for EOSS to work.
+ *
+ * @author Juraj Čarnogurský
  * @static Class JavascriptGenerator
  * @package Utils
  */
@@ -111,6 +112,12 @@ class JavascriptGenerator
         return $js;
     }
 
+    /**
+     * Generates the Events javascript.
+     * @param array $events
+     * @param string $class
+     * @return string
+     */
     public static function generateEvents($events, $class) {
         $listOfEvents=JSON::decode(file_get_contents(DIR_LIBS."EOSS/eventList.json"));
         $js = "";

@@ -5,10 +5,11 @@ use Http\Request;
 use Http\Response;
 use \Utils\File;
 /**
+ * The class is created to display the debug information such as Errors, ...
+ *
+ * @author Juraj Čarnogurský
  * Class Linda
  * @package Debug\Linda
- *
- * The class is created to display the debug information such as Errors, ...
  */
 class Linda {
 
@@ -18,9 +19,7 @@ class Linda {
      */
     private static $dumped = "";
 
-    /**
-     * @var TODO: fill the documentation.
-     */
+
     public $showLinda;
 
 

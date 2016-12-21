@@ -13,6 +13,8 @@ use Debug\Linda;
  * CSI - stands for Client Side Interface
  * It's a class that contains all of the information
  * about the DOM structure of view.
+ *
+ * @author Juraj Čarnogurský
  * Class CSI
  * @package EOSS
  */

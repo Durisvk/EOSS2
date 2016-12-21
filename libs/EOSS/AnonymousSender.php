@@ -8,7 +8,13 @@
 
 namespace EOSS;
 
-
+/**
+ * If senders id is not set the anonymous sender comes to play.
+ *
+ * @author Juraj Čarnogurský
+ * Class AnonymousSender
+ * @package EOSS
+ */
 class AnonymousSender
 {
     /**

@@ -4,6 +4,8 @@ namespace Binding;
 
 /**
  * Takes care of element to element binding.
+ *
+ * @author Juraj Čarnogurský
  * Class ElementBinding
  * @package Binding
  */
@@ -183,6 +185,10 @@ class ElementBinding
     }
 
 
+    /**
+     * Initial element to element binding.
+     * @return string
+     */
     public function initialBindingJavascript() {
         $js = "$( '{$this->getSourceElement()}' ).";
         if($this->getSourceAttribute() == 'html') {
