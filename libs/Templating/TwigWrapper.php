@@ -36,7 +36,8 @@ class TwigWrapper implements ITemplateWrapper
      */
     public function render($path, $variables)
     {
-        $path = str_replace(DIR_APP.Config::getParam("layout_dir"), "", $path);
+        $path = realpath($path);
+        $path = str_replace(realpath(DIR_APP.Config::getParam("layout_dir")), "", $path);
         return $this->twig->render($path, $variables);
     }
 
