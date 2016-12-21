@@ -75,5 +75,5 @@ interface IBindableCollection
      * @param array $value
      * @return mixed
      */
-    public function setValue(array $value);
+    public function setValue($value);
 }

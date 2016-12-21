@@ -138,7 +138,7 @@ class BindableCollection implements IBindableCollection
     /**
      * @inheritdoc
      */
-    public function setValue(array $value)
+    public function setValue($value)
     {
         $this->value = $value;
         $this->updateElement();

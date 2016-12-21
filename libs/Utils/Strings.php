@@ -5,7 +5,7 @@ namespace Utils;
 
 /**
  * Basic manipulations with string.
- * 
+ *
  * @author Juraj Čarnogurský
  * Class Strings
  * @package Utils
