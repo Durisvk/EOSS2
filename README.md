@@ -31,7 +31,10 @@ This project is made in EOSS
 ## Checkout video tutorial
 
 In slovak version:
+
 [https://www.youtube.com/watch?v=oAr1499yrDA](https://www.youtube.com/watch?v=oAr1499yrDA)
+
 [https://www.youtube.com/watch?v=RLMNJ3rpWuU](https://www.youtube.com/watch?v=RLMNJ3rpWuU)
+
 [https://www.youtube.com/watch?v=th7GFth4O0g](https://www.youtube.com/watch?v=th7GFth4O0g)
 [https://www.youtube.com/watch?v=4DTMbxF5iXw](https://www.youtube.com/watch?v=4DTMbxF5iXw)
