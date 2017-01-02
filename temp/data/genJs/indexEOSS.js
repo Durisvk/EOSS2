@@ -92,7 +92,7 @@ $( "#randomText2" ).val($(this).val());
 $( "#randomText2" ).val("random text");$( "#randomText2" ).change();
 
 
-$( "#personsList" ).html( "<li>Person <b data-key=\"name\">Andrew Perkins</b> is  <span data-key=\"age\">25</span> years old. <a href=\"\" data-id=\"0\" data-event=\"Event: 'onclick', Action: 'deleteThePerson'\">X</a></li><li>Person <b data-key=\"name\">John Doe</b> is  <span data-key=\"age\">43</span> years old. <a href=\"\" data-id=\"1\" data-event=\"Event: 'onclick', Action: 'deleteThePerson'\">X</a></li><li>Person <b data-key=\"name\">Some Person</b> is  <span data-key=\"age\">32</span> years old. <a href=\"\" data-id=\"2\" data-event=\"Event: 'onclick', Action: 'deleteThePerson'\">X</a></li>" )
+$( "#personsList" ).html( "<li>Person <b>Andrew Perkins</b> is  <span>25</span> years old. <a href=\"\" data-id=\"0\" data-event=\"Event: 'onclick', Action: 'deleteThePerson'\">X</a></li><li>Person <b>John Doe</b> is  <span>43</span> years old. <a href=\"\" data-id=\"1\" data-event=\"Event: 'onclick', Action: 'deleteThePerson'\">X</a></li><li>Person <b>Some Person</b> is  <span>32</span> years old. <a href=\"\" data-id=\"2\" data-event=\"Event: 'onclick', Action: 'deleteThePerson'\">X</a></li>" )
 .attr("data-collection", '[{"id":0,"name":"Andrew Perkins","age":25},{"id":1,"name":"John Doe","age":43},{"id":2,"name":"Some Person","age":32}]');
 
 

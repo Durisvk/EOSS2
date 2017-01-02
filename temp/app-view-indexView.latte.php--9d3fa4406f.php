@@ -85,8 +85,7 @@ class Template9d3fa4406f extends Latte\Runtime\Template
         </div>
         Here is an example with Collection data binding:
         <div class="example">
-            <ul id="personsList" data-binding="ItemSourcePath: 'collection'">
-                <li>Person <b data-key="name"></b> is  <span data-key="age"></span> years old. <a href="" data-id="(*id*)" data-event="Event: 'onclick', Action: 'deleteThePerson'">X</a></li>
+            <ul id="personsList" data-binding="ItemSourcePath: 'collection', ItemTemplateFilePath: 'itemTemplate.blade.php'">
             </ul>
             <select id="personsSelect" data-binding="ItemSourcePath: 'collection'">
                 <option>(*name*) - (*age*)</option>

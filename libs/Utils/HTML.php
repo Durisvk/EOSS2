@@ -1,6 +1,7 @@
 <?php
 
 namespace Utils;
+use Debug\Linda;
 
 /**
  * Static Helper class for HTML manipulations with DOMDocument
@@ -28,7 +29,7 @@ class HTML
     }
 
     /**
-     * Gets the element by its id from DOMDocument
+     * Gets the element by its id from DOMDocument.
      * @param string $id
      * @param \DOMDocument $dom
      * @return \DOMNode
@@ -40,7 +41,7 @@ class HTML
 
 
     /**
-     * Returns the HTML of an element
+     * Returns the HTML of an element.
      * @param \DOMNode $element
      * @return string
      */
@@ -58,7 +59,19 @@ class HTML
     }
 
     /**
-     * Gets the elements in JSON format from string in format of HTML
+     * Sets the inner html of an element.
+     * @param \DOMDocument $dom
+     * @param \DOMNode $element
+     * @param string $html_string
+     */
+    public static function setInnerHTML(\DOMDocument $dom, \DOMNode &$element, $html_string) {
+        $fragment = $dom->createDocumentFragment();
+        $fragment->appendXML($html_string);
+        $element->appendChild($fragment);
+    }
+
+    /**
+     * Gets the elements in JSON format from string in format of HTML.
      * @param \DOMDocument $dom
      * @param string $str
      * @return string
@@ -180,9 +193,7 @@ class HTML
      */
     public static function getEvents(\DOMNode $dom) {
         $events = [];
-
         self::getAttrWithNameOfNode($dom, $events, "data-event", FALSE);
-
         return $events;
     }
 

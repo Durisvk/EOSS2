@@ -176,7 +176,8 @@ class Linda {
         if($var == FALSE || $var == NULL) {
             echo "FALSE or NULL";
         } else {
-            print_r($var);
+            $str = print_r($var, TRUE);
+            echo htmlspecialchars($str);
         }
         echo "<br>";
     }
@@ -187,5 +188,6 @@ class Linda {
      */
     public static function dump($var) {
         self::$dumped .= print_r($var, TRUE) . "<br><br>";
+        self::$dumped = htmlspecialchars(self::$dumped);
     }
 }

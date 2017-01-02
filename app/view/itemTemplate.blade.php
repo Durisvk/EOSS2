@@ -1,0 +1,1 @@
+<li>Person <b>{{ $name }}</b> is  <span>{{ $age }}</span> years old. <a href="" data-id="{{ $id }}" data-event="Event: 'onclick', Action: 'deleteThePerson'">X</a></li>

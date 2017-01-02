@@ -3,8 +3,10 @@
 namespace Binding;
 
 
+use Application\Config;
 use Debug\Linda;
 use EOSS\EOSS;
+use Templating\TemplateFactory;
 use Utils\HTML;
 
 /**
@@ -26,6 +28,11 @@ class CollectionBinding
      * @var string
      */
     private $template;
+
+    /**
+     * @var string
+     */
+    private $itemTemplateFilePath;
 
     /**
      * @var string
@@ -119,41 +126,60 @@ class CollectionBinding
      * @param string $itemSourcePath
      * @param string $template
      * @param string $string
+     * @param string $itemTemplateFilePath
      * @param null|array $element
      */
-    public function __construct($itemSourcePath, $template, $string, $element = NULL) {
+    public function __construct($itemSourcePath, $template, $string, $itemTemplateFilePath = NULL, $element = NULL) {
         $this->itemSourcePath = $itemSourcePath;
         $this->template = $template;
         $this->string = $string;
+        $this->itemTemplateFilePath = $itemTemplateFilePath;
         $this->element = $element["id"];
     }
 
     /**
      * Inserts the data into template
-     * @param array $array
-     * @return string
+     * @param $array
+     * @return mixed|string
+     * @throws \Exception
      */
     public function injectIntoTemplate($array) {
-        $dom = new \DOMDocument();
-        libxml_use_internal_errors(true);
-        $dom->loadHTML($this->template, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        libxml_clear_errors();
         $str = "";
-        foreach($array as $data) {
-            foreach($data as $key => $value) {
-                /** @var \DOMNode $element */
-                foreach(HTML::getElementsByAttributeValue($dom, "data-key", $key) as $element) {
-                    $element->nodeValue = $value;
+        if($this->itemTemplateFilePath) {
+            $dir = DIR_APP . Config::getParam("layout_dir").$this->itemTemplateFilePath;
+            if(!file_exists($dir)) {
+                throw new \Exception("Error in setFile(\"" . $this->itemTemplateFilePath . "\"). File doesn't exist.");
+            }
+            $file = $dir;
+            foreach($array as $data) {
+                if($templateWrapper = TemplateFactory::create($file)) {
+                    $templateWrapper->initialize();
+                    $rf = $templateWrapper->render($file, $data);
+                } else {
+                    $rf = get_include_contents($file, $data);
+                }
+                $str .= $rf;
+            }
+        } else {
+            $dom = new \DOMDocument();
+            libxml_use_internal_errors(true);
+            $dom->loadHTML($this->template, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            libxml_clear_errors();
+            foreach ($array as $data) {
+                foreach ($data as $key => $value) {
+                    /** @var \DOMNode $element */
+                    foreach (HTML::getElementsByAttributeValue($dom, "data-key", $key) as $element) {
+                        $element->nodeValue = $value;
+                    }
+                }
+                $str .= $dom->saveHTML();
+                foreach ($data as $key => $value) {
+                    $str = preg_replace('/\(\* *' . $key . ' *\*\)/', $value, $str);
                 }
             }
-            $str .= $dom->saveHTML();
-            foreach($data as $key => $value) {
-                $str = preg_replace('/\(\* *' . $key . ' *\*\)/', $value, $str);
-            }
+
         }
-
         $str = str_replace("\"", "\\\"", $str);
-
         return $str;
     }
 

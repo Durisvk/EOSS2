@@ -3,6 +3,7 @@
 namespace EOSS;
 
 
+use Application\Config;
 use Binding\CollectionBinding;
 use Binding\ElementBinding;
 use Binding\PropertyBinding;
@@ -72,10 +73,11 @@ class CSIAnalyze
         $dom->loadHTML($rf);
         libxml_clear_errors();
         $elements = JSON::decode(HTML::getElements($dom, $rf));
-        $events = HTML::getEvents($dom);
-        $groups = HTML::getGroups($dom);
         $bindings = HTML::getBindings($dom);
         $this->processBindings($bindings, $elements, $dom);
+        $dom->loadHTML($dom->saveHTML());
+        $events = HTML::getEvents($dom);
+        $groups = HTML::getGroups($dom);
         $this->processEvents($events);
         $requires="<?php\n";
         $gencsi="\nclass " . $this->eossClassName . "GenCSI extends \\EOSS\\CSI {\n\n";
@@ -171,7 +173,7 @@ class CSIAnalyze
      * @param array $elements
      * @param \DOMDocument $dom
      */
-    private function processBindings($bindings, $elements, $dom) {
+    private function processBindings($bindings, $elements, &$dom) {
 
         foreach($bindings as $binding) {
 
@@ -215,8 +217,12 @@ class CSIAnalyze
                 } else {
                     $element = HTML::getElementByAttributeValue($dom, "data-binding", $binding);
                 }
-
-                $this->csi->bindings[] = new CollectionBinding($json["ItemSourcePath"], HTML::getInnerHTML($element), $binding, $bindedElement);
+                $itemTemplateFilePath = NULL;
+                if(isset($json["ItemTemplateFilePath"])) {
+                    $itemTemplateFilePath = $json["ItemTemplateFilePath"];
+                    HTML::setInnerHTML($dom, $element, get_include_contents(DIR_APP . Config::getParam("layout_dir").$itemTemplateFilePath));
+                }
+                $this->csi->bindings[] = new CollectionBinding($json["ItemSourcePath"], HTML::getInnerHTML($element), $binding, $itemTemplateFilePath, $bindedElement);
             }
         }
 

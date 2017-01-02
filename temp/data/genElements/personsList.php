@@ -74,9 +74,9 @@ class personsList {
 
 	public function __construct() { 
 		$this->id="personsList";
-		$this->data_binding="ItemSourcePath: 'collection'";
+		$this->data_binding="ItemSourcePath: 'collection', ItemTemplateFilePath: 'itemTemplate.blade.php'";
 		$this->type="ul";
-		$this->html="<li>Person <b data-key=\"name\"></b> is <span data-key=\"age\"></span> years old. <a href=\"\" data-id=\"(*id*)\" data-event=\"Event: 'onclick', Action: 'deleteThePerson'\">X</a></li>";
+		$this->html="";
 	}
 
 }
