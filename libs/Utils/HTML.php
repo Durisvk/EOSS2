@@ -64,10 +64,12 @@ class HTML
      * @param \DOMNode $element
      * @param string $html_string
      */
-    public static function setInnerHTML(\DOMDocument $dom, \DOMNode &$element, $html_string) {
-        $fragment = $dom->createDocumentFragment();
-        $fragment->appendXML($html_string);
-        $element->appendChild($fragment);
+    public static function setInnerHTML(\DOMDocument &$dom, \DOMNode &$element, $html_string) {
+        $dom2 = new \DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom2->loadHTML($html_string, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        libxml_clear_errors();
+        $element->appendChild($dom->importNode($dom2->firstChild, TRUE));
     }
 
     /**
