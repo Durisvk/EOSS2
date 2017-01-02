@@ -16,7 +16,7 @@ abstract class EOSS
 {
     /**
      * Variable CSI - Client side interface
-     * @var CSI|\indexEOSSGenCSI
+     * @var CSI|\indexEOSSGenCSI|\recentEOSSGenCSI|\conversationPoolEOSSGenCSI|\myConversationsEOSSGenCSI|\dashboardEOSSGenCSI|\settingsEOSSGenCSI|\profileEOSSGenCSI|\conversationEOSSGenCSI
      */
     public $csi;
 

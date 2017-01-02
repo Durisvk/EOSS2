@@ -86,13 +86,20 @@ class PDOWrapper
     /**
      * Takes more than one parameter... for each questionmark insert one parameter.
      * @param string $query
-     * @return bool
      */
     public function prepareAndExecute($query) {
         $args = func_get_args();
         array_shift($args);
         $stmt = $this->pdo->prepare($query);
         $stmt->execute($args);
+    }
+
+    /**
+     * Returns the last inserted ID.
+     * @return string
+     */
+    public function lastInsertId() {
+        return $this->pdo->lastInsertId();
     }
 
 }

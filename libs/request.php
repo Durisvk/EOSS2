@@ -2,6 +2,8 @@
 
 $start = microtime(TRUE);
 
+include __DIR__ . "/../../constants.php";
+
 require_once "vendor/autoload.php";
 
 define('DIR', getcwd() . '/../');

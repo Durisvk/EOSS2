@@ -179,6 +179,12 @@ class JavascriptGenerator
     public static function generateIntervals($intervals, $class) {
         $js = "\n\n";
         foreach($intervals as $key => $value) {
+            $js.="$.post('" . URL_LIBS . "request.php',{'eoss':'".$class."','event':'".$key."','values':createJSON()";
+            $js.="}, function (data) {
+        " . (Config::getParam("enviroment") == "debug" ? "console.log(data);" : "") . "
+        eval(data);
+        ".$key."Interval(data);
+    });";
             $js .= "setInterval(function() {\n";
             $js.="$.post('" . URL_LIBS . "request.php',{'eoss':'".$class."','event':'".$key."','values':createJSON()";
             $js.="}, function (data) {

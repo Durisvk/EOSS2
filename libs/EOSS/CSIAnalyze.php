@@ -200,7 +200,6 @@ class CSIAnalyze
             if(!isset($json["Mode"])) {
                 $json["Mode"] = "two-way";
             }
-
             if(isset($json["SourceElement"]) && isset($json["SourceAttribute"]) && isset($json["TargetAttribute"])) {
                 $this->csi->bindings[] = new ElementBinding($json["SourceElement"], $json["SourceAttribute"], $json["TargetAttribute"], $json["Mode"], $binding);
             } else if(isset($json["SourcePath"]) && isset($json["TargetAttribute"])) {

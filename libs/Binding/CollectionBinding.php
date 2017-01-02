@@ -201,10 +201,10 @@ class CollectionBinding
             if($val instanceof BindableCollection) {
                 $array = $val->getValue();
             }
-            $js = "$( \"" . ($this->getElement() ? "#".$this->getElement() : "[data-binding=\\\"{$this->getString()}\\\"]") . "\" ).";
+            $js = "\n$( \"" . ($this->getElement() ? "#".$this->getElement() : "[data-binding=\\\"{$this->getString()}\\\"]") . "\" ).";
             $html = $this->injectIntoTemplate($array);
             $html = str_replace("\n", "", $html);
-            $js .= "html( \"" . $html . "\" ).attr(\"data-collection\", '" . str_replace("'", "&quot;", json_encode(array_values($array))) . "');\n";
+            $js .= "html( \"" . $html . "\" )\n.attr(\"data-collection\", '" . str_replace("'", "&quot;", json_encode(array_values($array))) . "');\n";
 
             return $js;
         }

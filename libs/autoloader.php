@@ -71,7 +71,7 @@ $eossContainer=array();
 $eossdir=array();
 $apploader = new \Application\ApplicationLoader();
 $apploader->includeModels();
-echo '<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>';
+echo '<script   src="' .URL_LIBS . 'js/jquery.min.js"></script>';
 $apploader->eossInit();
 include "requireJS.php";
 if(\Application\Config::getParam("enviroment") == "debug") {

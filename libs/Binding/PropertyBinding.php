@@ -3,6 +3,7 @@
 namespace Binding;
 
 
+use Debug\Linda;
 use EOSS\EOSS;
 
 /**
@@ -143,7 +144,6 @@ class PropertyBinding
         $key = $array["key"];
 
         $val = NULL;
-
         if(property_exists($obj, $key)) {
             $reflector = new \ReflectionClass(get_class($obj));
 
@@ -241,8 +241,8 @@ class PropertyBinding
      * @throws \Exception
      */
     public function initialJavascript(EOSS $eoss) {
-
-        if($val = self::getValue($eoss, $this->getSourcePath())) {
+        $val = self::getValue($eoss, $this->getSourcePath());
+        if($val !== NULL) {
             $js = "$( \"" . ($this->getElement() ? "#".$this->getElement() : "[data-binding=\\\"{$this->getString()}\\\"]") . "\" ).";
 
             if($this->getTargetAttribute() == "html") {

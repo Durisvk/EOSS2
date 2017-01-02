@@ -10,6 +10,7 @@ return array(
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
     'Pimple' => array($vendorDir . '/pimple/pimple/src'),
+    'JsonMapper' => array($vendorDir . '/netresearch/jsonmapper/src'),
     'Illuminate\\View' => array($vendorDir . '/illuminate/view'),
     'Illuminate\\Support' => array($vendorDir . '/illuminate/support'),
     'Illuminate\\Filesystem' => array($vendorDir . '/illuminate/filesystem'),
